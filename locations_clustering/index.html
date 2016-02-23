@@ -48,13 +48,19 @@ circle.hidden {
   padding-top:10px;
   padding-left:10px;
   padding-right:10px;
+  width:960px;
 }
 
 </style>
 <body>
 
 <div class="headerdiv"><p class="lead">
-  Distribution of time features for locations visited by students. <font color="green">Green</font> is locations on campus, <font color="orange">orange</font> is locations corresponding to known dormitories, and <font color="blue">blue</font> is everything else. Mark an area of points in one of the pair-plots to see where they fall in other pair-plots.
+  <b>Distribution of time features for locations visited by students.</b> <font color="green">Green</font> is locations on campus, <font color="orange">orange</font> is locations corresponding to known dormitories, and <font color="blue">blue</font> is everything else. Mark an area of points in one of the pair-plots to see where they fall in other pair-plots. Inspection reveals that <i>good decision boundaries</i> for capturing the cluster that can best be associated with home locations are:<br>
+  <span style="font-size:13.65px;"><kbd>Span of Days Visited > 20</kbd></span>
+  <span style="font-size:13.65px;"><kbd>Fraction of Time Spent > 0.15</kbd></span>
+  <span style="font-size:13.65px;"><kbd>Fraction Of Days Visited > 0.2</kbd></span>
+  <span style="font-size:13.65px;"><kbd>Time Difference From 1:30 AM < 4</kbd></span>
+  
 </p></div>
 <script src="d3.v3.js"></script>
 <!-- Latest compiled and minified CSS -->
@@ -83,11 +89,11 @@ var yAxis = d3.svg.axis()
 
 var color = d3.scale.category10();
 
-d3.csv("locations_subset1.csv", function(error, data) {
+d3.csv("locations.csv", function(error, data) {
   if (error) throw error;
 
   window.domainByTrait = {},
-      traits = d3.keys(data[0]).filter(function(d) { return d !== "species"; }),
+      traits = d3.keys(data[0]).filter(function(d) { return d !== "location"; }),
       n = traits.length;
 
   traits.forEach(function(trait) {
@@ -159,7 +165,7 @@ d3.csv("locations_subset1.csv", function(error, data) {
         .attr("cx", function(d) { return x(d[p.x]); })
         .attr("cy", function(d) { return y(d[p.y]); })
         .attr("r", 3)
-        .style("fill", function(d) { return color(d.species); });
+        .style("fill", function(d) { return color(d.location); });
   }
 
   var brushCell;
