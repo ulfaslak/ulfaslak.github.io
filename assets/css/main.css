@@ -3976,6 +3976,31 @@
 						padding-top: 0;
 					}
 
+				.two-col-special {
+				    border: 0px dotted blue;
+				    overflow: auto;
+				    width: 120%;
+				    margin: 0 0 0 -20px;
+				    padding: 0;
+				}
+
+				.two-col-special li {
+				    display: inline-block;
+				    width: 100%;
+				    font-size: 11pt;
+				    margin: 0 0 0 0;
+				    padding: 0;
+				    vertical-align: top; /* In case multi-word categories form two lines */
+				}
+				.two-col-special li:before {
+				    content: '•';
+				    padding: 4px;
+				    margin-right: 5px; /* you can tweak the gap */
+				    color: white;
+				    background-color: none; /* in case you want a color... */
+				    display: inline-block;
+				}
+
 		/* Button */
 
 			input[type="submit"],
