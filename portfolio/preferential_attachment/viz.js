@@ -25,7 +25,7 @@ function drawControls() {
         .data([0]).enter().append("svg:text")
         .text("Controls")
         .attr("x", 40 )
-        .attr("y", h - 20)
+        .attr("y", h - 20 + 6)
         .attr("font-family", "sans-serif")
         .attr("font-size", "20px")
         .attr("font-weight", "bold")
@@ -37,7 +37,7 @@ function drawControls() {
         .append("svg:text")
         .text(function(d) { return d[0]; })
         .attr("x", function(d) { return 12.5*d[1] + 170; })
-        .attr("y", h - 20)
+        .attr("y", h - 20 + 6)
         .attr("font-family", "sans-serif")
         .attr("font-size", function(d) {
             if (d[0] == "+1") { return "20px"; }
@@ -52,7 +52,7 @@ function drawControls() {
         .enter()
         .append("svg:circle")
         .attr("cx", function(d) { return 20*d + 170; })
-        .attr("cy", h - 26)
+        .attr("cy", h - 26 + 6)
         .attr("r", 20)
         .attr("fill", "#95a5a6")
         .attr("opacity", 0.5)
@@ -137,7 +137,7 @@ function drawHist() {
             .enter()
             .append("rect")
             .attr("x", function(d, i) { if (sorted) { return xscale(i); } else { return xscale(d[0]); }; })
-            .attr("y", function(d) { return h-yscale(d[1]) + 30 })
+            .attr("y", function(d) { return h-yscale(d[1]) + 40 })
             .attr("width", function(d) { return w/N_hist.length; })
             .attr("height", function(d) { return yscale(d[1]) - 40; })
             .attr("stroke-width", function(d) { return 10/Math.sqrt(d3.keys(N_hist).length)})       
@@ -230,7 +230,7 @@ function myGraph() {
                     return "Node;" + d.id;
                 })
                 .attr("class", "nodeStrokeClass")
-                .attr("fill",  "#95a5a6")
+                .attr("fill",  "#16a085")
                 .on('mouseover', function() {
                     d3.select("body").style("cursor", "default")
                 });
@@ -252,12 +252,12 @@ function myGraph() {
         force
             .on("tick", function () {
                 node.attr("transform", function (d) {
-                    return "translate(" + Math.max(r, Math.min(w - r, d.x)) + "," + Math.max(r, Math.min(h-50 - r, d.y)) + ")";
+                    return "translate(" + Math.max(r, Math.min(w - r, d.x)) + "," + Math.max(r, Math.min(h-42 - r, d.y)) + ")";
                 });
                 link.attr("x1", function (d) { return Math.max(r, Math.min(w - r, d.source.x)); })
-                    .attr("y1", function (d) { return Math.max(r, Math.min(h-50 - r, d.source.y)); })
+                    .attr("y1", function (d) { return Math.max(r, Math.min(h-42 - r, d.source.y)); })
                     .attr("x2", function (d) { return Math.max(r, Math.min(w - r, d.target.x)); })
-                    .attr("y2", function (d) { return Math.max(r, Math.min(h-50 - r, d.target.y)); });
+                    .attr("y2", function (d) { return Math.max(r, Math.min(h-42 - r, d.target.y)); });
             })
             .gravity(.05*Math.pow(nodes.length, 1.0/4))
             .charge(-240/Math.pow(nodes.length, 1.0/4))
