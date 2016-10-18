@@ -137,9 +137,9 @@ function drawHist() {
             .enter()
             .append("rect")
             .attr("x", function(d, i) { if (sorted) { return xscale(i); } else { return xscale(d[0]); }; })
-            .attr("y", function(d) { return h-yscale(d[1]) + 40 })
+            .attr("y", function(d) { return h-yscale(d[1]) })
             .attr("width", function(d) { return w/N_hist.length; })
-            .attr("height", function(d) { return yscale(d[1]) - 40; })
+            .attr("height", function(d) { return yscale(d[1]); })
             .attr("stroke-width", function(d) { return 10/Math.sqrt(d3.keys(N_hist).length)})       
     }
 
