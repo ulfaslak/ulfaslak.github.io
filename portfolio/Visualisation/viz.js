@@ -195,7 +195,7 @@ var polygons = function() {
       + "<p class='small'>Total : " + abs_size + "<br>"
       + "<p class='lead'>Minimum : " + min_size + "<br>"
       + "Maximum : " + max_size
-      + "<p class='small'>Duration: " + Math.floor(duration/3600) +" h "+ Math.floor(duration%3600)/60 + " m </p>";
+      + "<p class='small'>Duration: " + Math.floor(duration/3600) +" h "+ Math.floor((duration%3600)/60) + " m </p>";
   });
 
   // Tooltip behavior for inert mode
@@ -210,7 +210,7 @@ var polygons = function() {
       + Math.round( 1000*dataset['sims'][focus_label][d['c']]['sim']) / 10 + "%"
       + "<br>" + "In common: "
       + dataset['sims'][focus_label][d['c']]['count'] + "<p>"
-      + "<p class='small'>Duration: " + Math.floor(duration/3600) +" h "+ Math.floor(duration%3600)/60 + " m </p>";
+      + "<p class='small'>Duration: " + Math.floor(duration/3600) +" h "+ Math.floor((duration%3600)/60) + " m </p>";
     });
 
   svg_w1.call(tip1)

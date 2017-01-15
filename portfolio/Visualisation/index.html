@@ -66,33 +66,32 @@
           <div role="tabpanel" class="tab-pane active" id="home">
             <br>
             <p class='sidebar-text'>
-            This visualization shows how university students flow through social communities throughout a day. On the left you see how meetups stretch out over time and above is a network showing social connections in the narrow time span illustrated as a blue ribbon on the left, initiated around 9 AM.
+            This visualization shows how university students flow through social communities throughout a day. In the left panel you see how student gatherings stretch out over time and above is a network showing face-to-face connections in the 10 minute time bin marked with a blue ribbon on the left, initiated around 9 AM.
 
             <br><br>
-
-            The data used in this visualisation consists of physical meetings throughout a day, recorded as bluetooth connections between phones carried by the over 500+ participants. Each meeting is represented as a link in the network above, and each node represents a person. The social communities are inferred using <a href="http://mapequation.org/">the Map Equation</a>.
+            The data source consists of face-to-face meetings between freshman students, during the first week of a study period where each students attends the same course with the same people every day. Each interaction is given a timestamp, such that the dataset describes a temporal network. If you compare different days you'll notice that many of the same communities are detected each day.
 
             <br><br>
+            Interactions are inferred from bluetooth signals measured between students' phones where only signals greater than -80 dB, corresponding to a distance of approximately 1.5 meters, are recorded. There are 628 unique students in this temporal network, which is a small subset of <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0095978">a greater dataset</a> which contains multiple interaction channels (face-to-face, SMS, calls, Facebook posts, GPS-location, Wi-Fi, screen) over 2.5 years for approx. 1000 students at the Technical University of Denmark. 
 
-            This visualization is the result of a student research project conducted in collaboration with the  <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0095978">Copenhagen Networks Study</a>. The code is shared on <a href="https://github.com/ulfaslak/InfomapSensibleDTU">Github</a>.
+            <br><br>
+            Communities are inferred using Infomap, with a special interlayer linking strategy that scales the link weights between two states of the same node by the Jensen-Shannon divergence of the neighborhoods in their respective layers. See the '--multiplex-js-relax-rate' option on the <a href="http://www.mapequation.org/code.html">Infomap documentation page</a> for reference. 
+
+            <br><br>
+            For optimal performance, run visualization in Google Chrome. The code is available on <a href="https://github.com/ulfaslak/InfomapSensibleDTU/tree/master/Visualisation">Github</a>. Please send questions and comments to <a href="http://ulfaslak.com/">Ulf Aslak</a>.
           </p>
-
-            <br>
-
-            <p align="right"> Produced by <a href="http://ulfaslak.com/">Ulf Aslak</a>, &copy;2015.
-            </p>
           </div>
           <div role="tabpanel" class="tab-pane" id="profile">
             <br>
-            <p class='sidebar-text'>Try hovering over a community-strip on the left. This removes all communities that have no members in common with the one you are hovering over. Now click it! This enables you to move the curser around and hover over the visible communities to see how similar they are to the one you clicked. 
+            <p class='sidebar-text'>Try hovering over a community-strip on the left. This highlights other communities proportionally to how many members they share with the reference community. Now click it! You can move the curser around and hover over visible communities to see how similar they are to the one you clicked.
 
             <br><br>
 
-            Play around with the arrow keys. This is how you shuffle through time, with 5 minutes steps. Note how the graph updates and that the blue time ribbon (initiated at 9 AM) moves vertically. Pan or zoom on the graph to manipulate its location. Double click a node to focus on its community as you shuffle through time. Hold <kbd>shift</kbd> for slow motion. Click a time stamp to jump to a different place in time. 
+            Play around with the <kbd>up</kbd> and <kbd>down</kbd> arrow keys. This changes the position of the blue ribbon in the left panel and updates the network to show interactions at a different time. Pan or zoom on the graph to manipulate its location. Double click a node to focus on its community as you shuffle through time. Hold <kbd>shift</kbd> for slow motion. Click a time label to jump to a different place in time. 
 
             <br><br>
 
-            The slider above controls the minimum allowed size for groups in the visualisation. If it is set to 5, groups whose maximum size is lower than this is not shown. Below that you can choose which day of the week to show in the visualisation.
+            The slider above controls the minimum allowed size for groups in the visualisation. If it is set to 5, groups whose maximum size is lower than this are not shown. Below the slider you can choose to view a different day.
           </p>
 
             <table class="table table-striped"> 
