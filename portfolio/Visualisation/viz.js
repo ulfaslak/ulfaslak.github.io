@@ -7,7 +7,7 @@ var thresh = 3;
 var shiftDown = false;
 var altDown = false;
 var color = d3.scale.category20c();
-var size_thresh = 1
+var size_thresh = 5
 var slideStop = new Event('slideStop')
 var ds_filename = "datasetMon"
 
