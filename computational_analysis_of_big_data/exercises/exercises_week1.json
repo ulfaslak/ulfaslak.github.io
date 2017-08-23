@@ -4,7 +4,38 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Exercises 1"
+    "# Week 1\n",
+    "*Thursday, August 24, 2017*"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Outline"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2017-08-23T15:30:03.634114Z",
+     "start_time": "2017-08-23T15:30:03.629294Z"
+    }
+   },
+   "source": [
+    "We start out with the basics. The exercises today cover:\n",
+    "\n",
+    "* Write Python code and markdown in Jupyter notebooks\n",
+    "* Basic Python functionality\n",
+    "* Getting some data from Reddit"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Exercises"
    ]
   },
   {
@@ -299,7 +330,7 @@
     "1. Use [`requests`](https://www.google.dk/search?q=python+requests+get+json&gws_rd=cr&ei=M5OdWaewD8Ti6AS54J24Bg), or another Python module, to store **[this data file](https://www.reddit.com/r/news.json)** in a variable.\n",
     "2. What is the type of this variable?\n",
     "\n",
-    "*Hint: You import modules simply by running `import <module name>` in a code cell.*"
+    "*Hint: 1. You import modules simply by running `import <module name>` in a code cell. 2. Use the `type` function.*"
    ]
   },
   {
@@ -450,15 +481,6 @@
    "source": [
     "# Answer to Ex. 1.9d.2"
    ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "collapsed": true
-   },
-   "outputs": [],
-   "source": []
   }
  ],
  "metadata": {
