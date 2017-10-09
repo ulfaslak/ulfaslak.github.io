@@ -73,41 +73,13 @@
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">About</a></li>
-            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Guidebook</a></li>
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Guide</a></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">About</a></li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="home">
-                <br>
-                <p class='sidebar-text'>
-                    This visualization shows how university students flow through social communities throughout a day. In the left panel you see how student gatherings stretch out over time and above is a network showing face-to-face connections in the 5 minute time bin marked with a blue ribbon on the left, initiated around 9 AM.
-
-                    <br><br>
-                    The data source consists of face-to-face meetings between freshman students, during the first week of a study period where each students attends the same course with the same people every day. Each interaction is given a timestamp, such that the dataset describes a temporal network. If you compare different days you'll notice that many of the same communities are detected each day.
-
-                    <br><br>
-                    Interactions are inferred from bluetooth signals measured between students' phones where only signals greater than -80 dB, corresponding to a distance of approximately 1.5 meters, are recorded. There are 628 unique students in this temporal network, which is a small subset of <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0095978">a greater dataset</a> which contains multiple interaction channels (face-to-face, SMS, calls, Facebook posts, GPS-location, Wi-Fi, screen) over 2.5 years for approx. 1000 students at the Technical University of Denmark. 
-
-                    <br><br>
-                    Communities are inferred using Infomap, with a special interlayer linking strategy that scales the link weights between two states of the same node by the Jensen-Shannon divergence of the neighborhoods in their respective layers. See the '--multiplex-js-relax-rate' option on the <a href="http://www.mapequation.org/code.html">Infomap documentation page</a> for reference. 
-
-                    <br><br>
-                    For optimal performance, run visualization in Google Chrome. The code is available on <a href="https://github.com/ulfaslak/InfomapSensibleDTU/tree/master/Visualisation">Github</a>. Please send questions and comments to <a href="http://ulfaslak.com/">Ulf Aslak</a>.
-                </p>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="profile">
-                <br>
-                <p class='sidebar-text'>
-                    Try hovering over a community-strip on the left. This highlights other communities proportionally to how many members they share with the reference community. Now click it! You can move the curser around and hover over visible communities to see how similar they are to the one you clicked.
-
-                    <br><br>
-                    Play around with the <kbd>up</kbd> and <kbd>down</kbd> arrow keys. This changes the position of the blue ribbon in the left panel and updates the network to show interactions at a different time. Pan or zoom on the graph to manipulate its location. Double click a node to focus on its community as you shuffle through time. Hold <kbd>shift</kbd> for slow motion. Click a time label to jump to a different place in time. 
-
-                    <br><br>
-                    The slider above controls the minimum allowed size for groups in the visualisation. If it is set to 5, groups whose maximum size is lower than this are not shown. Below the slider you can choose to view a different day.
-                </p>
 
                 <table class="table table-striped"> 
                     <thead> 
@@ -139,6 +111,50 @@
                         </tr> 
                     </tbody> 
                 </table>
+
+                <p class='sidebar-text'>
+                    <b>The long strips</b> each represent a community and its size over time.
+                    When you hover and click a community, others vanish if they have no members in common.
+                    You can inspect similarity by clicking one community and hovering another.
+                    Doubling clicking nodes on the graph also works.
+                    <br><br>
+                    <b>The graph</b> visualizes the network in a 10-minute time-bin, corresponding to the position of horizontal blue bar in the left panel.
+                    By stepping through time (using the <kbd>up</kbd> and <kbd>down</kbd> arrow keys), the network updates to visualize an adjacent time-bin.
+                    You zoom in and out by scrolling on the graph.
+                    <br><br>
+                    <b>The slider</b> controls the minimum size of groups that are displayed.
+                    If set to 5, groups of maximum size lower than 5 are not shown.
+                    <br><br>
+                    <b>The buttons</b> control various things.
+                    <u>The first row</u> controls the day of the week.
+                    If a community exists on two seperate days, it will have the same horizontal position on both days.
+                    <u>The second row</u> of buttons controls which interlayer coupling sheme was used for community detection [<a href="" target="_blank">1</a>].
+                    <u>The third row</u> changes the dataset [<a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0095978" target="_blank">2</a>, <a href="http://www.sociopatterns.org/datasets/contacts-in-a-workplace/" target="_blank">3</a>].
+                </p>
+
+                
+                
+            </div>
+            <div role="tabpanel" class="tab-pane" id="profile">
+                <br>
+                
+
+                <p class='sidebar-text'>
+                    This visualization shows how university students flow through social communities throughout a day. In the left panel you see how student gatherings stretch out over time and above is a network showing face-to-face connections in the 5 minute time bin marked with a blue ribbon on the left, initiated around 9 AM.
+
+                    <br><br>
+                    The data source consists of face-to-face meetings between freshman students, during the first week of a study period where each students attends the same course with the same people every day. Each interaction is given a timestamp, such that the dataset describes a temporal network. If you compare different days you'll notice that many of the same communities are detected each day.
+
+                    <br><br>
+                    Interactions are inferred from bluetooth signals measured between students' phones where only signals greater than -80 dB, corresponding to a distance of approximately 1.5 meters, are recorded. There are 628 unique students in this temporal network, which is a small subset of <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0095978">a greater dataset</a> which contains multiple interaction channels (face-to-face, SMS, calls, Facebook posts, GPS-location, Wi-Fi, screen) over 2.5 years for approx. 1000 students at the Technical University of Denmark. 
+
+                    <br><br>
+                    Communities are inferred using Infomap, with a special interlayer linking strategy that scales the link weights between two states of the same node by the Jensen-Shannon divergence of the neighborhoods in their respective layers. See the '--multiplex-js-relax-rate' option on the <a href="http://www.mapequation.org/code.html">Infomap documentation page</a> for reference. 
+
+                    <br><br>
+                    For optimal performance, run visualization in Google Chrome. The code is available on <a href="https://github.com/ulfaslak/InfomapSensibleDTU/tree/master/Visualisation">Github</a>. Please send questions and comments to <a href="http://ulfaslak.com/">Ulf Aslak</a>.
+                </p>
+
             </div>
         </div>
     </div> <!-- w3 end -->
