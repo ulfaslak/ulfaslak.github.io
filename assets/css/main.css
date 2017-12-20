@@ -1622,7 +1622,7 @@
 	}
 
 	p {
-		margin: 0 0 1em 0;
+		margin: 0 2em 1em 2em;
 		word-break: normal;
 		-ms-word-break: normal;
      	word-break: normal;
@@ -1631,6 +1631,14 @@
     	hyphens: auto;
     	-webkit-hyphens: auto;
    		-moz-hyphens: auto;
+	}
+
+	p.figtext {
+		margin: 0em 0em 1em 0em;
+		font-size: 10pt;
+		font-weight: 500;
+		line-height: 120%;
+
 	}
 
 	h1, h2, h3, h4, h5, h6 {
