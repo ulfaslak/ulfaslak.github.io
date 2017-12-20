@@ -1,0 +1,17 @@
+.nodes circle {
+	stroke: #2980b9;
+	fill: #2980b9;
+}
+
+
+.links line {
+	stroke-opacity: 0.6;
+    stroke-width: 2px;
+    fill: none;
+	stroke: #7f8c8d;
+}
+
+/*.text {
+ 	text-anchor: middle;
+ 	stroke: #2980b9;
+}*/

@@ -1622,7 +1622,15 @@
 	}
 
 	p {
-		margin: 0 0 2em 0;
+		margin: 0 0 1em 0;
+		word-break: normal;
+		-ms-word-break: normal;
+     	word-break: normal;
+    	text-align: justify;
+    	text-justify: inter-word;
+    	hyphens: auto;
+    	-webkit-hyphens: auto;
+   		-moz-hyphens: auto;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -2165,6 +2173,21 @@
 			width: 75%;
 		}
 
+	header.minor {
+		margin: 0 0 2.5em 0;
+		position: relative;
+		text-align: left;
+	}
+
+		header.minor:after {
+			background: #e44c65;
+			content: '';
+			display: inline-block;
+			height: 0.2em;
+			max-width: 21.4em;
+			width: 78%;
+		}
+
 	footer.major {
 		margin: 4em 0 0 0;
 	}
@@ -2513,7 +2536,7 @@
 		}
 
 			.image.left img, .image.right img {
-				width: 100%;
+				/*width: 100%;*/
 			}
 
 		.image.fit {

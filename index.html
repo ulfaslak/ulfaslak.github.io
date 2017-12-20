@@ -7,10 +7,12 @@
 <html>
 	<head>
 		<title>Ulf Aslak</title>
+		<script src="libs/d3.min.js"></script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" type="text/css" href="./viz.css">
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
@@ -22,9 +24,9 @@
 					<h1 id="logo"><a href="index.html">Ulf Aslak</a></h1>
 					<nav id="nav">
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<!-- <li><a href="portfolio.html">Portfolio</a></li> -->
-							<!-- <li><a href="references.html">References</a></li> -->
+							<!-- <li><a href="index.html">Home</a></li> -->
+							<li><a href="files/CV_pretty_en.pdf">CV (pdf)</a></li>
+							<li><a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao">Publications</a></li>
 							<li><a href="contact.html" class="button special">Contact</a></li>
 						</ul>
 					</nav>
@@ -33,74 +35,40 @@
 			<!-- Main -->
 				<div id="main" class="wrapper style1">
 					<div class="container">
-						<header class="major">
-							<h2>Welcome</h2>
-							<p>Professional profile of Ulf Aslak</p>
-						</header>
 						<div class="row 150%">
-							<div class="4u 12u$(medium)">
 
-								<!-- Sidebar -->
-									<section id="sidebar">
-										<section>
-											<h4>Latest project</h4>
-											<p style="font-size: 14px; line-height: 22px;">Interactive visualisation of dynamic communities of university students and workplace employees. The project was done in collaboration with Sensible DTU as an attempt to model the dynamical structure of communities in a temporal network of human interactions. The project was awarded 1st place in the student category of the <a href="http://www.sciencemag.org/projects/data-stories/winners">2016 Data Stories</a> competition by Science. [Jan. 2016]</p>
-											<a href="research/temporal_communities" class="image fit" target="_blank"><img src="images/portfolio_thumbs/senDTUviz.png" alt=""></a>
-											<footer>
-												<ul class="actions">
-													<li><a href="portfolio.html" class="button">More work</a></li>
-												</ul>
-											</footer>
-										</section>
-										
-										<hr />
-										
-										<section>
-											<!-- <h4>Featured recommendation</h4>
-												<blockquote style="font-size: 14px; line-height: 22px;">He is a quick learner and very open to venture into new scientific disciplines. His interdisciplinary interest profile is highly beneficial for complex projects involving both academic and industrial partners. In addition he has an easy-going personality with a good flair for team-work which is essential in our type of project. <a href="files/Ulf_aslak_rec (Claus).pdf" target="_blank">(...)</a></blockquote>
-											<footer>
-												<ul class="actions">
-													<li><a href="references.html" class="button">More references</a></li>
-												</ul>
-											</footer> -->
-										</section>
-
-									</section>
-
-							</div>
-							<div class="8u$ 12u$(medium) important(medium)">
+							<!-- Left div -->
+							<div class="8u 12u$(medium) important(medium)">
+								<!-- Title -->
+								<header class="minor">
+									<a href="#" class="image left"><img width=140 src="images/index_thumbs/cover.jpg" alt="image"/></a>
+									<h2>Ulf Aslak</h2>
+									<p>PhD student / physicist / data scientist</p>
+								</header>
 
 								<!-- Content -->
-									<section id="content">
-										<a href="#" class="image right"><img src="images/index_thumbs/cover.jpg" alt="image" /></a>
-										<h3>Summary</h3>
-											<p>PhD fellow at the <a href='http://sodas.ku.dk/' target="_blank">Centre for Social Data Science</a>, University of Copenhagen, visiting researcher at the Technical University of Denmark (DTU) and external lecturer at <a href='https://disabroad.org/copenhagen/courses/computation-analyses-big-data/' target="_blank">DIS Copenhagen</a>. Holds a degrees in <a href='http://www.dtu.dk/english/Education/msc/Programmes/digital_media_engineering' target="_blank">Digital Media Engineering</a> (M.Sc.) and <a href='http://www.dtu.dk/english/Education/Bachelor-BEng-and-BSc-/bsc/physics-and-nanotechnology' target="_blank">Physics</a> (B.Sc.) from DTU, is a former visiting researcher at the <a href='https://www.weizmann.ac.il/mcb/UriAlon/' target="_blank">Uri Alon lab</a> at the Weizmann Institute of Science, and former Data Scientist at <a href='https://www.trustpilot.com/' target="_blank">Trustpilot</a>. Winner of the inaugural <a href='http://www.sciencemag.org/projects/data-stories/winners/2016' target="_blank">Data Stories competition</a> by Science Magazine. Areas of expertise are complex networks, deep learning, non-linear signal processing and data visualization.</p>
-										
-										<!-- <h3>Work bio</h3>
-											<p>Ulf is a PhD fellow at the <a href='http://sodas.ku.dk/' target="_blank">Copenhagen Centre for Social Data Science</a> (SODAS, University of Copenhagen) with a masters degree from the Technical University of Denmark in <a href='http://www.dtu.dk/english/Education/msc/Programmes/digital_media_engineering' target="_blank">Digital Media Engineering</a>. He completed his master thesis at the Weizmann Institute of Science in Israel, with the <a href='https://www.weizmann.ac.il/mcb/UriAlon/homepage' target="_blank">Uri Alon Lab</a>, investigating how archetypes in personality data support evolutionary behavioral strategies. He has worked part time as Data Scientist at <a href='https://www.trustpilot.com/' target="_blank">Trustpilot</a> developing fraud detection systems, as an animation artist with <a href='http://www.sterlitech.com/' target="_blank">Sterlitech</a> and as a teaching assistant at DTU in the courses <i>Physics 1</i> and <i><a href='http://toolsforbigdata.com/' target="_blank">Computational Tools for Big Data</a></i>. His academic background is within the field of Physics and Nanotechnology, where he has co-authored <a href='http://www.sciencedirect.com/science/article/pii/S1383586615303865' target="_blank">work</a> on
-
-										<h3>Skills</h3>
-											<ul class="two-col-special">
-											  <li>Coding (Python, R, Matlab, JS)</li>
-											  <li>3D Animation (Blender)</li>
-											  <li>Machine Learning/Signal proc.</li>
-											  <li>Web Scraping/Crawling</li>
-											  <li>Social data analysis</li>
-											  <li>Academic Research and Writing</li>
-											  <li>Statistical Modeling</li>
-											  <li>Communicating and Teaching</li>
-											  <li>Data visualisation (D3, MPL)</li>
-											  <li>Literature research</li>
-											</ul> -->
-
-										<br>
-										<a href="files/CV_pretty_en.pdf" class="button image right" target="_blank">Paper CV</a>
-										<!-- Working experience with a number of Big Data tools, including Hadoop MapReduce, Apache Spark, database systems (SQL, NoSQL, Graph) and Amazon ML. -->
-											
-									</section>
+								<section id="content">
+								<h3>About</h3>
+									<p>I am a PhD student at the <a href='http://sodas.ku.dk/' target="_blank">Centre for Social Data Science</a>, University of Copenhagen, a visiting researcher at the Technical University of Denmark (DTU) and an external lecturer at <a href='https://disabroad.org/copenhagen/courses/computation-analyses-big-data/' target="_blank">DIS Copenhagen</a>. I hold degrees in <a href='http://www.dtu.dk/english/Education/msc/Programmes/digital_media_engineering' target="_blank">Digital Media Engineering</a> (M.Sc.) and <a href='http://www.dtu.dk/english/Education/Bachelor-BEng-and-BSc-/bsc/physics-and-nanotechnology' target="_blank">Physics</a> (B.Sc.) from DTU, am a former visiting researcher at the <a href='https://www.weizmann.ac.il/mcb/UriAlon/' target="_blank">Uri Alon lab</a> at the Weizmann Institute of Science, and a former Data Scientist at <a href='https://www.trustpilot.com/' target="_blank">Trustpilot</a>. 
+									I won the inaugural <a href='http://www.sciencemag.org/projects/data-stories/winners/2016' target="_blank">Data Stories competition</a> by Science Magazine(<a href='http://ulfaslak.com/research/temporal_communities/'>submission</a>). Areas of expertise are network science, machine learning, and data visualization.
 
 									<br><br>
 
+									My research digs into various aspects of human behavior using computational methods. I am interested in discovering fundamental principles that govern social interactions and build theoretical and practical tools that allow us to better answer age-old questions in the social sciences.
+									My <a href='https://arxiv.org/abs/1711.07649'>most recent work</a> presents a method for clustering dynamic networks that span long periods of time. By <a href='http://ulfaslak.com/research/temporal_communities/'>applying it</a> to real-world networks that map face-to-face interactions in time it offers novel insight into how humans meet in groups.
+									</p>
+								</section>
+								<br><br>
+							</div>
+
+							<!-- Right div -->
+							<div class="4u$ 12u$(medium)">
+								<!-- Sidebar -->
+								<section id="sidebar">
+									<svg id="graph" width="300" height="330"></svg>
+									<script src="./viz.js"></script>
+									<p><font color="#2980b9">Hit the spacebar</font>. With each stroke, a random node tries to link with a neighbor's neighbor, or otherwise the node closest to itself that it is not already connected with. If there are no possible moves it just chooses a random node. Much like real social attraction, this simple principle favors triangular closing (becoming friends with your friends' friends), and creates naturally emerging communities. <font color="#2980b9">Hit the r-key</font> to reset and start over.</p>
+								</section>
 							</div>
 						</div>
 					</div>
