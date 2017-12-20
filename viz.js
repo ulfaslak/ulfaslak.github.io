@@ -1,4 +1,4 @@
-var N = 40,
+var N = 80,
 	Narr = d3.range(N),
 	inc = 1.0,
 	bw = 5,
@@ -19,11 +19,9 @@ var A = Narr.reduce(function(map, d) { map[d] = {}; return map; }, {}),
 
 document.addEventListener("keydown", timeTick, false);
 function timeTick(e) {
-	if (e.keyCode == 32) {
+	if (e.keyCode == 68) {
 		var reps = 1;
 		if (oneDown) { reps = 10; }
-		if (twoDown) { reps = 100; }
-		if (threeDown) { reps = 1000; }
 
 		for (var _ in d3.range(reps)){
 			[i, j, d] = process();
@@ -34,28 +32,12 @@ function timeTick(e) {
 };
 
 var oneDown = false;
-var twoDown = false;
-var threeDown = false;
 
 document.addEventListener("keydown", function(e) { 
 	switch (e.keyCode) {
-		case 49:
+		case 70:
 			oneDown = !oneDown;
-			if (oneDown) {
-				twoDown = false; threeDown = false
-			}
 			break
-		case 50:
-			twoDown = !twoDown; 
-			if (twoDown) {
-				oneDown = false; threeDown = false
-			}
-			break
-		case 51:
-			threeDown = !threeDown;
-			if (threeDown) {
-				oneDown = false; twoDown = false
-			}
 	}
 }, false);
 
@@ -72,7 +54,6 @@ function reset() {
 	links.slice().forEach(function() { links.splice(0, 1); })
 	restart();
 }
-
 
 
 // ------------- //
@@ -99,9 +80,9 @@ var links = [];
 
 // Force simulation
 var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(30))
+    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(20))
     //.strength(function(d){ return linkStrengthScale(+d.value); }))
-    .force("charge", d3.forceManyBody().strength(-60))
+    .force("charge", d3.forceManyBody().strength(-20))
     .force("center", d3.forceCenter(w / 2, h / 2))
     .force("x", d3.forceX())
     .force("y", d3.forceY())
@@ -125,7 +106,7 @@ node
     .attr("id", function(d) {
         return "n" + d.id;
     })
-    .attr("r", 5)
+    .attr("r", 4)
     .attr("stroke-width", 1)
     .call(d3.drag()
         .on("start", dragstarted)
@@ -134,15 +115,6 @@ node
 
 restart();
 
-// var text = g.append("g")
-//     .attr("class", "text")
-//     .selectAll("text")
-//     .data(nodes).enter()
-//     .append("text")
-//     .attr("id", function(d) { return "t" + d.id; })
-//     .attr("dx", "0pt")
-//     .attr("dy", "4pt")
-//     .text(function(d) { return d.id; });
 
 // Visualization: Utility functions //
 // -------------------------------- //
