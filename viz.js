@@ -8,18 +8,18 @@ var N = 80,
 var A = Narr.reduce(function(map, d) { map[d] = {}; return map; }, {}),
 	T = Array.from(Array(N), () => 0);
 
-// // Simulate d-key from touch event
-// document.addEventListener("touchstart", function(e) {
-// 	document.onkeydown({ keyCode: 68 });
-// });
-// document.addEventListener("touchend", function(e) {
-// 	document.onkeyup({ keyCode: 68 });
-// });
+// Simulate d-key from touch event
+document.addEventListener("touchstart", function(e) {
+	document.onkeydown({ keyCode: 68 });
+});
+document.addEventListener("touchend", function(e) {
+	document.onkeyup({ keyCode: 68 });
+});
 
 // d-key event
 document.addEventListener("keydown", timeTick, false);
 function timeTick(e) {
-	if (e.keyCode == 68 | ) {
+	if (e.keyCode == 68) {
 		var reps = 1;
 		if (oneDown) {
 			reps = 10;
