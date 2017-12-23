@@ -8,31 +8,34 @@ var N = 80,
 var A = Narr.reduce(function(map, d) { map[d] = {}; return map; }, {}),
 	T = Array.from(Array(N), () => 0);
 
-// document.addEventListener("keydown", timeTick, false);
-// function timeTick(e) {
-// 	if (e.keyCode == 32) {
-// 		[i, j, d] = process();
-// 		update(i, j, d);
-// 		restart();
-// 	};
-// };
+// Simulate d-key from touch event
+document.addEventListener("touchstart", function(e) {
+	document.onkeydown({ keyCode: 68 });
+});
+document.addEventListener("touchend", function(e) {
+	document.onkeyup({ keyCode: 68 });
+});
 
+// d-key event
 document.addEventListener("keydown", timeTick, false);
 function timeTick(e) {
-	if (e.keyCode == 68) {
+	if (e.keyCode == 68 | ) {
 		var reps = 1;
-		if (oneDown) { reps = 10; }
+		if (oneDown) {
+			reps = 10;
+		}
 
 		for (var _ in d3.range(reps)){
 			[i, j, d] = process();
 			if (j != d) { update(i, j, d); }
 		};
+
 		restart();  // Restart must be in here, because findLink looks for e.source/target.id, which does not exist on an edge before update.
 	};
 };
 
+// f-key event
 var oneDown = false;
-
 document.addEventListener("keydown", function(e) { 
 	switch (e.keyCode) {
 		case 70:
@@ -41,7 +44,9 @@ document.addEventListener("keydown", function(e) {
 	}
 }, false);
 
-document.addEventListener("keydown", function(e) { if (e.keyCode == 82) { reset(); }})
+document.addEventListener("keydown", function(e) {
+	if (e.keyCode == 82) { reset(); }
+});
 
 
 // ------- //
