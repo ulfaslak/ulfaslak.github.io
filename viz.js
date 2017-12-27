@@ -61,9 +61,6 @@ document.addEventListener("keydown", function(e) {
 
 // Create svg object
 var svg = d3.select("svg")
-    .call(d3.zoom()
-        .scaleExtent([0.1, 10])
-        .on("zoom", zoomed));
 
 var w = d3.select("svg").attr("width"),
 	h = d3.select("svg").attr("height");
