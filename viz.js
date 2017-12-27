@@ -1,3 +1,4 @@
+// Simulation variables
 var N = 80,
 	Narr = d3.range(N),
 	inc = 1.0,
@@ -5,53 +6,54 @@ var N = 80,
 	eeRatio = .95,
 	searchDepth = 5;
 
+// System state variables
 var A = Narr.reduce(function(map, d) { map[d] = {}; return map; }, {}),
 	T = Array.from(Array(N), () => 0);
 
-// d-key event
-document.addEventListener("keydown", timeTick, false);
-function timeTick(e) {
-	if (e.keyCode == 68) {
-		var reps = 1;
-		if (oneDown) {
-			reps = 10;
-		}
+// ------------------ //
+// Interface controls //
+// ------------------ //
 
-		for (var _ in d3.range(reps)){
-			[i, j, d] = process();
-			if (j != d) { update(i, j, d); }
-		};
+// Variables
+fastMode = false
 
-		restart();  // Restart must be in here, because findLink looks for e.source/target.id, which does not exist on an edge before update.
-	};
-};
-
-// f-key event
-var oneDown = false;
-document.addEventListener("keydown", function(e) { 
-	switch (e.keyCode) {
-		case 70:
-			oneDown = !oneDown;
-			break
+// User-input functions
+function addLink(e) {
+	var reps = 1;
+	if (fastMode) {
+		reps = 10;
 	}
-}, false);
 
-document.addEventListener("keydown", function(e) {
-	if (e.keyCode == 82) { reset(); }
-});
+	for (var _ in d3.range(reps)){
+		[i, j, d] = process();
+		if (j != d) { update(i, j, d); }
+	};
 
+	restart();
+}
 
-// ------- //
-// Control //
-// ------- //
+function toggleFastMode(e) {
+	fastMode = !fastMode;
+}
 
-function reset() {
+function restartSimulation() {
 	A = Narr.reduce(function(map, d) { map[d] = {}; return map; }, {}),
 	T = Array.from(Array(N), () => 0);
 	links.slice().forEach(function() { links.splice(0, 1); })
 	restart();
 }
 
+// Event listener
+document.addEventListener("keydown", function(e) {
+	switch (e.keyCode) {
+		case 68:
+			addLink(); break
+		case 70:
+			toggleFastMode(); break
+		case 82:
+			restartSimulation(); break
+	}
+}, false);
 
 // ------------- //
 // Visualization //
@@ -61,29 +63,40 @@ function reset() {
 var svg = d3.select("svg")
     .call(d3.zoom()
         .scaleExtent([0.1, 10])
-        .on("zoom", zoomed))
-    	.on("touch", function(d) { keyCode: 68 });
+        .on("zoom", zoomed));
 
 var w = d3.select("svg").attr("width"),
 	h = d3.select("svg").attr("height");
 
+// Cheap hack: set background click to trigger step
+svg.selectAll("background")
+    .data(["dummy"])
+    .enter()
+    .append("rect")
+    .attr("class", "background")
+    .attr('width', w)
+    .attr('height', h)
+    .attr('fill', 'white')
+    .attr('fill-opacity', 0.0)
+    .on("click", addLink);
+
 var g = svg.append("g");
+
 
 // Weight scale
 var linkWeightScale = d3.scaleLinear().domain([1, 3]).range([1, 2])
 
 // Nodes and links
-var nodes = polygonCoords(N, 200, [w/2, h/2]); //d3.range(N).map(function(i){return {'id': i}})
+var nodes = d3.range(N).map(function(i){return {'id': i}})
 var links = [];
 
 // Force simulation
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(20))
-    //.strength(function(d){ return linkStrengthScale(+d.value); }))
-    .force("charge", d3.forceManyBody().strength(-20))
+    .force("charge", d3.forceManyBody().strength(-25))
     .force("center", d3.forceCenter(w / 2, h / 2))
-    .force("x", d3.forceX())
-    .force("y", d3.forceY())
+    .force("x", d3.forceX(w / 2, h / 2))
+    .force("y", d3.forceY(w / 2, h / 2))
     .on("tick", ticked);
 
 // Draw links
@@ -117,19 +130,6 @@ restart();
 // Visualization: Utility functions //
 // -------------------------------- //
 
-// Initial positions
-function polygonCoords(N, scale, center) {
-  return d3.range(N)
-    .map(function(index) { return index / N * 2 * 3.141592654 })
-    .map(function(theta, i) { 
-      return {
-        'id': i,
-        //'x': Math.cos(theta) * scale + center[0],  // Uncomment x and y to
-        //'y': Math.sin(theta) * scale + center[1]   // place in init. circle
-      }
-    }) 
-}
-
 // Zooming
 function zoomed() {
 	g.attr("transform", d3.event.transform);
@@ -137,7 +137,6 @@ function zoomed() {
 
 // Ticks
 function ticked() {
-
     link
         .attr("x1", function(d) { return d.source.x; })
         .attr("y1", function(d) { return d.source.y; })
@@ -146,9 +145,6 @@ function ticked() {
     node
         .attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
-    text
-        .attr("x", function(d) { return d.x; })
-        .attr("y", function(d) { return d.y; });
 }
 
 // Dragging
