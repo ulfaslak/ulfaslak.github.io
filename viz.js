@@ -15,9 +15,11 @@ var A = Narr.reduce(function(map, d) { map[d] = {}; return map; }, {}),
 // ------------------ //
 
 // Variables
-fastMode = false
+fastMode = false;
+auto = true;
+complete = false;
 
-// User-input functions
+// Simulation control functions
 function addLink(e) {
 	var reps = 1;
 	if (fastMode) {
@@ -43,14 +45,41 @@ function restartSimulation() {
 	restart();
 }
 
+async function autoStart() {
+	for (var _ in d3.range(1)){
+		for (var _ in d3.range(1000)){
+			[i, j, d] = process();
+			if (j != d) { update(i, j, d); }
+		}
+		restart();
+		await timer(100);
+
+		if (!auto) {
+			break;
+		};
+
+		if (d3.mean(d3.values(A).map(function(d) { return d3.keys(d).length; })) == bw) {
+			break;
+		};
+	};
+
+	complete = true;
+}
+
 // Event listener
 document.addEventListener("keydown", function(e) {
 	switch (e.keyCode) {
 		case 68:
+			auto = false;
+			if (complete){
+				complete = false;
+				restartSimulation();
+			};
 			addLink(); break
 		case 70:
 			toggleFastMode(); break
 		case 82:
+			auto = false;
 			restartSimulation(); break
 	}
 }, false);
@@ -121,7 +150,7 @@ node
         .on("drag", dragged)
         .on("end", dragended));
 
-restart();
+autoStart();
 
 
 // Visualization: Utility functions //
@@ -442,16 +471,6 @@ function unwrap(arr) {
 	return [].concat.apply([], arr);
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+function timer(ms){
+	return new Promise(r=>setTimeout(r,ms));
+}
