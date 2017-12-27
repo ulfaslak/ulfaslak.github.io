@@ -20,7 +20,7 @@ auto = true;
 complete = false;
 
 // Simulation control functions
-function addLink(e) {
+function addLink() {
 	var reps = 1;
 	if (fastMode) {
 		reps = 10;
@@ -32,6 +32,15 @@ function addLink(e) {
 	};
 
 	restart();
+}
+
+function addLinkUserControl() {
+	auto = false;
+	if (complete){
+		complete = false;
+		restartSimulation();
+	};
+	addLink();
 }
 
 function toggleFastMode(e) {
@@ -70,12 +79,7 @@ async function autoStart() {
 document.addEventListener("keydown", function(e) {
 	switch (e.keyCode) {
 		case 68:
-			auto = false;
-			if (complete){
-				complete = false;
-				restartSimulation();
-			};
-			addLink(); break
+			addLinkUserControl(); break
 		case 70:
 			toggleFastMode(); break
 		case 82:
@@ -104,7 +108,7 @@ svg.selectAll("background")
     .attr('height', h)
     .attr('fill', 'white')
     .attr('fill-opacity', 0.0)
-    .on("click", addLink);
+    .on("click", addLinkUserControl);
 
 var g = svg.append("g");
 
