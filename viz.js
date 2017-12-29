@@ -55,23 +55,23 @@ function restartSimulation() {
 }
 
 async function autoStart() {
-	for (var _ in d3.range(1)){
-		for (var _ in d3.range(1000)){
+
+	for (var _ in d3.range(200)){
+		for (var _ in d3.range(5)){
 			[i, j, d] = process();
 			if (j != d) { update(i, j, d); }
 		}
 		restart();
-		await timer(100);
+		await timer(10);
 
-		if (!auto) {
-			break;
-		};
+		// if (!auto) {
+		// 	break;
+		// };
 
-		if (d3.mean(d3.values(A).map(function(d) { return d3.keys(d).length; })) == bw) {
+		if (d3.mean(d3.values(A).map(function(d) { return d3.keys(d).length; })) >= bw) {
 			break;
 		};
 	};
-
 	complete = true;
 }
 
