@@ -9,6 +9,8 @@ var N = 80,
 // System state variables
 var A = Narr.reduce(function(map, d) { map[d] = {}; return map; }, {}),
 	T = Array.from(Array(N), () => 0);
+var partition = {};
+d3.range(N).map(function(d){partition[d] = d})
 
 // ------------------ //
 // Interface controls //
@@ -51,11 +53,11 @@ function restartSimulation() {
 	A = Narr.reduce(function(map, d) { map[d] = {}; return map; }, {}),
 	T = Array.from(Array(N), () => 0);
 	links.slice().forEach(function() { links.splice(0, 1); })
+	//d3.range(N).map(function(d){partition[d] = d})
 	restart();
 }
 
 async function autoStart() {
-
 	for (var _ in d3.range(200)){
 		for (var _ in d3.range(5)){
 			[i, j, d] = process();
@@ -112,9 +114,11 @@ svg.selectAll("background")
 
 var g = svg.append("g");
 
-
 // Weight scale
 var linkWeightScale = d3.scaleLinear().domain([1, 3]).range([1, 2])
+
+// Node color
+var color = d3.scaleOrdinal(d3.schemeCategory10);
 
 // Nodes and links
 var nodes = d3.range(N).map(function(i){return {'id': i}})
@@ -137,7 +141,7 @@ var link = g.append("g")
     .append("line");
 
 // Draw nodes
-node = g.append("g")
+var node = g.append("g")
     .attr("class", "nodes")
     .selectAll("circle")
     .data(nodes).enter()
@@ -149,6 +153,9 @@ node
     })
     .attr("r", 4)
     .attr("stroke-width", 1)
+    .attr("fill", function(d) {
+    	return color(partition[d.id]);
+    })
     .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
@@ -218,9 +225,9 @@ function incLink(a, b) {
 	var e = findLink(a, b)
 	if (e != undefined) {
 		links.splice(links.indexOf(e), 1);
-		e['value'] += inc;
+		e['weight'] += inc;
 	} else {
-		e = {'source': a, 'target': b, 'value': inc};
+		e = {'source': a, 'target': b, 'weight': inc};
 	}
 	links.push(e);
 }
@@ -231,17 +238,23 @@ function decLink(a, b) {
 		e = findLinkPreRestart(a, b);
 	}
 	if (e == undefined) {
-		console.log("Warning!")
+		//console.log("Warning!")
 	}
 	links.splice(links.indexOf(e), 1);
-	if (e['value'] > inc) {
-		e['value'] -= inc;
+	if (e['weight'] > inc) {
+		e['weight'] -= inc;
 		links.push(e);
 	}
 }
 
 // Restart simulation
 function restart() {
+
+	// Recolor nodes
+	getCommunityLabels();
+	node.attr("fill", function(d) {
+    	return color(partition[d.id]);
+    })
 
 	// Apply the general update pattern to the links.
 	link = link.data(links);
@@ -266,12 +279,12 @@ function process() {
 	var i, j, d;
 
 	i = chooseRandom(Narr);
-	console.log("Node:", i)
+	//console.log("Node:", i)
 
  	// If bandwidth is exceeded, delete a random local link
 	if (strength(i, A) + inc > bw) {
 		d = +chooseRandom(neighbors(i, A));
-		console.log("Bandwidth exceeded. Removing link to", d)
+		//console.log("Bandwidth exceeded. Removing link to", d)
 		decrement(A, i, d);
 		decrement(A, d, i);
 		H = intersect(neighbors(i, A), neighbors(d, A));
@@ -285,19 +298,19 @@ function process() {
 	// Choose attachment strategy
 	if (Math.random() < eeRatio && degree(i, A) > 0) {
 		j = exploit(i, A);
-		console.log("Exploit. Link to", j)
+		//console.log("Exploit. Link to", j)
 		if (j == undefined) {
 			j = explore(i, A, T);
-			console.log("Explore. Link to", j)
+			//console.log("Explore. Link to", j)
 		};
 	} else {
 		j = explore(i, A, T);
-		console.log("Explore. Link to", j)
+		//console.log("Explore. Link to", j)
 	};
 
 	// In case there were no possible attachment for node i, continue
 	if (j == undefined) {
-		console.log("Linking failed.")
+		//console.log("Linking failed.")
 		return;
 	};
 
@@ -471,6 +484,26 @@ function chooseStochastic(values, p) {
     return values[lastIndex];
 };
 
+function getCommunityLabels(){
+	if (links.length > 0){
+		var node_data = nodes.map(function(d){return d.id});
+		var edge_data = links.map(function(d){
+			return {
+				'source': d.source.id,
+				'target': d.target.id,
+				'weight': d.weight
+			}
+		})
+		if (partition == 0) {console.log("lol!!")}
+		partition = jLouvain().nodes(node_data).edges(edge_data).partition_init(partition)();
+	}
+};
+
+
+
+// ----------------- //
+// Utility functions //
+// ----------------- //
 function unwrap(arr) {
 	return [].concat.apply([], arr);
 };
