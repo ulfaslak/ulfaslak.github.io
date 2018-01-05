@@ -95,11 +95,7 @@ document.addEventListener("keydown", function(e) {
 document.addEventListener("keyup", function(e) {
 	switch (e.keyCode) {
 		case 68:
-			partition = getCommunityLabels()
-			node.attr("fill", function(d) {
-		    	return color(partition[d.id]);
-		    });
-		    break;
+			reColor(); break;
 	}
 }, false);
 
@@ -261,14 +257,22 @@ function decLink(a, b) {
 	}
 }
 
+function reColor(){
+	partition = getCommunityLabels()
+	node.attr("fill", function(d) {
+		if (d3.keys(A[d.id]).length == 0) {
+			return "#2c3e50"
+		} else {
+			return color(partition[d.id]);
+		}
+    });
+}
+
 // Restart simulation
 function restart() {
 
 	// Recolor nodes
-	partition = getCommunityLabels()
-	node.attr("fill", function(d) {
-    	return color(partition[d.id]);
-    });
+	reColor();
 
 	// Apply the general update pattern to the links.
 	link = link.data(links);
