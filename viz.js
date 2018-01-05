@@ -30,14 +30,15 @@ function addLink() {
 
 	for (var _ in d3.range(reps)){
 		[i, j, d] = process();
-		if (j != d) { update(i, j, d); }
+		if (j != d) {
+			update(i, j, d);
+		}
 	};
 
 	restart();
 }
 
 function addLinkUserControl() {
-	auto = false;
 	if (complete){
 		complete = false;
 		restartSimulation();
@@ -53,7 +54,8 @@ function restartSimulation() {
 	A = Narr.reduce(function(map, d) { map[d] = {}; return map; }, {}),
 	T = Array.from(Array(N), () => 0);
 	links.slice().forEach(function() { links.splice(0, 1); })
-	//d3.range(N).map(function(d){partition[d] = d})
+	d3.range(N).map(function(d){partition[d] = d})
+	complete = false;
 	restart();
 }
 
@@ -66,9 +68,9 @@ async function autoStart() {
 		restart();
 		await timer(10);
 
-		// if (!auto) {
-		// 	break;
-		// };
+		if (!auto) {
+			break;
+		};
 
 		if (d3.mean(d3.values(A).map(function(d) { return d3.keys(d).length; })) >= bw) {
 			break;
@@ -89,6 +91,7 @@ document.addEventListener("keydown", function(e) {
 			restartSimulation(); break
 	}
 }, false);
+
 
 // ------------- //
 // Visualization //
@@ -238,7 +241,7 @@ function decLink(a, b) {
 		e = findLinkPreRestart(a, b);
 	}
 	if (e == undefined) {
-		//console.log("Warning!")
+		console.log("Warning!")
 	}
 	links.splice(links.indexOf(e), 1);
 	if (e['weight'] > inc) {
@@ -251,10 +254,10 @@ function decLink(a, b) {
 function restart() {
 
 	// Recolor nodes
-	getCommunityLabels();
+	partition = getCommunityLabels()
 	node.attr("fill", function(d) {
     	return color(partition[d.id]);
-    })
+    });
 
 	// Apply the general update pattern to the links.
 	link = link.data(links);
@@ -486,17 +489,19 @@ function chooseStochastic(values, p) {
 
 function getCommunityLabels(){
 	if (links.length > 0){
-		var node_data = nodes.map(function(d){return d.id});
-		var edge_data = links.map(function(d){
+		node_data = nodes.map(function(node){return node.id});
+		edge_data = links.map(function(link){
 			return {
-				'source': d.source.id,
-				'target': d.target.id,
-				'weight': d.weight
+				'source': link.source.id,
+				'target': link.target.id,
+				'weight': link.weight
 			}
 		})
+
 		if (partition == 0) {console.log("lol!!")}
 		partition = jLouvain().nodes(node_data).edges(edge_data).partition_init(partition)();
 	}
+	return partition
 };
 
 
