@@ -60,8 +60,8 @@ function restartSimulation() {
 }
 
 async function autoStart() {
-	for (var _ in d3.range(200)){
-		for (var _ in d3.range(5)){
+	for (var _ in d3.range(500)){
+		for (var _ in d3.range(2)){
 			[i, j, d] = process();
 			if (j != d) { update(i, j, d); }
 		}
