@@ -92,6 +92,17 @@ document.addEventListener("keydown", function(e) {
 	}
 }, false);
 
+document.addEventListener("keyup", function(e) {
+	switch (e.keyCode) {
+		case 68:
+			partition = getCommunityLabels()
+			node.attr("fill", function(d) {
+		    	return color(partition[d.id]);
+		    });
+		    break;
+	}
+}, false);
+
 
 // ------------- //
 // Visualization //
