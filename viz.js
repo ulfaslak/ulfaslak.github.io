@@ -60,13 +60,15 @@ function restartSimulation() {
 }
 
 async function autoStart() {
-	for (var _ in d3.range(500)){
+	niter = 300
+	var awaitScale = d3.scaleLinear().domain([0, niter/4]).range([50, 1]).clamp(true)
+	for (var iter in d3.range(niter)){
 		for (var _ in d3.range(2)){
 			[i, j, d] = process();
 			if (j != d) { update(i, j, d); }
 		}
 		restart();
-		await timer(10);
+		await timer(awaitScale(iter));
 
 		if (!auto) {
 			break;
