@@ -30,6 +30,20 @@
 		list-style: none;
 	}
 
+	li {
+	    list-style-position: inside;
+	    /*margin-left: 3em;*/
+		margin: 0 2em 1em 3em;
+		word-break: normal;
+		-ms-word-break: normal;
+     	word-break: normal;
+    	text-align: justify;
+    	text-justify: inter-word;
+    	hyphens: auto;
+    	-webkit-hyphens: auto;
+   		-moz-hyphens: auto;
+	}
+
 	.two-col-special {
 	    border: 0px dotted blue;
 	    overflow: auto;
@@ -1638,6 +1652,13 @@
 		font-size: 10pt;
 		font-weight: 500;
 		line-height: 120%;
+	}
+
+	p.sidebartext {
+		margin: 0 2em 3em -2em;
+		font-size: 10pt;
+		font-weight: 300;
+		line-height: 150%;
 	}
 
 	p.regular {
