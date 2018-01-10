@@ -33,7 +33,7 @@
 	li {
 	    list-style-position: inside;
 	    /*margin-left: 3em;*/
-		margin: 0 2em 1em 3em;
+		margin: 0 4em 1em 3em;
 		word-break: normal;
 		-ms-word-break: normal;
      	word-break: normal;
@@ -1645,6 +1645,10 @@
     	hyphens: auto;
     	-webkit-hyphens: auto;
    		-moz-hyphens: auto;
+	}
+
+	p.consulting {
+		margin: 0 4em 1em 2em;
 	}
 
 	p.figtext {
