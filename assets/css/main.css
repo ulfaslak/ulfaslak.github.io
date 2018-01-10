@@ -30,7 +30,7 @@
 		list-style: none;
 	}
 
-	li {
+	li.consulting {
 	    list-style-position: inside;
 	    /*margin-left: 3em;*/
 		margin: 0 4em 1em 3em;
