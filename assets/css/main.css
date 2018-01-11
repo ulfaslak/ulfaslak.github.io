@@ -4109,3 +4109,17 @@
 					}
 
 	}
+
+
+/*Custom*/
+
+.swal-modal {
+  background-color: #e44c65;
+  position: absolute;
+  top: 7%;
+  right: 20px;
+  margin: 0;
+  height: 60px;
+  width: 300px;
+  color: white;
+}

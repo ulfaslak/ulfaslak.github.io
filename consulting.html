@@ -7,6 +7,8 @@
 <html>
 	<head>
 		<title>Ulf Aslak</title>
+		<script src="libs/copyToClipboard.js"></script>
+		<script src="libs/sweetalert.min.js"></script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -25,7 +27,7 @@
 							<li><a href="files/CV_pretty_en.pdf">CV (pdf)</a></li>
 							<li><a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao">Publications</a></li>
 							<li><a href="consulting.html">Consulting</a></li>
-							<li><a href="contact.html" class="button special">Contact</a
+							<li><a href="#" class="button special" onclick="copyToClipboard()">Contact</a></li>
 						</ul>
 					</nav>
 				</header>
@@ -49,14 +51,14 @@
 								<!-- Content -->
 								<section id="content">
 									<p class="consulting">
-										The market is growing in complexity and lots of companies are learning that they don't have the necessary human resources to act on the rapidly increasing amount of information they have available. This creates a shift in the market's competitive landscape—companies that are slow to adapt are suddenly at risk of losing their edge, while others willing to invest in innovation can gain huge competitive advantages.
+										The market is growing in complexity and lots of companies are learning that they don't have the necessary human resources to act on the rapidly increasing amount of information they have available. This, coupled with an increasing availability of computing power and advanced methods for processing data, creates a shift in the market's competitive landscape—companies that are slow to adapt are suddenly at risk of losing their edge, while others willing to invest in innovation can gain huge competitive advantages.
 										<br><br>
 										From time to time I help clients get the most out of their data. I accept three types of projects:
 									</p>
 
 									<ol style="text-indent:-17px">
-										<li class="consulting"><b>From scratch</b>. The client understands they are in possession of valuable data. This is the most common scenario and there are multiple ways that I can help a client get started leveraging their data. (1) <b>Convince management</b>: I deliver an analytical result that the client can present to their management to convince them to budget for innovation. (2) <b>Hire the right people</b>: I can help formulate job postings that attract the right people and assess applicants in the hiring process.</li>
-										<li class="consulting"><b>Scientific advice</b>. The client has the internal resources necessary to act on their data. Having taught three university courses and aided several masters projects on the subject, I have extensive knowledge about computational and analytical methods for extracting patterns from data and building predictive models. I can help clients learn what approach best suits their data and offer periodic counseling to help them along the right path.</li>
+										<li class="consulting"><b>From scratch</b>. The client understands they are in possession of valuable data. This is the most common scenario and there are multiple ways that I can help a client get started leveraging their data. (1) <b>Convince management</b>: I deliver an analytical result that the client can present to their management to convince them to budget for innovation. (2) <b>Hire the right people</b>: I can help create job postings that attract desirable candidates and assess them in the hiring process.</li>
+										<li class="consulting"><b>Scientific advice</b>. The client has the internal resources necessary to act on their data. Having taught three university courses and aided several masters projects on the subject, I have extensive knowledge about computational and analytical methods for extracting patterns from data and building predictive models, and I can explain how methods work and how to use them. I consult with clients to figure out which computational approach best suits their data and offer periodic counseling to help them along the path to building a data science pipeline that will feed valuable knowledge into their decision making process.</li>
 										<li class="consulting"><b>Data visualization</b>. The client needs to visualize their data. This could be for anything from a demonstration at a conference to a UI component on their website. I can help the client prototype and develop a product that can be used for a broad range of purposes, starting from the raw data and leading to a beautiful visualization.</li>
 									</ol>
 
@@ -76,7 +78,7 @@
 									<p class="sidebartext">
 										My educational background is in physics engineering and I have a strong foundation in applied mathematics, statistical physics, information theory and probability theory. I later developed an interest for complex systems which lead me down the path of data science, machine learning and data visualization. As an undergraduate student I was a teaching assistant in a physics course and helped develop and teach an advanced data science course. As a graduate student I have developed and taught two additional university courses on the topic. This passion for communicating in the scientific language motivated me to work on problems in the real world.
 									</p>
-									<h4 style="margin: 1em 0 1em -1.6em;">Skills and style</h4>
+									<h4 style="margin: 1em 0 1em -1.6em;">Skills & modus operandi</h4>
 									<p class="sidebartext">
 										I use <b>Python</b> for most analysis and modeling tasks. I prefer to work with simple transparent tools such as <b>NumPy</b> and <b>SciPy</b> for data processing, and only use more advanced tools like <b>sklearn</b> to perform very high-level modeling tasks. For simple data visualization I use <b>matplotlib</b> and for advanced interactive visualizations I prefer to use the <b>D3 library</b> in <b>JavaScript</b>, mainly because of its versatility. I often outsource my computations to remote servers using <b>Bash</b>, and occasionally use tools like <b>MapReduce</b> to do simple computations on very large datasets. I use <b>PyTorch</b> for building deep neural networks. I try to open source as much of my research code as possible using <b>Github</b>. I write papers using <b>LaTeX</b>. I design my illustrative figures using <b>Blender</b> and/or <b>Illustrator</b>. I work on a <b>Unix</b>-based machine.
 

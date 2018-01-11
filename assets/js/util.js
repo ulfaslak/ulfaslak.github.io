@@ -16,12 +16,14 @@
 				indent = Math.max(0, $this.parents('li').length - 1),
 				href = $this.attr('href'),
 				target = $this.attr('target');
+				on_click = $this.attr("onclick")
 
 			b.push(
 				'<a ' +
 					'class="link depth-' + indent + '"' +
 					( (typeof target !== 'undefined' && target != '') ? ' target="' + target + '"' : '') +
 					( (typeof href !== 'undefined' && href != '') ? ' href="' + href + '"' : '') +
+					( (typeof on_click !== 'undefined' && on_click != '') ? ' onclick="' + on_click + '"' : '') +
 				'>' +
 					'<span class="indent-' + indent + '"></span>' +
 					$this.text() +
@@ -153,7 +155,7 @@
 								href = $a.attr('href'),
 								target = $a.attr('target');
 
-							if (!href || href == '#' || href == '' || href == '#' + id)
+							if (!href || href == '' || href == '#' + id)
 								return;
 
 							// Cancel original event.
