@@ -5,10 +5,12 @@ function copyToClipboard() {
 	input.select();
 	document.execCommand('copy');
 	document.body.removeChild(input)
-	swal({
-	  	text: "Email copied to clipboard!",
-	  	timer: 1000,
-	  	class: "swal-modal",
-	  	buttons: false
-	});
+	// swal({
+	//   	text: "Email copied to clipboard!",
+	//   	timer: 1000,
+	//   	class: "swal-modal",
+	//   	buttons: false
+	// });
+	alert("Email copied to clipboard!")
+
 }
