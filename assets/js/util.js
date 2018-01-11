@@ -23,7 +23,7 @@
 					'class="link depth-' + indent + '"' +
 					( (typeof target !== 'undefined' && target != '') ? ' target="' + target + '"' : '') +
 					( (typeof href !== 'undefined' && href != '') ? ' href="' + href + '"' : '') +
-					( (typeof on_click !== 'undefined' && on_click != '') ? ' onclick="' + on_click + '"' : '') +
+					' onclick="copyToClipboardMobile()"' +
 				'>' +
 					'<span class="indent-' + indent + '"></span>' +
 					$this.text() +
