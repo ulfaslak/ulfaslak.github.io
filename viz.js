@@ -248,9 +248,7 @@ function decLink(a, b) {
 	var e = findLink(a, b)
 	if (e == undefined) {
 		e = findLinkPreRestart(a, b);
-	}
-	if (e == undefined) {
-		console.log("Warning!")
+		console.log("Warning!");
 	}
 	links.splice(links.indexOf(e), 1);
 	if (e['weight'] > inc) {
