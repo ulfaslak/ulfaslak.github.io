@@ -1,6 +1,6 @@
 import requests as rq
 
-def get_x_y(subreddit, N, count=25):
+def get_num_comments_vs_score(subreddit, N, count=25):
     
     def _get_data(subreddit, count, after):
         url = "https://www.reddit.com/r/%s/.json?count=%d&after=%s" % (subreddit, count, after)
