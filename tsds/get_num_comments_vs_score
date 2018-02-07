@@ -20,4 +20,4 @@ def get_num_comments_vs_score(subreddit, N, count=25):
 
     return x, y
                           
-x, y = get_x_y("gameofthrones", 500, count=25)
+x, y = get_num_comments_vs_score("gameofthrones", 500, count=25)
