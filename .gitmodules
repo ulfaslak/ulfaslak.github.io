@@ -1,3 +1,6 @@
 [submodule "network_styling_with_d3"]
 	path = network_styling_with_d3
 	url = https://github.com/ulfaslak/network_styling_with_d3
+[submodule "NetSci2018TwitterNetwork"]
+	path = NetSci2018TwitterNetwork
+	url = https://github.com/ulfaslak/NetSci2018TwitterNetwork
