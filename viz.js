@@ -138,8 +138,8 @@ var links = [];
 
 // Force simulation
 var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(20))
-    .force("charge", d3.forceManyBody().strength(-25))
+    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(7))
+    .force("charge", d3.forceManyBody().strength(-7))
     .force("center", d3.forceCenter(w / 2, h / 2))
     .force("x", d3.forceX(w / 2, h / 2))
     .force("y", d3.forceY(w / 2, h / 2))
