@@ -32,7 +32,7 @@ var simulation = d3.forceSimulation()
 simulation.force("x").strength(0.1);
 simulation.force("y").strength(0.1);
 
-tmin = new Date("2018-07-21 00:00:00-04:00")
+tmin = new Date("2018-07-22 00:00:00-04:00")
 tmax = new Date("2018-07-30 00:00:00-04:00")
 tmax_render = new Date(Math.min(new Date(Date.now()), new Date("2018-07-30 00:00:00-04:00")))
 
