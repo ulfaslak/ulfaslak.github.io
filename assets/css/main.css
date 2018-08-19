@@ -690,7 +690,7 @@ body {
 }
 
 .menu-item:not(:last-child)::after {
-  content: "⁄";
+  content: " · ";
   display: inline-block;
   font-size: .75em;
   padding: 0 .2em;
