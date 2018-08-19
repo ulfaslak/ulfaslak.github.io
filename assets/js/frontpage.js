@@ -85,8 +85,6 @@ var angle = systems[system]['angle']
 var axiom = systems[system]['axiom']
 var rule = systems[system]['rule']
 
-console.log(system)
-
 var S = _.min([window.innerWidth, window.innerHeight - 160 - 65])
 document.getElementById('animation').setAttribute("width", S);
 document.getElementById('animation').setAttribute("height", S);
@@ -128,7 +126,6 @@ document.addEventListener("mousemove", function(e){
     offsetX_ = offsetX
     offsetY_ = offsetY
 
-    console.log(angle)
   }
 })
 
