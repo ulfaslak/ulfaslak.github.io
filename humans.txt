@@ -1,0 +1,11 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Ulf Aslak -- Administrator -- ulfaslak
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    d3.min.js, jLouvain.js, jquery-3.3.1.min.js, lodash.js, matrix.js, modernizr-3.6.0.min.js, sweetalert.min.js

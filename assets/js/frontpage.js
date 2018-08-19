@@ -1,3 +1,6 @@
+// Large parts of this code was borrowed from Kelley van Evert's Observable notebook
+// on L-Systems. His code is here: https://beta.observablehq.com/@kelleyvanevert/l-systems-2
+
 var systems = {
   'plant': {
     'order': 5,
@@ -59,18 +62,6 @@ var systems = {
     'axiom': "X",
     'rule': "X -> -YF+XFX+FY-\nY -> +XF-YFY-FX+"
   },
-  // 'box': {
-  //   'order': 4,
-  //   'angle': 90,
-  //   'axiom': "F+F+F+F",
-  //   'rule': "F -> FF+F+F+F+FF"
-  // },
-  // 'leaf1': {
-  //   'order': 7,
-  //   'angle': 20,
-  //   'axiom': "F[A][B]",
-  //   'rule': "A -> [+A{.].C.}\nB -> [-B{.].C.}\nC -> FC"
-  // },
   'leaf2': {
     'order': 13,
     'angle': 10,
@@ -315,7 +306,6 @@ function draw (lgen, svg) {
             .attr("stroke-dashoffset", 0);
       }
       animate()
-      svg.on("click", null).on("click", animate);
       resolve(svg.node());
     });  
   });

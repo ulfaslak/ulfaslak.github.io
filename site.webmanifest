@@ -1,0 +1,8 @@
+{
+    "icons": [{
+        "src": "assets/img/icon.png",
+        "sizes": "26x26",
+        "type": "image/png"
+    }],
+    "start_url": "/"
+}
