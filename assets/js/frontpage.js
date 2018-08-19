@@ -1,3 +1,92 @@
+var systems = {
+  'plant': {
+    'order': 5,
+    'angle': 25,
+    'axiom': "---X",
+    'rule': "X -> F[-X][X]F[-X]+FX\nF -> FF"
+  },
+  'penrose': {
+    'order': 4,
+    'angle': 36,
+    'axiom': "[N]++[N]++[N]++[N]++[N]",
+    'rule': "M -> OF++PF----NF[-OF----MF]++\nN -> +OF--PF[---MF--NF]+\nO -> -MF++NF[+++OF++PF]-\nP -> --OF++++MF[+PF++++NF]--NF\nF ->"
+  },
+  'koch': {
+    'order': 3,
+    'angle': 90,
+    'axiom': "F+F+F+F",
+    'rule': "F -> F+F-F-FF+F+F-F"
+  },
+  'sierpinski': {
+    'order': 7,
+    'angle': 60,
+    'axiom': "AF",
+    'rule': "A -> BF-AF-B\nB -> AF+BF+A"
+  },
+  'dragoncurve': {
+    'order': 10,
+    'angle': 90,
+    'axiom': "FX",
+    'rule': "X -> X+YF+\nY -> -FX-Y"
+  },
+  'hexg': {
+    'order': 4,
+    'angle': 60,
+    'axiom': "XF",
+    'rule': "X -> X+YF++YF-FX--FXFX-YF+\nY -> -FX+YFYF++YF+FX--FX-Y"
+  },
+  'cubes': {
+    'order': 10,
+    'angle': 120,
+    'axiom': "Y",
+    'rule': "X -> F+gF\nY -> XY-XY"
+  },
+  'sierpinski_sq': {
+    'order': 10,
+    'angle': 45,
+    'axiom': "X--F--X--F",
+    'rule': "X -> +Y-F-Y+\nY -> -X+F+X-"
+  },
+  'koch_snowflake': {
+    'order': 4,
+    'angle': 60,
+    'axiom': "F++F++F",
+    'rule': "F -> F-F++F-F"
+  },
+  'hilbert_curve': {
+    'order': 6,
+    'angle': 90,
+    'axiom': "X",
+    'rule': "X -> -YF+XFX+FY-\nY -> +XF-YFY-FX+"
+  },
+  // 'box': {
+  //   'order': 4,
+  //   'angle': 90,
+  //   'axiom': "F+F+F+F",
+  //   'rule': "F -> FF+F+F+F+FF"
+  // },
+  // 'leaf1': {
+  //   'order': 7,
+  //   'angle': 20,
+  //   'axiom': "F[A][B]",
+  //   'rule': "A -> [+A{.].C.}\nB -> [-B{.].C.}\nC -> FC"
+  // },
+  'leaf2': {
+    'order': 13,
+    'angle': 10,
+    'axiom': "----+FF+FF+FF+FF[A][B]",
+    'rule': "A -> [+A{.].C.}\nB -> [-B{.].C.}\nC -> C@1.2F"
+  },
+}
+
+var system = d3.keys(systems)[Math.floor(Math.random() * d3.keys(systems).length)]
+var order = systems[system]['order']
+var angle = systems[system]['angle']
+var axiom = systems[system]['axiom']
+var rule = systems[system]['rule']
+
+console.log(system)
+
 var S = _.min([window.innerWidth, window.innerHeight - 160 - 65])
 document.getElementById('animation').setAttribute("width", S);
 document.getElementById('animation').setAttribute("height", S);
@@ -9,29 +98,28 @@ var offsetX_ = 0;
 var offsetY_ = 0;
 
 document.addEventListener("mousemove", function(e){
-  var offsetX = e.pageX - centerX;
+  var offsetX = Math.abs(e.pageX - centerX);
   var offsetY = (window.innerHeight - e.pageY) - centerY;
 
   if (Math.sqrt((offsetX - offsetX_)**2 + (offsetY - offsetY_)**2) > 100) {
     
-    var theta;
     if (offsetX > 0 & offsetY > 0) {
-      theta = Math.atan(offsetY / offsetX) * 180  / Math.PI
+      angle = Math.atan(offsetY / offsetX) * 180  / Math.PI
     }
     if (offsetX <= 0 & offsetY > 0) {
-      theta = 180 + Math.atan(offsetY / offsetX) * 180  / Math.PI
+      angle = 180 + Math.atan(offsetY / offsetX) * 180  / Math.PI
     }
     if (offsetX <= 0 & offsetY <= 0) {
-      theta = 180 + Math.atan(offsetY / offsetX) * 180  / Math.PI
+      angle = 180 + Math.atan(offsetY / offsetX) * 180  / Math.PI
     }
     if (offsetX > 0 & offsetY <= 0) {
-      theta = 360 + Math.atan(offsetY / offsetX) * 180  / Math.PI
+      angle = 360 + Math.atan(offsetY / offsetX) * 180  / Math.PI
     }
 
     draw(
       L(
         parse(
-          "order: 5\naxiom: ---X\nangle: " + theta + "\nX -> F[-X][X]F[-X]+FX\nF ->FF"
+          "order: " + order + "\naxiom: " + axiom +  "\nangle: " + angle + "\n" + rule
         )
       ),
       d3.select("#animation")
@@ -39,13 +127,15 @@ document.addEventListener("mousemove", function(e){
 
     offsetX_ = offsetX
     offsetY_ = offsetY
+
+    console.log(angle)
   }
 })
 
 draw(
   L(
     parse(
-      "order: 6\naxiom: ---X\nangle: " + 25 + "\nX -> F[-X][X]F[-X]+FX\nF ->FF"
+      "order: " + order + "\naxiom: " + axiom +  "\nangle: " + angle + "\n" + rule
     )
   ),
   d3.select("#animation")
@@ -228,6 +318,7 @@ function draw (lgen, svg) {
             .attr("stroke-dashoffset", 0);
       }
       animate()
+      svg.on("click", null).on("click", animate);
       resolve(svg.node());
     });  
   });
