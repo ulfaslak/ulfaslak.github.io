@@ -2,21 +2,6 @@ var S = _.min([window.innerWidth, window.innerHeight - 160 - 65])
 document.getElementById('animation').setAttribute("width", S);
 document.getElementById('animation').setAttribute("height", S);
 
-draw(
-  L(
-    parse(
-      `
-      order: 6
-      axiom: ---X
-      angle: 25.5
-      X -> F[-X][X]F[-X]+FX
-      F -> FF
-      `
-    )
-  ),
-  d3.select("#animation")
-)
-
 var centerX = window.innerWidth / 2;
 var centerY = window.innerHeight / 2;
 
@@ -28,8 +13,8 @@ document.addEventListener("mousemove", function(e){
   var offsetY = (window.innerHeight - e.pageY) - centerY;
 
   if (Math.sqrt((offsetX - offsetX_)**2 + (offsetY - offsetY_)**2) > 100) {
+    
     var theta;
-
     if (offsetX > 0 & offsetY > 0) {
       theta = Math.atan(offsetY / offsetX) * 180  / Math.PI
     }
@@ -55,10 +40,16 @@ document.addEventListener("mousemove", function(e){
     offsetX_ = offsetX
     offsetY_ = offsetY
   }
-
-
-
 })
+
+draw(
+  L(
+    parse(
+      "order: 6\naxiom: ---X\nangle: " + 25 + "\nX -> F[-X][X]F[-X]+FX\nF ->FF"
+    )
+  ),
+  d3.select("#animation")
+)
 
 function parse (text = '') {
   const def = {
@@ -228,7 +219,7 @@ function draw (lgen, svg) {
             })
             .attr("stroke-dasharray", d => d._len + ' ' + d._len);
 
-        var u = T / total_len;
+        var u = T / total_len / 5;
         paths
             .transition()
             .delay(line => line._prevt * u)
@@ -236,9 +227,7 @@ function draw (lgen, svg) {
             .ease(d3.easeLinear)
             .attr("stroke-dashoffset", 0);
       }
-
-      svg.on("click", null).on("click", animate);
-      
+      animate()
       resolve(svg.node());
     });  
   });
