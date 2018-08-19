@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <title>Ulf Aslak / works / faceworks</title>
+    <meta name="description" content="PhD student / physicist / data scientist">
+    <link rel="stylesheet" href="../assets/css/main.css"/>
+  </head>
+
+  <body>
+  	<!-- Header -->
+    <header class="header wrap wide" role="banner">
+      <div class="grid">
+        <div class="branding column">
+          <a href="index.html" rel="home">Ulf Aslak</a>
+        </div>
+
+        <nav class="navigation column" role="navigation">
+          <ul class="menu">
+            <li class="menu-item">
+              <a href="../about.html">About</a>
+            </li>
+            <li class="menu-item is-active">
+            	<a href="../works.html">Works</a>
+            </li>
+            <li class="menu-item">
+              <a href="../speaking.html">Speaking</a>
+            </li>
+            <li class="menu-item">
+              <a href="../teaching.html">Teaching</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao" target="_blank">Publications</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <header class="wrap">
+      <h1>Faceworks // netfaces</h1>
+      <p><em>2018</em></p>
+    </header>
+    
+    <div class="text wrap">  
+      <p>Inspired by <strong><a href="https://vedransekara.github.io/index.html" target="_blank">a blog post</a></strong> by Vedran Sekara, I figured it would be fun to write some code that takes an image of a face and converts it into a network.</p>
+
+      <p>The algorithm is super straight forward. You take the face, and convert it to black and white, then sample points on that image with a bias towards the dark regions. Finally, you connect each point to a number of its nearest neighbors. What you are left with is a facework.</p>
+
+      <figure>
+        <img src="../assets/img/facework1.png" alt="facework1">
+      </figure>
+
+      <p>Thrilled as I was to see this work, I immediately became concerned that dark skinned people would be harder to netface. The solution was to simply <em>exponentiate and renormalize</em> the probability distribution that you sample with. The probability distribution is essentially the greyscale image of the face and if your raise that to higher powers (in other words, if the initial probability distribution is <em><MATH>p</MATH></em> you and you change it to <em><MATH>p</em><SUP>2</SUP></MATH></em> or higher) you increase the contrast of the sampling.</p>
+      
+      <p>Below you see Akon (the most dark skinned celebrity I can think of) at different levels of contrast.</p>
+
+      <figure>
+        <img src="../assets/img/akon_facework.png" alt="facework_akon">
+      </figure>
+
+      The sampling process is essentially iterative, so another fun thing one can do is plot the evolution of the facework. I do this by stitching together faceworks with an increasing number of samples and rendering the result as a gif.
+
+      <figure>
+        <img src="../assets/img/ulf_bot10000_pow2.0sampling_kmin3_kmax10_nsamples_100_10000_nframes_50.gif" alt="faceworkgif">
+      </figure>
+
+      <p>→ <a href="https://github.com/ulfaslak/network_yo_face">The code is available here</a></p>
+    </div>
+
+
+
+    <!-- Footer -->
+   	<footer class="footer cf" role="contentinfo">
+	    <div class="wrap wide">
+	      <p class="footer-copyright">© 2010–2018 Ulf Aslak | Copenhagen, Denmark</p>
+	    </div>
+  	</footer>
+  </body>
+</html>

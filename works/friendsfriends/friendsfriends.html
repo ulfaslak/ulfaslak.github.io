@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <title>Ulf Aslak / works / friends' friends</title>
+    <meta name="description" content="PhD student / physicist / data scientist">
+    <link rel="stylesheet" href="../../assets/css/main.css"/>
+    <link rel="stylesheet" href="viz.css"/>
+    <script src="../../assets/js/vendor/d3.min.js"></script>
+    <script src="../../assets/js/vendor/jLouvain.js"></script>
+  </head>
+
+  <body>
+  	<!-- Header -->
+    <header class="header wrap wide" role="banner">
+      <div class="grid">
+        <div class="branding column">
+          <a href="index.html" rel="home">Ulf Aslak</a>
+        </div>
+
+        <nav class="navigation column" role="navigation">
+          <ul class="menu">
+            <li class="menu-item">
+              <a href="../../about.html">About</a>
+            </li>
+            <li class="menu-item is-active">
+            	<a href="../../works.html">Works</a>
+            </li>
+            <li class="menu-item">
+              <a href="../../speaking.html">Speaking</a>
+            </li>
+            <li class="menu-item">
+              <a href="../../teaching.html">Teaching</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao" target="_blank">Publications</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <header class="wrap">
+      <h1>Friends' friends make friends</h1>
+      <p><em>2017</em></p>
+    </header>
+    
+    <div class="text wrap">  
+      <p>I completed an intense month-long summer course in Santa Fe this year. We were a fairly diverse (but uniformly so) 80 people ensemble of young scientists and no-one knew eachother beforehand. We did random mingling events and initially interactions felt sporadic, but after a week or so cliques had formed.</p>
+
+      <p>Some groups had slight bias (gender, ethnicity, age) but most looked and felt diverse. To me this was super interesting. If people had little to go on other than random encounters, how could groups form?</p>
+
+      <p>Friendships form in any healthy environment, but that does not explain the clustering. My suspicion was that people would acquaint more or less randomly, become friends, and then preferentially make friends with their friends' friends. Intuitively, this mechanism should produce cliques but I wanted to know what it could look like when displayed as a network.</p>
+
+      <figure>
+        <div class="wrap"><svg id="graph" width="350" height="350"></svg></div>
+        <script src="viz.js"></script>
+      </figure>
+
+      <p>To play along, hit <kbd>d</kbd> and add the first link. Everytime you press, a friendship is created. Initially, they appear randomly, but if you look closely you will be able to see that eventually triangles form. This happens because each person connects to friends' friends if possible. I added the small twist that nodes can shed a link to make a new connection (though still following the same principle). The process stops when each node has degree five. Press <kbd>r</kbd> to reset and <kbd>f</kbd> to toggle fast-mode.</p>
+
+      <p>I think there are interesting things to notice. If you run the model multiple times, you'll find that it rarely creates communities that are completely disconnected from the rest. Also, groups are never that small. We would probably see different results if we used a different non-uniform degree distribution, tuned the number of nodes, altered the linking dynamics, etc.. But that sounds like work.</p>
+
+      <p>→ <a href="https://github.com/ulfaslak/network_yo_face">The code is available here</a></p>
+
+
+    <!-- Footer -->
+   	<footer class="footer cf" role="contentinfo">
+	    <div class="wrap wide">
+	      <p class="footer-copyright">© 2010–2018 Ulf Aslak | Copenhagen, Denmark</p>
+	    </div>
+  	</footer>
+  </body>
+</html>
