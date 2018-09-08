@@ -28,7 +28,10 @@ context.scale(devicePixelRatio, devicePixelRatio)
 
 // Simulation
 var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(function(d) { return computeLinkDistance(d); }))
+    .force("link", d3.forceLink()
+      .id(function(d) { return d.id; })
+      .distance(10)
+    )
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force("collide", d3. forceCollide(0).radius(function(d) { return controls['Collision'] * computeNodeRadii(d) }))
@@ -80,13 +83,14 @@ var controls = {
   'Apply heat (wiggle)': false,
   'Charge strength': -30,
   'Center gravity': 0.1,
-  'Link distance': 30,
+  'Link distance': 10,
   'Link width': 5,
   'Link alpha': 0.5,
   'Node size': 10, 
   'Node stroke size': 0.5,
-  'Node scaling exponent': 0.5,
-  'Link scaling exponent': 0.5,
+  'Node size exponent': 0.5,
+  'Link strength exponent': 0.,
+  'Link width exponent': 0.5,
   'Collision': false,
   'Node fill': '#16a085',
   'Node stroke': '#000000',
@@ -114,7 +118,8 @@ f1.add(controls, 'Download figure');
 var f2 = gui.addFolder('Physics'); f2.open();
 f2.add(controls, 'Charge strength', -100, 0).onChange(function(v) { inputtedCharge(v) });
 f2.add(controls, 'Center gravity', 0, 1).onChange(function(v) { inputtedGravity(v) });
-f2.add(controls, 'Link distance', 0.1, 100).onChange(function(v) { inputtedDistance(v) });
+f2.add(controls, 'Link distance', 0.1, 50).onChange(function(v) { inputtedDistance(v) });
+f2.add(controls, 'Link strength exponent', 0., 1.).onChange(function(v) { inputtedLinkStrengthExponent(v) });
 f2.add(controls, 'Collision', false).onChange(function(v) { inputtedCollision(v) });
 f2.add(controls, 'Apply heat (wiggle)', false).onChange(function(v) { inputtedReheat(v) });
 
@@ -128,8 +133,8 @@ f3.add(controls, 'Link width', 0.01, 30).onChange(function(v) { inputtedLinkWidt
 f3.add(controls, 'Link alpha', 0, 1).onChange(function(v) { inputtedLinkAlpha(v) });
 f3.add(controls, 'Node size', 0, 50).onChange(function(v) { inputtedNodeSize(v) });
 f3.add(controls, 'Node stroke size', 0, 10).onChange(function(v) { inputtedNodeStrokeSize(v) });
-f3.add(controls, 'Node scaling exponent', -1., 1.).onChange(function(v) { inputtedNodeScalingRoot(v) });
-f3.add(controls, 'Link scaling exponent', -1., 1.).onChange(function(v) { inputtedLinkScalingRoot(v) });
+f3.add(controls, 'Node size exponent', 0., 3.).onChange(function(v) { inputtedNodeSizeExponent(v) });
+f3.add(controls, 'Link width exponent', 0., 3.).onChange(function(v) { inputtedLinkWidthExponent(v) });
 f3.add(controls, 'Zoom', 0.6, 5).onChange(function(v) { inputtedZoom(v) });
 
 var f4 = gui.addFolder('Percolation'); f4.close();
@@ -211,7 +216,7 @@ function dragended() {
 }
 
 function drawLink(d) {
-  thislinkwidth = (d.weight || 1)**(controls['Link scaling exponent']) * link_width_norm * controls['Link width'];
+  thislinkwidth = (d.weight || 1)**(controls['Link width exponent']) * link_width_norm * controls['Link width'];
   context.beginPath();
   context.moveTo(zoom_scaler(d.source.x), zoom_scaler(d.source.y));
   context.lineTo(zoom_scaler(d.target.x), zoom_scaler(d.target.y));
@@ -221,7 +226,7 @@ function drawLink(d) {
 
 function drawNode(d) {
   // Node
-  thisnodesize = (d.size || 1)**(controls['Node scaling exponent']) * node_size_norm * controls['Node size'];
+  thisnodesize = (d.size || 1)**(controls['Node size exponent']) * node_size_norm * controls['Node size'];
   context.beginPath();
   context.moveTo(zoom_scaler(d.x) + thisnodesize * (controls['Zoom'] + (controls['Zoom'] - 1)), zoom_scaler(d.y));
   context.arc(zoom_scaler(d.x), zoom_scaler(d.y), thisnodesize * (controls['Zoom'] + (controls['Zoom'] - 1)), 0, 2 * Math.PI);
@@ -232,7 +237,7 @@ function drawNode(d) {
 
 function drawText(d) {
   if (controls['Show labels'] || d.id == hoveredNode || selectedNodes.includes(d.id)) {
-    thisnodesize = (d.size || 1)**(controls['Node scaling exponent']) * node_size_norm * controls['Node size'];
+    thisnodesize = (d.size || 1)**(controls['Node size exponent']) * node_size_norm * controls['Node size'];
     context.font = clip(thisnodesize * controls['Zoom'] * 2, 10, 20) + "px Helvetica"
     context.fillStyle = controls['Label stroke']
     context.fillText(d.id, zoom_scaler(d.x), zoom_scaler(d.y))
@@ -250,17 +255,14 @@ active_swatch = {0: controls['Node fill']}
 function computeNodeRadii(d) {
   thisnodesize = node_size_norm * controls['Node size'];
   if (d.size) {
-    thisnodesize *= (d.size)**(controls['Node scaling exponent']);
+    thisnodesize *= (d.size)**(controls['Node size exponent']);
   }
   return thisnodesize
 }
 
-function computeLinkDistance(d) {
-  thislinkweight = controls['Link distance'];
-  if (d.weight) {
-    thislinkweight *= 1 / d.weight**(controls['Link scaling exponent']);
-  }
-  return thislinkweight
+function computeLinkStrength(d) {
+  var base_strength = 1 / Math.min(node_degrees[d.source.id], node_degrees[d.target.id])
+  return (1 / base_strength * d.weight / max_link_width)**(controls['Link strength exponent']) * base_strength
 }
 
 function computeNodeColor(d) {
@@ -287,7 +289,7 @@ function inputtedGravity(v) {
 }
 
 function inputtedDistance(v) {
-  simulation.force("link").distance(function(d) { return computeLinkDistance(d); });
+  simulation.force("link").distance(controls['Link distance']);
   simulation.alpha(1).restart();
 }
 
@@ -360,11 +362,11 @@ function inputtedNodeStrokeSize(v) {
   simulation.restart();
 }
 
-function inputtedNodeScalingRoot(v) {
-  if (controls['Node scaling exponent'] > 0) {
-    node_size_norm = 1 / max_node_size**(controls['Node scaling exponent'])
+function inputtedNodeSizeExponent(v) {
+  if (controls['Node size exponent'] > 0) {
+    node_size_norm = 1 / max_node_size**(controls['Node size exponent'])
   } else {
-    node_size_norm = 1 / min_node_size**(controls['Node scaling exponent'])
+    node_size_norm = 1 / min_node_size**(controls['Node size exponent'])
   }
   if (controls['Collision']) {
     simulation.force("collide").radius(function(d) { return computeNodeRadii(d) })
@@ -374,13 +376,17 @@ function inputtedNodeScalingRoot(v) {
   }
 }
 
-function inputtedLinkScalingRoot(v) {
-  if (controls['Link scaling exponent'] > 0) {
-    link_width_norm = 1 / max_link_width**(controls['Link scaling exponent'])
+function inputtedLinkWidthExponent(v) {
+  if (controls['Link width exponent'] > 0) {
+    link_width_norm = 1 / max_link_width**(controls['Link width exponent'])
   } else {
-    link_width_norm = 1 / min_link_width**(controls['Link scaling exponent'])
+    link_width_norm = 1 / min_link_width**(controls['Link width exponent'])
   }
-  simulation.force("link").distance(function(d) { return computeLinkDistance(d); });
+  simulation.restart();
+}
+
+function inputtedLinkStrengthExponent(v) {
+  simulation.force("link").strength(function(d) { return computeLinkStrength(d); });
   simulation.alpha(1).restart();
 }
 
@@ -527,14 +533,14 @@ function restart_if_valid_JSON(raw_graph) {
 
 
 function restart_if_valid_CSV(raw_input) {
-  // For now just assume header line is "source,target(,weight)"
+  // Assume header is "source,target(,weight)"
   var links = d3.csvParse(raw_input)
-  var nodes = []
+  
+  var node_strengths = new DefaultDict(Number)
   links.forEach(l => {
-    nodes.push(l.source)
-    nodes.push(l.target)
+    node_strengths[l.source] += valIfValid(l.weight, 1);
+    node_strengths[l.target] += valIfValid(l.weight, 1);
   });
-  var node_sizes = Counter(nodes)
 
   // Warn against zero links
   var zero_links_count = 0
@@ -551,7 +557,7 @@ function restart_if_valid_CSV(raw_input) {
   }
 
   master_graph = {'nodes': [], 'links': links}
-  d3.keys(node_sizes).forEach(k => {master_graph.nodes.push({'id': k, 'size': node_sizes[k]})})
+  d3.keys(node_strengths).forEach(k => {master_graph.nodes.push({'id': k, 'size': node_strengths[k]})})
 
   // Compute and store global variables
   compute_graph_globals(master_graph);
@@ -564,22 +570,24 @@ function restart_if_valid_CSV(raw_input) {
 // -----------------
 
 function compute_graph_globals(graph) {
-  // Compute node size norm
+  // Compute node size norms
   max_node_size = d3.max(graph.nodes.map(n => { if (n.size) { return n.size } else return 0; }));
   min_node_size = d3.min(graph.nodes.map(n => { if (n.size) { return n.size } else return 1; }));
 
+  if (controls['Node size exponent'] > 0) {
+    node_size_norm = 1 / max_node_size**(controls['Node size exponent'])
+  } else {
+    node_size_norm = 1 / min_node_size**(controls['Node size exponent'])
+  }
+
+  // Compute link width norms
   max_link_width = d3.max(graph.links.map(l => { if (l.weight) { return l.weight } else return 0; }));
   min_link_width = d3.min(graph.links.map(l => { if (l.weight) { return l.weight } else return 1; }));
-  
-  if (controls['Node scaling exponent'] > 0) {
-    node_size_norm = 1 / max_node_size**(controls['Node scaling exponent'])
+
+  if (controls['Link width exponent'] > 0) {
+    link_width_norm = 1 / max_link_width**(controls['Link width exponent'])
   } else {
-    node_size_norm = 1 / min_node_size**(controls['Node scaling exponent'])
-  }
-  if (controls['Link scaling exponent'] > 0) {
-    link_width_norm = 1 / max_link_width**(controls['Link scaling exponent'])
-  } else {
-    link_width_norm = 1 / min_link_width**(controls['Link scaling exponent'])
+    link_width_norm = 1 / min_link_width**(controls['Link width exponent'])
   }
 
   // Sort out node colors
@@ -593,26 +601,44 @@ function compute_graph_globals(graph) {
   }
   window.reference_swatch = _.clone(active_swatch)
   reference_color = controls['Node fill']
+
+  node_degrees = new DefaultDict(Number)
+  graph.links.forEach(l => {
+    node_degrees[l.source] += 1;
+    node_degrees[l.target] += 1;
+  });
 }
 
 function shave(input_graph) {
-
   // Compute what number a percentage corresponds to
   var interval_range = function(percent) {
     return percent / 100 * (max_link_width - min_link_width) + min_link_width
   }
   // Shave links
-  var output_graph = input_graph
-  output_graph['links'] = output_graph.links.filter(l => {
+  var graph_displayed = input_graph
+  graph_displayed['links'] = graph_displayed.links.filter(l => {
     return (interval_range(controls['Min. link weight %']) <= l.weight) && (l.weight <= interval_range(controls['Max. link weight %']))
   })
-  return output_graph
+  return graph_displayed
 }
+
 // Utility functions
 function Counter(array) {
   var count = {};
   array.forEach(val => count[val] = (count[val] || 0) + 1);
   return count;
+}
+
+class DefaultDict {
+  constructor(defaultInit) {
+    return new Proxy({}, {
+      get: (target, name) => name in target ?
+        target[name] :
+        (target[name] = typeof defaultInit === 'function' ?
+          new defaultInit().valueOf() :
+          defaultInit)
+    })
+  }
 }
 
 function bounce_modulus(v, lower, upper) {
@@ -641,6 +667,11 @@ function clip(val, lower, upper) {
   } else {
     return val
   }
+}
+
+function valIfValid(v, alt) {
+  if (typeof(v) != 'undefined') { return v; }
+  else { return alt; }
 }
 
 // Handle key events //
@@ -678,5 +709,4 @@ window.addEventListener("mousedown", function() {
     }
     simulation.restart();
   }
-  console.log(hoveredNode, xy)
 }, true)
