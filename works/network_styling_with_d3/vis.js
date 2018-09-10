@@ -534,12 +534,21 @@ function restart_if_valid_JSON(raw_graph) {
 
 function restart_if_valid_CSV(raw_input) {
   // Assume header is "source,target(,weight)"
-  var links = d3.csvParse(raw_input)
+  var links;
+  if (raw_input.split("\n")[0].includes("weight")) {
+    links = d3.csvParse(raw_input).map(l => {
+      return {'source': l.source, 'target': l.target, 'weight': +l.weight}
+    })
+  } else {
+    links = d3.csvParse(raw_input).map(l => {
+      return {'source': l.source, 'target': l.target, 'weight': 1}
+    })
+  }
   
   var node_strengths = new DefaultDict(Number)
   links.forEach(l => {
-    node_strengths[l.source] += valIfValid(l.weight, 1);
-    node_strengths[l.target] += valIfValid(l.weight, 1);
+    node_strengths[l.source] += +valIfValid(l.weight, 1);
+    node_strengths[l.target] += +valIfValid(l.weight, 1);
   });
 
   // Warn against zero links
@@ -557,7 +566,9 @@ function restart_if_valid_CSV(raw_input) {
   }
 
   master_graph = {'nodes': [], 'links': links}
-  d3.keys(node_strengths).forEach(k => {master_graph.nodes.push({'id': k, 'size': node_strengths[k]})})
+  d3.keys(node_strengths).forEach(k => {
+    master_graph.nodes.push({'id': k, 'size': node_strengths[k]})
+  })
 
   // Compute and store global variables
   compute_graph_globals(master_graph);
