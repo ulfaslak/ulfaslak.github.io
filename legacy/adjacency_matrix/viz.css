@@ -1,0 +1,61 @@
+line {
+    stroke-width: 5;
+    stroke: black;
+    opacity: 0.3;
+}
+
+#w1 {
+    position: fixed;
+    float: left;
+    width: 560;
+    height: 560;
+    margin: 5px;
+}
+#w2 {
+    position: fixed;
+    float: left;
+    width: 560;
+    height: 560;
+    margin: 5px;
+    top: 55px;
+    left: 570px;
+}
+#w3 {
+    position: fixed;
+    float: right;
+    width: 32vw;
+    margin: 10px;
+    right: 0%;
+    top: 33vw;
+}
+#w4 {
+    position: fixed;
+    float: right;
+    width: 32vw;
+    margin-right: 12px;
+    right: 0%;
+    top: 40vw;
+    bottom:0;
+    overflow-y: scroll;
+
+}
+
+#ex6Slider .slider-selection {
+    background: #BABABA;
+}
+
+#myButtonGroup {
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
