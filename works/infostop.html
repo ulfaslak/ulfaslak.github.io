@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <title>Ulf Aslak / works / faceworks</title>
+    <meta name="description" content="PhD student / physicist / data scientist">
+    <link rel="stylesheet" href="../assets/css/main.css"/>
+  </head>
+
+  <body>
+  	<!-- Header -->
+    <header class="header wrap wide" role="banner">
+      <div class="grid">
+        <div class="branding column">
+          <a href="https://ulfaslak.com/index.html" rel="home">Ulf Aslak</a>
+        </div>
+
+        <nav class="navigation column" role="navigation">
+          <ul class="menu">
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/about.html">About</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/blog.html">Blog</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/files/cv_ulf_en.pdf">CV</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://github.com/ulfaslak">Codes</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao" target="_blank">Publications</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/vent.html" target="_blank">Vent</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <header class="wrap">
+      <h1>Infostop</h1>
+      <p><em>2019</em></p>
+    </header>
+    
+    <div class="text wrap">  
+      <p>If you have a sequence of raw GPS points collected from some individual (like yourself) for a period of time, a common pre-processing step you will want to do is to find <em>stop locations</em>. There's a lot of ways to do this, but typically, you group points in time somehow such as to reduce the number of location points to consider for the second step which is usually some kind of clustering. Often, people use DBSCAN for this second clustering step because it doesn't require you to specify the number of desired clusters (i.e. stop locations) and also it's pretty easy to understand: if points are within some distance they belong to the same cluster.</p>
+
+      <p>My problem with DBSCAN has always been that if two clusters are slightly overlapping, DBSCAN will give them the same label. This is especially annoying when clustering GPS points, because they are inherently a little bit noisy, so cluster overlap is very common. Well, so I wrote a small piece of code to fix this.</p>
+
+      <p>My solution is called <em>Infostop</em>, and leverages Infomap to find clusters. The idea is simple. First you group time-consecutive points that are within some distance. From each group, you only keep the median, such as to reduce the overall number of points. THEN (and this is the new stuff), you create a network, where each median is a node and two nodes have a link between them if they are within a given distance. Now you run the community detection algorithm Infomap on this network and lo and behold, the resulting stop locations are just beautiful. Here's an example of what it looks like for some of my data.</p>
+
+        <figure>
+          <img src="https://camo.githubusercontent.com/66548392cd96aa5cd7438326bfa4385986803849/68747470733a2f2f756c6661736c616b2e636f6d2f66696c65732f696e666f73746f705f6578616d706c655f6d61702e706e67" alt="infostop_example">
+        </figure>
+
+      <p>Notice that many of the points that are in different clusters are actually really close to each other. DBSCAN would have assigned the same label to these slightly overlapping cluster, but Infomap does not. If you want to use this you can simply pip install it (<em>pip install infostop</em>). Check out <a href="https://github.com/ulfaslak/infostop">the Github repository here</a>. Thanks for <a href="http://lauraalessandretti.weebly.com/">Laura Alessandretti</a> for helping me make this better.
+      </p>
+
+    </div>
+
+
+
+    <!-- Footer -->
+   	<footer class="footer cf" role="contentinfo">
+	    <div class="wrap wide">
+	      <p class="footer-copyright">© 2010–2019 Ulf Aslak | Copenhagen, Denmark</p>
+	    </div>
+  	</footer>
+
+    <!-- Google Analytics. -->
+    <script>
+      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+      ga('create', 'UA-124193587-1', 'auto'); ga('send', 'pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+  </body>
+</html>

@@ -42,34 +42,28 @@
 
     <!-- Content -->
     <header class="wrap">
-      <h1>Network yo face!</h1>
+      <h1>Netwulf</h1>
       <p><em>2018</em></p>
     </header>
     
     <div class="text wrap">  
-      <p>Inspired by <strong><a href="https://vedransekara.github.io/index.html" target="_blank">a blog post</a></strong> by Vedran Sekara, I figured it would be fun to write some code that takes an image of a face and converts it into a network.</p>
+      <p>I was simply annoyed that network visualization in Python was such a horrible thing to do. And it felt even more frustrating, given the vast number of researchers out there doing research in networks using Python. After endless Googling phrases like "d3 network python" and "networkx visualize d3", I figured I would just write a small webapp where I could upload a node-link graph in JSON format produced by networkx, and visualize the network using canvas and d3. <a href="https://ulfaslak.com/works/network_styling_with_d3/index.html">So I did just that.</a></p>
 
-      <p>The algorithm is super straight forward. You take the face, and convert it to black and white, then sample points on that image with a bias towards the dark regions. Finally, you connect each point to a number of its nearest neighbors. What you are left with is a facework.</p>
+      <p>I never actually made the thing work directly from the Python console, because it felt too cumbersome. But luckly there's awesome people out there that will pick up where you leave off and take things to the next level. <a href="http://benmaier.org/">Benjamin Maier</a> whom I met when I visited <a href="http://rocs.hu-berlin.de/">Dirk Brockmann's lab</a> wrote a Python API to my web app called 'Netwulf'. He came up with that. AND IT ROCKS. Now I can simply take a <em>networkx.Graph</em>, <em>G</em>, and launch it as an awesome interactive visualization like:
+        <pre>
+        <code>
+          from netwulf import visualize
+          visulize(G)
+        </code>
+        </pre>
 
-      <figure>
-        <img src="../assets/img/facework1.png" alt="facework1">
-      </figure>
+        <figure>
+          <img src="https://netwulf.readthedocs.io/en/latest/_images/random_partition_graph.png" alt="netwulf_example">
+        </figure>
 
-      <p>Thrilled as I was to see this actually work, I immediately became concerned that dark skinned people would be harder to netface. The solution was to simply <em>exponentiate and renormalize</em> the probability distribution that you sample with. The probability distribution is essentially the greyscale image of the face and if your raise that to higher powers (in other words, if the initial probability distribution is <em><MATH>p</MATH></em> you and you change it to <em><MATH>p</em><SUP>2</SUP></MATH></em> or higher) you increase the contrast of the sampling.</p>
-      
-      <p>Below you see Akon (the most dark skinned celebrity I can think of) at different levels of contrast. It's not perfect, but you can kinda tell it's him.</p>
+      It's that easy! Install it with pip (<em>pip instal netwulf</em>). Check out the <a href="https://github.com/benmaier/netwulf/">code on Github</a>. And if you use this software in your research, please cite our paper!
+      </p>
 
-      <figure>
-        <img src="../assets/img/akon_facework.png" alt="facework_akon">
-      </figure>
-
-      The sampling process is essentially iterative, so another fun thing one can do is plot the evolution of the facework. I do this by stitching together faceworks with an increasing number of samples and rendering the result as a gif.
-
-      <figure>
-        <img src="../assets/img/ulf_bot10000_pow2.0sampling_kmin3_kmax10_nsamples_100_10000_nframes_50.gif" alt="faceworkgif">
-      </figure>
-
-      <p>→ <a href="https://github.com/ulfaslak/network_yo_face">The code is available here</a></p>
     </div>
 
 
