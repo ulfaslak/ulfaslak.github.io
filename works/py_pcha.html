@@ -42,29 +42,15 @@
 
     <!-- Content -->
     <header class="wrap">
-      <h1>Netwulf</h1>
-      <p><em>2018</em></p>
+      <h1>Archetypal analysis in Python</h1>
+      <p><em>2016</em></p>
     </header>
     
     <div class="text wrap">  
-      <p>I was simply annoyed that <strong>network visualization in Python was such a horrible thing to do</strong>. And it felt even more frustrating, given the vast number of researchers out there doing research in networks using Python. After endless Googling phrases like "d3 network python" and "networkx visualize d3", I figured I would <strong>write a small webapp</strong> where I could upload a node-link graph in JSON format produced by networkx, and visualize the network using canvas and d3. <a href="https://ulfaslak.com/works/network_styling_with_d3/index.html"><br><br>So I did just that.</a></p>
+      <p><a href="https://ulfaslak.com/legacy/master_thesis.pdf">My Master's project</a> was about uncovering evolutionarily archetypal personality types from large amounts of personality data. Computationally, this involved rendering Big Five personality tests in a 5D space and running an <em>archetypal analysis</em> algorithm to find the extreme corner points that best enclosed the data in a simplex (a sort of 5-dimensional triangle with six corners).</p>
 
-      <p>Initially, I didn't actually make the thing work directly from the Python console, because it felt too cumbersome. But luckly there's awesome people out there that will pick up where you leave off and take things to the next level. <a href="http://benmaier.org/">Benjamin Maier</a> whom I met when I visited <a href="http://rocs.hu-berlin.de/">Dirk Brockmann's lab</a> wrote <strong>a Python API to my web app</strong> called 'Netwulf'. The name was his idea. AND IT ROCKS. Now I can simply take a <em>networkx.Graph</em> and launch it locally as an awesome interactive visualization like:
-        <pre>
-        <code>
-          from netwulf import visualize
-          visulize(G)
-          # new browser window opens
-        </code>
-        </pre>
-
-        <figure>
-          <img src="https://netwulf.readthedocs.io/en/latest/_images/random_partition_graph.png" alt="netwulf_example">
-        </figure>
-
-      It's that easy! Install it with pip (<em>pip instal netwulf</em>). Check out the <a href="https://github.com/benmaier/netwulf/">code on Github</a> and <a href="https://netwulf.readthedocs.io/en/latest/">read the docs</a>. And if you use this software in your research, please <a href="https://joss.theoj.org/papers/3a22c963a45dbddc8501a4b5ef4b2bf6">cite our paper</a>!
+      <p>At the time when I was doing the analysis, the best code for doing this was based on <a href="https://www.sciencedirect.com/science/article/pii/S0925231211006060">a 2012 paper</a> by Morten Mørup and Lars Kai Hansen, and written in Matlab. I'm not a big fan of writing cross-language code so I ended up taking their original Matlab code and translating the whole thing to Python. The resulting package is called <em>py_pcha</em> and can be installed with pip (<em>pip install py_pcha</em>). Check it out <a href="https://github.com/ulfaslak/py_pcha">on Github</a>. It's pretty fast.
       </p>
-
     </div>
 
 

@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <title>Ulf Aslak / works / faceworks</title>
+    <meta name="description" content="PhD student / physicist / data scientist">
+    <link rel="stylesheet" href="../assets/css/main.css"/>
+  </head>
+
+  <body>
+  	<!-- Header -->
+    <header class="header wrap wide" role="banner">
+      <div class="grid">
+        <div class="branding column">
+          <a href="https://ulfaslak.com/index.html" rel="home">Ulf Aslak</a>
+        </div>
+
+        <nav class="navigation column" role="navigation">
+          <ul class="menu">
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/about.html">About</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/blog.html">Blog</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/files/cv_ulf_en.pdf">CV</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://github.com/ulfaslak">Codes</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao" target="_blank">Publications</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/vent.html" target="_blank">Vent</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <header class="wrap">
+      <h1>Twitter network logger</h1>
+      <p><em>2019</em></p>
+    </header>
+    
+    <div class="text wrap">  
+      <p>Something I like to do when there's extra activity around a specific topic, is to <strong>record the network of people interacting</strong> around that topic on Twitter. Specifically, I collect all tweets that contain a set of keywords that identify the topic, then I maintain a list of users that have posted or retweeted those tweets and check out which other users on that list they liked tweets from. This yields a three-layer network temporal network. One layer describe the network of likes, another the network of retweets and finally the network of mentions (this also includes comments).</p>
+
+      <p>My first attempt at doing that was during the 2018 NetSci conference where I got a little bored and figured I needed to know who was top dawg in the network science community (spoiler: it's not me). I hacked up a continuous Twitter data collection script that pushed the data to a Github Gist, and set it to run every 15 minutes on a remote server. Then I built a online data visualization in JavaScript that on every page load would read the latest version of the dataset. <a href="https://ulfaslak.com/works/NetSci2018TwitterNetwork/index.html"><br><br>That is here</a>.
+      </p>
+
+      <p><strong>Then pretty recently</strong> in Copenhagen, this insane Danish fascist YouTuber burned a Quran in a Muslim-dense neighborhood and announced his candidacy for the Danish parlament, and in perfect Trump style all the cameras stopped pointing at serious people and started focussing all their attention of that guy (well done social media!). So since I'm no better, I figured I would revisit my old Twitter network logger and point it at this guy. So here's the network of likes.
+        
+        <figure>
+          <img src="../assets/img/paludan_likes.png" alt="netwulf_example">
+        </figure>
+
+      Basically, there's two clusters in this network, one small one that is very tight knit of co-fascist sympathizers liking each others tweets, and another larger more diffused one of (I suppose) people talking about what a crazy horrible person he is. And making this plot was super easy, I just copied the <a href="https://gist.githubusercontent.com/ulfaslak/be4a6123fdde340870814db61c648ec6/raw/d0f2dd8826d5ae906db98296b5683060a725c9a1/likes.csv">raw URL</a> from <a href="https://gist.github.com/ulfaslak/be4a6123fdde340870814db61c648ec6">the Github Gist</a> that the logger pushed to and inserted it into my <a href="https://ulfaslak.com/works/network_styling_with_d3/index.html">online version of Netwulf</a>. Then I styled it a bit until I thought it looked cool.</p>
+
+      <p>Also, since I wanted to be able to reboot this little wiretapping scheme anytime, I did a bit of work making it easy to launch. Now, you clone a Github repository, create a gist to host the data and then run a Python script with some arguments that depend on what you want to log. It's all described on <a href="https://github.com/ulfaslak/twitter_network_logger">the Github repository</a>.
+      </p>
+
+    </div>
+
+
+
+    <!-- Footer -->
+   	<footer class="footer cf" role="contentinfo">
+	    <div class="wrap wide">
+	      <p class="footer-copyright">© 2010–2019 Ulf Aslak | Copenhagen, Denmark</p>
+	    </div>
+  	</footer>
+
+    <!-- Google Analytics. -->
+    <script>
+      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+      ga('create', 'UA-124193587-1', 'auto'); ga('send', 'pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+  </body>
+</html>
