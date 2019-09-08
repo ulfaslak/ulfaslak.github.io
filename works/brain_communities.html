@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <title>Ulf Aslak / works / faceworks</title>
+    <meta name="description" content="PhD student / physicist / data scientist">
+    <link rel="stylesheet" href="../assets/css/main.css"/>
+  </head>
+
+  <body>
+  	<!-- Header -->
+    <header class="header wrap wide" role="banner">
+      <div class="grid">
+        <div class="branding column">
+          <a href="https://ulfaslak.com/index.html" rel="home">Ulf Aslak</a>
+        </div>
+
+        <nav class="navigation column" role="navigation">
+          <ul class="menu">
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/about.html">About</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/blog.html">Blog</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/files/cv_ulf_en.pdf">CV</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://github.com/ulfaslak">Codes</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao" target="_blank">Publications</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/vent.html" target="_blank">Vent</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <header class="wrap">
+      <h1>Brain communities!</h1>
+      <p><em>2018</em></p>
+    </header>
+    
+    <div class="text wrap">  
+      <p>A while back I published <a href="https://ulfaslak.com/files/aslak2018">a paper</a> on community detection in temporal networks, and showed that it was possible to <a href="https://ulfaslak.com/research/temporal_communities/index.html">detect social gatherings</a> on short timescales. Initially we thought it would be useful to use this method to track social dynamics of people in organizations or animals in the wild with this method; but when we took it to conferences, we noted that people from neuroscience seemed very interested.</p>
+
+        <figure>
+          <img src="../assets/img/brain_coms1.png" alt="brain communities">
+        </figure>
+
+      So we got hold of some brain data! Specifically, fMRI measurements on subjects undertaking working memory tasks. We then partitioned the brain into a number of independent components and built a time-dependent correlation network of these components, and ran our method for community detection on this network. And TADA! It works, first a beautiful "attention-community" pops out, which activates only during task performance, and second, we get another "idle-community" network that only actiates when the subject is doing nothing. When looking at the communities that activate in it, the second community has strong resemblance to something called the <a href="https://en.wikipedia.org/wiki/Default_mode_network">default mode network</a>.<br><br>
+
+      We put the paper <a href="https://link.springer.com/article/10.1007/s41109-019-0178-4">in the Journal of Applied Network Science.</a>
+      </p>
+
+    </div>
+
+
+
+    <!-- Footer -->
+   	<footer class="footer cf" role="contentinfo">
+	    <div class="wrap wide">
+	      <p class="footer-copyright">© 2010–2019 Ulf Aslak | Copenhagen, Denmark</p>
+	    </div>
+  	</footer>
+
+    <!-- Google Analytics. -->
+    <script>
+      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+      ga('create', 'UA-124193587-1', 'auto'); ga('send', 'pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+  </body>
+</html>
