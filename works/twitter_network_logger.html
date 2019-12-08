@@ -42,15 +42,16 @@
 
     <!-- Content -->
     <header class="wrap">
-      <h1>Twitter network logger</h1>
+      <h1><em>Visualization</em>: Twitter network logger</h1>
       <p><em>2019</em></p>
     </header>
     
     <div class="text wrap">  
       <p>Something I like to do when there's extra activity around a specific topic, is to <strong>record the network of people interacting</strong> around that topic on Twitter. Specifically, I collect all tweets that contain a set of keywords that identify the topic, then I maintain a list of users that have posted or retweeted those tweets and check out which other users on that list they liked tweets from. This yields a three-layer network temporal network. One layer describe the network of likes, another the network of retweets and finally the network of mentions (this also includes comments).</p>
 
-      <p>My first attempt at doing that was during the 2018 NetSci conference where I got a little bored and figured I needed to know who was top dawg in the network science community (spoiler: it's not me). I hacked up a continuous Twitter data collection script that pushed the data to a Github Gist, and set it to run every 15 minutes on a remote server. Then I built a online data visualization in JavaScript that on every page load would read the latest version of the dataset. <a href="https://ulfaslak.com/works/NetSci2018TwitterNetwork/index.html"><br><br>That is here</a>.
-      </p>
+      <p>My first attempt at doing that was during the 2018 NetSci conference where I got a little bored and figured I needed to know who was top dawg in the network science community (spoiler: it's not me). I hacked up a continuous Twitter data collection script that pushed the data to a Github Gist, and set it to run every 15 minutes on a remote server. Then I built a online data visualization in JavaScript that on every page load would read the latest version of the dataset.</p>
+
+      <p>→ <a href="https://ulfaslak.com/works/NetSci2018TwitterNetwork/index.html">That is here</a>.</p>
 
       <p><strong>Then pretty recently</strong> in Copenhagen, this insane Danish fascist YouTuber burned a Quran in a Muslim-dense neighborhood and announced his candidacy for the Danish parlament, and in perfect Trump style all the cameras stopped pointing at serious people and started focussing all their attention of that guy (well done social media!). So since I'm no better, I figured I would revisit my old Twitter network logger and point it at this guy. So here's the network of likes.
         

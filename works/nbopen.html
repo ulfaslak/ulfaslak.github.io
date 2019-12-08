@@ -51,7 +51,7 @@
 
       Github user <em>takluyver</em> offers a <b>solution for this called <a href="https://github.com/takluyver/nbopen">nbopen</a></b>. It's a small program that you install on your computer, and then you launch notebooks like <kbd>nbopen mynotebook.ipynb</kbd>. The program then looks for the nearest running notebook server and opens the notebook on that instance. Unfortunately, <b>maintainance for this stopped</b> about two years ago, and the number of issues keeps growing. <em>nbopen</em> broke on my computer last time I upgraded my OS, so I set about creating my own solution to the problem of overflowing notebook servers.<br><br>
 
-      <a href="https://github.com/ulfaslak/nbopen_minimal">Here is my solution.</a><br><br>
+      → <a href="https://github.com/ulfaslak/nbopen_minimal">Here is my solution.</a><br><br>
 
       It's not a program, it's actually just a bash script. It runs out of the box on OSX but needs a small modification (descriped in repo) to run on Linux. Windows is not supported (because it's a bash script). Since it is so minimal, you may have to change the default port or default server directory, but once it works it works. It functions like the original <em>nbopen</em>. Launch a notebook like <kbd>nbopen mynotebook.ipynb</kbd> and it looks for a running instance to attach the notebook to. If it doesn't find one it creates one.<br><br>
 

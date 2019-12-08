@@ -51,7 +51,7 @@
 
       <p>My problem with using DBSCAN for detecting stop locations has always been that if two clusters are slightly overlapping, DBSCAN will give them the same label. This is especially annoying when clustering GPS points, because they are inherently a little bit noisy, so GPS points associated with different labels will often overlap slightly.</p>
 
-      <p><a href="https://github.com/ulfaslak/infostop">So I wrote a Python package to fix this.</a></p>
+      <p>→ <a href="https://github.com/ulfaslak/infostop">So I wrote a Python package to fix this.</a></p>
 
       <p><strong>My solution is called <em>Infostop</em></strong>, and leverages <a href="https://www.mapequation.org/">Infomap</a> to find clusters. The idea is simple. First you group time-consecutive points that are within some distance (and optionally, time). From each group, you only keep the median, such as to reduce the overall number of points. THEN (and this is the new stuff), you create a network, where each median is a node and two nodes have a link between them if they are within a given distance. Now you run the community detection algorithm Infomap on this network and lo and behold, the resulting stop locations are just beautiful. Here's an example of what it looks like for some of my data.</p>
 
