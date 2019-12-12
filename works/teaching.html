@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <title>Ulf Aslak / works</title>
+    <meta name="description" content="PhD student / physicist / data scientist">
+    <link rel="stylesheet" href="../assets/css/main.css"/>
+  </head>
+
+  <body>
+  	<!-- Header -->
+    <header class="header wrap wide" role="banner">
+      <div class="grid">
+        <div class="branding column">
+          <a href="https://ulfaslak.com/index.html" rel="home">Ulf Aslak</a>
+        </div>
+
+        <nav class="navigation column" role="navigation">
+          <ul class="menu">
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/about.html">About</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/blog.html">Blog</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/files/cv_ulf_en.pdf">CV</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://github.com/ulfaslak">Codes</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao" target="_blank">Publications</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.com/vent.html" target="_blank">Vent</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <header class="wrap">
+      <h1><em>Teaching</em>: lessons learned</h1>
+      <p><em>2020</em></p>
+    </header>
+    
+    <div class="text wrap">  
+      
+      <h3>Background</h3>
+
+      I have done A LOT of teaching on topics related to data science and machine learning over the past three years. As a PhD student at the Center for Social Data Science I developed course material for the coming Master's degree in Social Data Science at the University of Copenhagen. I produced lectures and exercises on programming, statistics, machine learning, deep learning, and network science, and taught these to multiple batches of students.<br><br>
+
+      I also took a side-job as external lecturer early in my PhD, at <a href="">DIS</a>. DIS is a small independent institution that offers university courses to US undergraduates studying abroad in Scandinavia. My first course was 'Computational Analysis of Big Data', and more or less I was given entire freedom over what I taught and how I taught it. I used this as an opportunity to design the type of Data Science course I had always wanted to take. Later I started teaching 'Artificial Neural Networks and Deep Learning', and applied very much the same formula.
+      
+      <h3>Key principles</h3>
+
+      Over time, my principles for teaching have evolved a bit. I have experimented with lots of things that didn't work very well, and borrowed ideas from my mentors and collegues. Most rewarding (and painful) though, has been to try out the things my students suggested in their post-semester feedback. The <b>key principles</b> I have learned to be most effective are:<br><br>
+
+      <ul>
+        <li><b>Keep lectures short</b>: Students are consuming SO MUCH KNOWLEDGE. Most teachers cannot remember exactly how intense studying at a university can be. Every week students are given new difficult topics to learn in each of their 4-6 courses. If some fall asleep or ask about something you just explained during your two-hour lecture, you are wrong to put the blame on them (though most do). I usually find that my students disengage when I move past the 50-minute mark. Moreover, if I prepare good slides and think hard about how I want to explain things, my lectures are usually shorter than 40 minutes.
+        </li>
+
+        <li><b>Ideas first</b>: AKA "get to the point". When introducing a topic, I prioritize students' ability to understand its core idea rather than the mathematical details. For example, when introducing principle component analysis (PCA), rather than starting with covariance matrices and eigenvector spaces, I focus on the idea of low-dimensional projections in general and how they are just like objects' shadows, only the shadows and objects can have any dimensionality. Once they understand this, they get why it's useful and worth investing brain power into, and will be more likely to care about the technical details.
+        </li>
+
+        <li><b>Avoiding <em>completism</em></b>: I don't cover topics completely (short lectures, remember?). When my students run into trouble due to their lack of knowledge I introduce them to Stack Exchange, Wikipedia and Google searches. During tutorials, students fill their gaps with questions and chalk discussions. This makes for a much more active learning experience, where they seek out knowledge on their own, something they will eventually have to learn anyway. In combination with the above principle, I can cover much ground quite effectively, trusting that whatever method they apply, they know at least what its purpose is.
+        </li>
+
+        <li><b>Exercises as backbone</b>: When teaching data science, there is no learning without doing. A good lecture will only serve as framing for the problems that students will have to learn to solve on their own eventually. Therefore, I invest considerable time into writing exercise sets as comprehensive Jupyter notebooks that interweave explanations, examples and problems, like a guided tour through big problems. My notebooks serve as the teaching backbone, which in practice means that they contain all the lessons I want my students to learn.
+        </li>
+
+        <li><b>Examples first</b>: We remember better when something is put in relation to our existing knowledge. Stories are great for introduction, because they employ the listener's imagination which automatically links the new concept to all sorts of things. I, for example, introduce neural networks not as networks, but as nested logistic regression. I first tell a story about how logistic regression can be used to decide whether to go to a party or not based on different <em>variables</em> and how you <em>weight</em> those. Then I motivate that if the decision boundary is non-linear, one model is not enough, you need to couple output to input of multiple (the <a href="https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.22264&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false">TensorFlow playground</a> is great for visualizing this).
+        </li>
+
+        <li><b>Projects! Not exams</b>: This is probably my most important principle. As a student taking conventional university courses, you don't have much time to build a portfolio. Worse even, you are fooled into not caring because universities make such a big deal about grades that you think only they matter. Then after you graduate, employers will completely ignore your grades and turn you down because you don't have enough practical experience. I strongly believe in giving my students space and guidance to complete awesome projects that they can use as proof of their competences. This way they walk away with both their precious grade <em>and</em> an even more precious portfolio project. I have them write it up as a blog post, with a link to the code on Github. AND IT WORKS! Every semester I get emails from past students that land jobs at big companies (Amazon, Google, Microsoft to mention a few) using their project as leverage. Below I link to some of the best projects my students have produced.
+        </li>
+      </ul> 
+
+      <h3>Effective tools</h3>
+
+      Beyond having matured my philosophy around teaching, I have also settled on a number of <b>tools</b> that I find makes teaching easier and better:<br><br>
+
+      <ul>
+        <li><b>Github</b>: There's no reason not to <em>synergistically</em> implement tools in your teaching, which your students will have to learn to use anyway. Github is one of those. Therefore, I maintain course material in a Github repo, put course information on the repo <em>Wiki</em> and promote the use of <em>Issues</em> for Q&A outside of class. Finally, students must share their exam project code in a Github repository. Using Github makes my life easier for a number of reasons: (1) Sharing new material is command line in my Terminal. (2) Students fix issues (typos, code bugs, broken links, etc.) using pull requests for extra credits. (3) Students answer each other's questions for extra credits.
+        </li>
+
+        <li><b>Peergrade</b>: Although my classes are rarely bigger than 30 students, the programmer in me burns out on the repetitiveness of grading assignments. Moreover, my time is much better spent improving the course material. So I use <a href="https://peergrade.io">Peergrade</a> which is a SaaS that facilitates peer reviews of student handins. It's an extremely well-developed system, where the teacher creates rubric questions for the reviewing students to answer when grading their fellow students handins. The students are usually happy to learn from others' solutions, and since you can assign every student to review multiple times each handin gets lots of feedback. <em>Disclaimer: I have no stake in the company, but the founders are my personal friends.</em>
+        </li>
+
+        <li><b>Vent</b>: It's important to allow your students to give you feedback throughout the course. Usually they don't hold back the positive things, which is great, but it's not always that useful. Ideally, you want students to feel safe enough to share their negative experiences, but due to the inherent uneven power relationship between teacher and student (due to grading I suppose) this is rarely the case. So I set up <a href="https://ulfaslak.com/vent">a webform</a> on my homepage where students can submit anonymous messages to me. Every semester I get feedback which reveals something important, which lets me adjust the pace or go more into depth with important topics I explained poorly. Moreover, I think it's just important for the students to have a place to vent their frustrations, risk-free, if they need to.
+        </li>
+      </ul>
+
+      <h3>Amazing projects</h3>
+      Every semester I'm blown away by the quality of some of the projects my students turn in. Most come into my courses having had no practical training with data science and coding in Python, so seeing a blog post for example getting featured on Towards Data Science is pure delight for me. Below I have listed some of my favorites throughout the years, in no particular order:<br><br>
+
+      <ul>
+        <li><a href="">Projects</a></li>
+      </ul>
+
+    </div>
+
+
+
+    <!-- Footer -->
+   	<footer class="footer cf" role="contentinfo">
+	    <div class="wrap wide">
+	      <p class="footer-copyright">© 2010–2020 Ulf Aslak | Copenhagen, Denmark</p>
+	    </div>
+  	</footer>
+
+    <!-- Google Analytics. -->
+    <script>
+      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+      ga('create', 'UA-124193587-1', 'auto'); ga('send', 'pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+  </body>
+</html>
