@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-      <title>Ulf Aslak / works / faceworks</title>
+      <title>Ulf Aslak / works</title>
     <meta name="description" content="PhD student / physicist / data scientist">
     <link rel="stylesheet" href="../assets/css/main.css"/>
     <link rel="stylesheet" href="../assets/css/extra.css"/>
@@ -47,20 +47,19 @@
 
     <!-- Content -->
     <header class="wrap">
-      <h1>Clustering temporal networks</h1>
-      <p><em>2017</em></p>
+      <h1>Aggregation and power laws</h1>
+      <p><em>2020</em></p>
     </header>
     
-    <div class="text wrap">  
-      <p>Before I started my PhD in <a href="https://sunelehmann.com/">Sune Lehmann</a>'s Lab, I did a cool little project with him. Following his and Vedran Sekara's <a href="https://www.pnas.org/content/pnas/113/36/9977.full.pdf">PNAS paper</a> on social cores he wanted me to build a data visualization that showed the temporal dynamics of these social cores (or "groups" is you will). Over a semester I did just that, and I was even so lucky to <a href="https://www.sciencemag.org/projects/data-stories/winners/2016">win first place</a> in Science Magazine's <em>Data Stories</em> competetion with this visualization as my entry.<br><br>→ <a href="https://ulfaslak.com/research/temporal_communities/index.html">Here is the data visualization.</a></p>
-
-      <p>So when I started my PhD, we figured it would be nice to revisit this and make the community detection part (finding the social cores) a little better. We teamed up with <a href="http://www.tp.umu.se/~rosvall/">Martin Rosvall</a>, author of <a href="https://www.mapequation.org/">Infomap</a>, and developed a good flow-based algorithm for community detection in temporal networks. <b>We put it in <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.97.062312">Physical Review E</a></b> (also on the <a href="https://arxiv.org/pdf/1711.07649.pdf">arXiv</a>), and integrated the method into Infomap with the flag <em>--multilayer-js-relax-rate</em>. Here's a figure from the paper, showing some social groups at the Technical University of Denmark expanding and contracting over a day:
+    <div class="text wrap">
+      <p>In a recent paper (at the time of writing, in review in Nature), we needed to remind the reader of the little known fact that the aggregation of multiple distributions over a range of scales reliably produces a power law distribution—a special type of distribution that has no well defined scale, or variance [<a href="https://www.nature.com/articles/srep09136">1</a>, <a href="https://www.pnas.org/content/101/45/15852.short">2</a>]. The figure we came up with looks something like this:<br><br>
+      <img src="../assets/img/aggregated_powerlaws.png" width="300" height="300"><br><br>
+      </p>  
+      
+      <p>The part of the aggregation (right panel) which forms a straight line, is exactly a power-law. To make this relation very clear I made <a href="https://observablehq.com/@ulfaslak/a-visual-exploration-of-how-a-power-law-can-emerge-from-aggre">an Observable notebook</a> (which got featured in <a href="https://observablehq.com/collection/@observablehq/explorables">Explorables</a>!) where one can play with different parameters and types of distributions. 
       </p>
 
-        <figure>
-          <img src="../assets/img/figures_sausages_NFC_vert.png" alt="netwulf_example" style="width:400px;margin-left:auto;margin-right:auto;display:block;">
-        </figure>
-
+      <p><em>... <a href="https://observablehq.com/@ulfaslak/a-visual-exploration-of-how-a-power-law-can-emerge-from-aggre">keep reading on Observable</a></em>.
     </div>
 
 
