@@ -68,6 +68,14 @@ var systems = {
     'axiom': "----+FF+FF+FF+FF[A][B]",
     'rule': "A -> [+A{.].C.}\nB -> [-B{.].C.}\nC -> C@1.2F"
   },
+  'tree1': {
+    'order': 11,
+    'angle': 10,
+    'axiom': '---------A',
+    'animate': 'no',
+    'rule': "T -> TF\nA -> TF[+++X]TFB\nB -> TF[---Y]TFA\nX -> A\nY -> BC\nC -> [{g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.}]\nL -> [N][M]\nN -> [+N{.].O.}\nM -> [-M{.].O.}\nO -> O@1.2F"
+  }
+
 }
 
 var system = d3.keys(systems)[Math.floor(Math.random() * d3.keys(systems).length)]
