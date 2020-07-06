@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Team on Super Duper Evil Co.</title>
+    <link>/team/</link>
+    <description>Recent content in Team on Super Duper Evil Co.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 19 Nov 2018 10:47:58 +1000</lastBuildDate>
+    
+	<atom:link href="/team/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ulf Aslak</title>
+      <link>/team/ulf-aslak/</link>
+      <pubDate>Mon, 19 Nov 2018 10:47:58 +1000</pubDate>
+      
+      <guid>/team/ulf-aslak/</guid>
+      <description>Ulf was a PhD student in Sune&amp;rsquo;s lab. Now he is his postdoc but he also runs SuperDuperEvilCo. Their relationship is reciprocally dominant and the arrow of hierarchy changes direction like a feather in the wind.</description>
+    </item>
+    
+    <item>
+      <title>Sune Lehmann</title>
+      <link>/team/sune-lehmann/</link>
+      <pubDate>Mon, 19 Nov 2018 10:47:58 +1000</pubDate>
+      
+      <guid>/team/sune-lehmann/</guid>
+      <description>By day, Sune is a professor of complex systems at DTU Compute. By night he sleeps because he read that Matthew Walker book and it made a big impression on him.</description>
+    </item>
+    
+  </channel>
+</rss>

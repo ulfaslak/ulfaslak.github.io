@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Services on Super Duper Evil Co.</title>
+    <link>/services/</link>
+    <description>Recent content in Services on Super Duper Evil Co.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 28 Nov 2018 15:15:34 +1000</lastBuildDate>
+    
+	<atom:link href="/services/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Visualization</title>
+      <link>/services/visualization/</link>
+      <pubDate>Wed, 28 Nov 2018 15:15:34 +1000</pubDate>
+      
+      <guid>/services/visualization/</guid>
+      <description>The human eye is an ultra-optimized pattern recognition machine. A data visualization is a piece of computer art that brings out patterns hidden in a dataset, for the eye to make sense of.
+I&amp;rsquo;m new here, please elaborate Visualizations can be static pages, printable for the office wall, or fully interactive and running in your browser. Typically, a visualization is explorable meaning that it allows multiple layers of understanding, from the sensible at glance to the deeply insightful upon near inspection.</description>
+    </item>
+    
+    <item>
+      <title>EDA</title>
+      <link>/services/exploratory_data_analysis/</link>
+      <pubDate>Wed, 28 Nov 2018 15:15:26 +1000</pubDate>
+      
+      <guid>/services/exploratory_data_analysis/</guid>
+      <description>EDA stands for Exploratory Data Analysis. We would explain, but there is a really good Wikipedia article that will bring us to the same page.
+When we explore data For us, EDA is the process of scanning data for value. What are the statistics of the variables? Do any of them correlate unexpectedly? Are there systematic biases and missing data that can be corrected? What does that outlier mean? We like to get real curious and immerse ourselves into the dataset, both as a way of getting familiar with the data and drawing some early insight out of it, which can keep you hooked on our service.</description>
+    </item>
+    
+    <item>
+      <title>Speaking Engagements</title>
+      <link>/services/speaking_engagements/</link>
+      <pubDate>Wed, 28 Nov 2018 15:14:54 +1000</pubDate>
+      
+      <guid>/services/speaking_engagements/</guid>
+      <description>Explaining is what we do all day. Mostly using code that runs in your browser, but sometimes also in person with language, gestures and slides.
+We&amp;rsquo;re pretty good at it We are diverse hybrids with one leg in academia, one in research and one in industry (yes, three legs). This gives us a unique viewpoint when we talk about various topics relating to data and the science around it.
+With years of experience teaching Machine Learning and Data Science to university students at all levels, we have adequate theoretical insight to guarantee competent and intuitive treatment of a wide array of interesting topics and facilitate stimulating discussions around these.</description>
+    </item>
+    
+    <item>
+      <title>Business Advisory</title>
+      <link>/services/business-advisory/</link>
+      <pubDate>Wed, 28 Nov 2018 15:14:39 +1000</pubDate>
+      
+      <guid>/services/business-advisory/</guid>
+      <description>Ignorance is not bliss. It is an expensive waste of opportunity. It is downright irresponsible. We have a keen eye for low hanging fruit, so let us have a look at your data and your business and maybe we can spot some.
+Data FOMO If there is anything worse than not making use of potentially empowering data, it is not knowing that you are missing out. One day a handful of 20-somethings with a startup will have boarded all your clients and you will not know what happened.</description>
+    </item>
+    
+  </channel>
+</rss>
