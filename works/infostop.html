@@ -64,7 +64,7 @@
       <p><strong>My solution is called <em>Infostop</em></strong>, and leverages <a href="https://www.mapequation.org/">Infomap</a> to find clusters. The idea is simple. First you group time-consecutive points that are within some distance (and optionally, time). From each group, you only keep the median, such as to reduce the overall number of points. THEN (and this is the new stuff), you create a network, where each median is a node and two nodes have a link between them if they are within a given distance. Now you run the community detection algorithm Infomap on this network and lo and behold, the resulting stop locations are just beautiful. Here's an example of what it looks like for some of my data.</p>
 
         <figure>
-          <img src="https://camo.githubusercontent.com/66548392cd96aa5cd7438326bfa4385986803849/68747470733a2f2f756c6661736c616b2e636f6d2f66696c65732f696e666f73746f705f6578616d706c655f6d61702e706e67" alt="infostop_example">
+          <img src="../assets/img/infostop_example.png" alt="infostop_example">
         </figure>
 
       <p>Notice that many of the points that are in different clusters are actually really close to each other. DBSCAN would have assigned the same label to these <strong>slightly overlapping clusters</strong>, but Infomap does not. So with <em>Infostop</em> you can e.g. download your Google location data, and automatically (and fast) label each GPS sample.</p>
