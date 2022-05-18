@@ -1,48 +1,98 @@
 <head>
-	<meta charset="utf-8">
-	<title>Ulf Aslak / ulfaslak.com</title>
-	<meta name="description" content="Physicist / Data Scientist">
-	<link rel="stylesheet" type="text/css" href="./style.css">
+  <meta charset="utf-8" />
+  <title>Ulf Aslak / ulfaslak.dk</title>
+  <meta name="description" content="Physicist / Data Scientist" />
+  <link rel="stylesheet" type="text/css" href="./style.css" />
 </head>
-<input type="file" id="upload" style="visibility:hidden" />
+<input type="file" id="upload" style="visibility: hidden" />
 
 <!-- Stuff -->
 <div class="parent_div">
-	<div class="child_div1">
-		<div class="canvas_container">
-			<canvas id="canvas"></canvas>
-			<div id="buttons">
-				<input type="text" id="username" value="<your username>">
-				<button id="likes" class="btnActive" onclick="toggleActive(this)">Likes</button>
-				<button id="retweets" class="btn" onclick="toggleActive(this)">Retweets</button>
-				<button id="mentions" class="btn" onclick="toggleActive(this)">Mentions</button>
-			</div>
-		</div>
-		<div class="brush_container">
-			<img src="play-button.svg" id="playbutton">
-			<svg id="brush"></svg>
-		</div>
-	</div>
-	<div class="child_div2">
-		<div class="infotext_container">
-			<p class='sidebar-text'>
-			    <center><em>#NETSCI2018</em> ACTIVITY ON TWITTER</center><br><br>
-			    I thought it would be fun to make a small visualization of the temporal Twitter network that so elegantly emerges, persists and vanish in the time of the NetSci conference.
-			    <br><br>
-			    Each node is a user that has tweeted or retweeted using the <a target="_blank" href="https://twitter.com/hashtag/NetSci2018?src=hash"><em>#NetSci2018</em></a> or <a target="_blank" href="https://twitter.com/hashtag/NetSci18?src=hash"><em>#NetSci18</em></a> hashag. Links are formed or incremented when one user likes another user's tweet. Areas scale with in-strength.
-			    <br><br>
-			   	Below the network there is a BRUSH bar, and it controls time. You can drag it around by its edges to widen or shorten the temporal layer, or simply pan it to inspect changes over time. I dare you to press the <kbd>▶</kbd> button.
-			    <br><br>
-			    If you tweeted at NetSci 2018, you are probably one of the nodes in this network. Enter your own Twitter handle in the text input cell and your name will light up.
-			    <br><br>
-			    Overall it's clear that the liked and retweeted nodes were <a target="_blank" href="https://twitter.com/vcolizza">@vcolizza</a> (who co-hosted the conference with <a target="_blank" href="https://twitter.com/@alainbarrat">@alainbarrat</a>), <a target="_blank" href="https://twitter.com/@alexvespi">@alexvespi</a>, <a target="_blank" href="https://twitter.com/@svscarpino">@svscarpino</a>, <a target="_blank" href="https://twitter.com/@aaronclauset">@aaronclauset</a> and <a target="_blank" href="https://twitter.com/@cosnet_bifi">@cosnet_bifi</a>, and that the most mentioned node is <a target="_blank" href="https://twitter.com/netsci2018">@netsci2018</a>.
-			    <br><br>
-			    There's not much else to it. <a target="_blank" href="https://github.com/ulfaslak/NetSci2018TwitterNetwork">Code</a> and <a target="_blank" href="https://gist.github.com/ulfaslak/2686ebe674b761e7947aacd2780b8384">data</a> on Github.
-			    <br><br>
-			    - Ulf Aslak
-			</p>
-		</div>
-	</div>
+  <div class="child_div1">
+    <div class="canvas_container">
+      <canvas id="canvas"></canvas>
+      <div id="buttons">
+        <input type="text" id="username" value="<your username>" />
+        <button id="likes" class="btnActive" onclick="toggleActive(this)">
+          Likes
+        </button>
+        <button id="retweets" class="btn" onclick="toggleActive(this)">
+          Retweets
+        </button>
+        <button id="mentions" class="btn" onclick="toggleActive(this)">
+          Mentions
+        </button>
+      </div>
+    </div>
+    <div class="brush_container">
+      <img src="play-button.svg" id="playbutton" />
+      <svg id="brush"></svg>
+    </div>
+  </div>
+  <div class="child_div2">
+    <div class="infotext_container">
+      <p class="sidebar-text">
+        <center><em>#NETSCI2018</em> ACTIVITY ON TWITTER</center>
+        <br /><br />
+        I thought it would be fun to make a small visualization of the temporal
+        Twitter network that so elegantly emerges, persists and vanish in the
+        time of the NetSci conference.
+        <br /><br />
+        Each node is a user that has tweeted or retweeted using the
+        <a
+          target="_blank"
+          href="https://twitter.com/hashtag/NetSci2018?src=hash"
+          ><em>#NetSci2018</em></a
+        >
+        or
+        <a target="_blank" href="https://twitter.com/hashtag/NetSci18?src=hash"
+          ><em>#NetSci18</em></a
+        >
+        hashag. Links are formed or incremented when one user likes another
+        user's tweet. Areas scale with in-strength. <br /><br />
+        Below the network there is a BRUSH bar, and it controls time. You can
+        drag it around by its edges to widen or shorten the temporal layer, or
+        simply pan it to inspect changes over time. I dare you to press the
+        <kbd>▶</kbd> button. <br /><br />
+        If you tweeted at NetSci 2018, you are probably one of the nodes in this
+        network. Enter your own Twitter handle in the text input cell and your
+        name will light up.
+        <br /><br />
+        Overall it's clear that the liked and retweeted nodes were
+        <a target="_blank" href="https://twitter.com/vcolizza">@vcolizza</a>
+        (who co-hosted the conference with
+        <a target="_blank" href="https://twitter.com/@alainbarrat"
+          >@alainbarrat</a
+        >),
+        <a target="_blank" href="https://twitter.com/@alexvespi">@alexvespi</a>,
+        <a target="_blank" href="https://twitter.com/@svscarpino">@svscarpino</a
+        >,
+        <a target="_blank" href="https://twitter.com/@aaronclauset"
+          >@aaronclauset</a
+        >
+        and
+        <a target="_blank" href="https://twitter.com/@cosnet_bifi"
+          >@cosnet_bifi</a
+        >, and that the most mentioned node is
+        <a target="_blank" href="https://twitter.com/netsci2018">@netsci2018</a
+        >. <br /><br />
+        There's not much else to it.
+        <a
+          target="_blank"
+          href="https://github.com/ulfaslak/NetSci2018TwitterNetwork"
+          >Code</a
+        >
+        and
+        <a
+          target="_blank"
+          href="https://gist.github.com/ulfaslak/2686ebe674b761e7947aacd2780b8384"
+          >data</a
+        >
+        on Github. <br /><br />
+        - Ulf Aslak
+      </p>
+    </div>
+  </div>
 </div>
 
 <!-- Javascript -->
@@ -52,7 +102,16 @@
 
 <!-- Google Analytics. -->
 <script>
-  window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-  ga('create', 'UA-124193587-1', 'auto'); ga('send', 'pageview')
+  window.ga = function () {
+    ga.q.push(arguments);
+  };
+  ga.q = [];
+  ga.l = +new Date();
+  ga("create", "UA-124193587-1", "auto");
+  ga("send", "pageview");
 </script>
-<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+<script
+  src="https://www.google-analytics.com/analytics.js"
+  async
+  defer
+></script>

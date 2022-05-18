@@ -1,47 +1,53 @@
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-      <title>Ulf Aslak / works / faceworks</title>
-    <meta name="description" content="Physicist / Data Scientist">
-    <link rel="stylesheet" href="../assets/css/main.css"/>
-    <link rel="stylesheet" href="../assets/css/extra.css"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Ulf Aslak / works / faceworks</title>
+    <meta name="description" content="Physicist / Data Scientist" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/extra.css" />
   </head>
 
   <body>
-  	<!-- Header -->
+    <!-- Header -->
     <header class="header wrap wide" role="banner">
       <div class="grid">
         <div class="branding column">
-          <a href="https://ulfaslak.com/index.html" rel="home">Ulf Aslak</a>
+          <a href="https://ulfaslak.dk/index.html" rel="home">Ulf Aslak</a>
         </div>
 
         <nav class="navigation column" role="navigation">
           <ul class="menu">
             <li class="menu-item">
-              <a href="https://ulfaslak.com/about.html">About</a>
+              <a href="https://ulfaslak.dk/about.html">About</a>
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.com/blog.html">Blog</a>
+              <a href="https://ulfaslak.dk/blog.html">Blog</a>
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.com/files/cv_ulf_en.pdf">CV</a>
+              <a href="https://ulfaslak.dk/files/cv_ulf_en.pdf">CV</a>
             </li>
             <li class="menu-item">
               <a href="#">Codes</a>
               <ul class="dropdown">
-                  <a href="https://github.com/ulfaslak">Github</a>
-                  <a href="https://observablehq.com/@ulfaslak">Observable</a>
+                <a href="https://github.com/ulfaslak">Github</a>
+                <a href="https://observablehq.com/@ulfaslak">Observable</a>
               </ul>
             </li>
             <li class="menu-item">
-              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao" target="_blank">Publications</a>
+              <a
+                href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao"
+                target="_blank"
+                >Publications</a
+              >
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.com/contact.html" target="_blank">Contact</a>
+              <a href="https://ulfaslak.dk/contact.html" target="_blank"
+                >Contact</a
+              >
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.com/vent.html" target="_blank">Vent</a>
+              <a href="https://ulfaslak.dk/vent.html" target="_blank">Vent</a>
             </li>
           </ul>
         </nav>
@@ -53,33 +59,86 @@
       <h1>Clustering temporal networks</h1>
       <p><em>2017</em></p>
     </header>
-    
-    <div class="text wrap">  
-      <p>Before I started my PhD in <a href="https://sunelehmann.com/">Sune Lehmann</a>'s Lab, I did a cool little project with him. Following his and Vedran Sekara's <a href="https://www.pnas.org/content/pnas/113/36/9977.full.pdf">PNAS paper</a> on social cores he wanted me to build a data visualization that showed the temporal dynamics of these social cores (or "groups" is you will). Over a semester I did just that, and I was even so lucky to <a href="https://www.sciencemag.org/projects/data-stories/winners/2016">win first place</a> in Science Magazine's <em>Data Stories</em> competetion with this visualization as my entry.<br><br>→ <a href="https://ulfaslak.com/research/temporal_communities/index.html">Here is the data visualization.</a></p>
 
-      <p>So when I started my PhD, we figured it would be nice to revisit this and make the community detection part (finding the social cores) a little better. We teamed up with <a href="http://www.tp.umu.se/~rosvall/">Martin Rosvall</a>, author of <a href="https://www.mapequation.org/">Infomap</a>, and developed a good flow-based algorithm for community detection in temporal networks. <b>We put it in <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.97.062312">Physical Review E</a></b> (also on the <a href="https://arxiv.org/pdf/1711.07649.pdf">arXiv</a>), and integrated the method into Infomap with the flag <em>--multilayer-js-relax-rate</em>. Here's a figure from the paper, showing some social groups at the Technical University of Denmark expanding and contracting over a day:
+    <div class="text wrap">
+      <p>
+        Before I started my PhD in
+        <a href="https://sunelehmann.com/">Sune Lehmann</a>'s Lab, I did a cool
+        little project with him. Following his and Vedran Sekara's
+        <a href="https://www.pnas.org/content/pnas/113/36/9977.full.pdf"
+          >PNAS paper</a
+        >
+        on social cores he wanted me to build a data visualization that showed
+        the temporal dynamics of these social cores (or "groups" is you will).
+        Over a semester I did just that, and I was even so lucky to
+        <a href="https://www.sciencemag.org/projects/data-stories/winners/2016"
+          >win first place</a
+        >
+        in Science Magazine's <em>Data Stories</em> competetion with this
+        visualization as my entry.<br /><br />→
+        <a href="https://ulfaslak.dk/research/temporal_communities/index.html"
+          >Here is the data visualization.</a
+        >
       </p>
 
-        <figure>
-          <img src="../assets/img/figures_sausages_NFC_vert.png" alt="netwulf_example" style="width:400px;margin-left:auto;margin-right:auto;display:block;">
-        </figure>
+      <p>
+        So when I started my PhD, we figured it would be nice to revisit this
+        and make the community detection part (finding the social cores) a
+        little better. We teamed up with
+        <a href="http://www.tp.umu.se/~rosvall/">Martin Rosvall</a>, author of
+        <a href="https://www.mapequation.org/">Infomap</a>, and developed a good
+        flow-based algorithm for community detection in temporal networks.
+        <b
+          >We put it in
+          <a
+            href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.97.062312"
+            >Physical Review E</a
+          ></b
+        >
+        (also on the <a href="https://arxiv.org/pdf/1711.07649.pdf">arXiv</a>),
+        and integrated the method into Infomap with the flag
+        <em>--multilayer-js-relax-rate</em>. Here's a figure from the paper,
+        showing some social groups at the Technical University of Denmark
+        expanding and contracting over a day:
+      </p>
 
+      <figure>
+        <img
+          src="../assets/img/figures_sausages_NFC_vert.png"
+          alt="netwulf_example"
+          style="
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+          "
+        />
+      </figure>
     </div>
 
-
-
     <!-- Footer -->
-   	<footer class="footer cf" role="contentinfo">
-	    <div class="wrap wide">
-	      <p class="footer-copyright">© 2010–2020 Ulf Aslak | Copenhagen, Denmark</p>
-	    </div>
-  	</footer>
+    <footer class="footer cf" role="contentinfo">
+      <div class="wrap wide">
+        <p class="footer-copyright">
+          © 2010–2020 Ulf Aslak | Copenhagen, Denmark
+        </p>
+      </div>
+    </footer>
 
     <!-- Google Analytics. -->
     <script>
-      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-      ga('create', 'UA-124193587-1', 'auto'); ga('send', 'pageview')
+      window.ga = function () {
+        ga.q.push(arguments);
+      };
+      ga.q = [];
+      ga.l = +new Date();
+      ga("create", "UA-124193587-1", "auto");
+      ga("send", "pageview");
     </script>
-    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+    <script
+      src="https://www.google-analytics.com/analytics.js"
+      async
+      defer
+    ></script>
   </body>
 </html>

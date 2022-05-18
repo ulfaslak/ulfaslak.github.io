@@ -1,47 +1,53 @@
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-      <title>Ulf Aslak / works</title>
-    <meta name="description" content="Physicist / Data Scientist">
-    <link rel="stylesheet" href="../assets/css/main.css"/>
-    <link rel="stylesheet" href="../assets/css/extra.css"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Ulf Aslak / works</title>
+    <meta name="description" content="Physicist / Data Scientist" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/extra.css" />
   </head>
 
   <body>
-  	<!-- Header -->
+    <!-- Header -->
     <header class="header wrap wide" role="banner">
       <div class="grid">
         <div class="branding column">
-          <a href="https://ulfaslak.com/index.html" rel="home">Ulf Aslak</a>
+          <a href="https://ulfaslak.dk/index.html" rel="home">Ulf Aslak</a>
         </div>
 
         <nav class="navigation column" role="navigation">
           <ul class="menu">
             <li class="menu-item">
-              <a href="https://ulfaslak.com/about.html">About</a>
+              <a href="https://ulfaslak.dk/about.html">About</a>
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.com/blog.html">Blog</a>
+              <a href="https://ulfaslak.dk/blog.html">Blog</a>
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.com/files/cv_ulf_en.pdf">CV</a>
+              <a href="https://ulfaslak.dk/files/cv_ulf_en.pdf">CV</a>
             </li>
             <li class="menu-item">
               <a href="#">Codes</a>
               <ul class="dropdown">
-                  <a href="https://github.com/ulfaslak">Github</a>
-                  <a href="https://observablehq.com/@ulfaslak">Observable</a>
+                <a href="https://github.com/ulfaslak">Github</a>
+                <a href="https://observablehq.com/@ulfaslak">Observable</a>
               </ul>
             </li>
             <li class="menu-item">
-              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao" target="_blank">Publications</a>
+              <a
+                href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao"
+                target="_blank"
+                >Publications</a
+              >
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.com/contact.html" target="_blank">Contact</a>
+              <a href="https://ulfaslak.dk/contact.html" target="_blank"
+                >Contact</a
+              >
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.com/vent.html" target="_blank">Vent</a>
+              <a href="https://ulfaslak.dk/vent.html" target="_blank">Vent</a>
             </li>
           </ul>
         </nav>
@@ -53,33 +59,70 @@
       <h1>Minimal notebook launcher</h1>
       <p><em>2019</em></p>
     </header>
-    
-    <div class="text wrap">  
-      If you use Jupyter notebooks a lot, you are right to be annoyed with the poor support for running multiple notebooks at the same time. Often times, if you're working on different projects, you'll be running a bunch of notebooks in different terminal sessions, because it's just more convenient to go <kbd>jupyter notebook mynotebook.ipynb</kbd> for every launch, than navigating the Jupyter file explorer.<br><br>
 
-      Github user <em>takluyver</em> offers a <b>solution for this called <a href="https://github.com/takluyver/nbopen">nbopen</a></b>. It's a small program that you install on your computer, and then you launch notebooks like <kbd>nbopen mynotebook.ipynb</kbd>. The program then looks for the nearest running notebook server and opens the notebook on that instance. Unfortunately, <b>maintainance for this stopped</b> about two years ago, and the number of issues keeps growing. <em>nbopen</em> broke on my computer last time I upgraded my OS, so I set about creating my own solution to the problem of overflowing notebook servers.<br><br>
+    <div class="text wrap">
+      If you use Jupyter notebooks a lot, you are right to be annoyed with the
+      poor support for running multiple notebooks at the same time. Often times,
+      if you're working on different projects, you'll be running a bunch of
+      notebooks in different terminal sessions, because it's just more
+      convenient to go <kbd>jupyter notebook mynotebook.ipynb</kbd> for every
+      launch, than navigating the Jupyter file explorer.<br /><br />
 
-      → <a href="https://github.com/ulfaslak/nbopen_minimal">Here is my solution.</a><br><br>
+      Github user <em>takluyver</em> offers a
+      <b
+        >solution for this called
+        <a href="https://github.com/takluyver/nbopen">nbopen</a></b
+      >. It's a small program that you install on your computer, and then you
+      launch notebooks like <kbd>nbopen mynotebook.ipynb</kbd>. The program then
+      looks for the nearest running notebook server and opens the notebook on
+      that instance. Unfortunately, <b>maintainance for this stopped</b> about
+      two years ago, and the number of issues keeps growing.
+      <em>nbopen</em> broke on my computer last time I upgraded my OS, so I set
+      about creating my own solution to the problem of overflowing notebook
+      servers.<br /><br />
 
-      It's not a program, it's actually just a bash script. It runs out of the box on OSX but needs a small modification (descriped in repo) to run on Linux. Windows is not supported (because it's a bash script). Since it is so minimal, you may have to change the default port or default server directory, but once it works it works. It functions like the original <em>nbopen</em>. Launch a notebook like <kbd>nbopen mynotebook.ipynb</kbd> and it looks for a running instance to attach the notebook to. If it doesn't find one it creates one.<br><br>
+      →
+      <a href="https://github.com/ulfaslak/nbopen_minimal"
+        >Here is my solution.</a
+      ><br /><br />
 
-      The thing that makes it <em>minimal</em> is that it really is just a bash script that you reference by alias. The notebook server address is hardcoded to be <kbd>/</kbd> (easily changed) and so is the port (8888).
+      It's not a program, it's actually just a bash script. It runs out of the
+      box on OSX but needs a small modification (descriped in repo) to run on
+      Linux. Windows is not supported (because it's a bash script). Since it is
+      so minimal, you may have to change the default port or default server
+      directory, but once it works it works. It functions like the original
+      <em>nbopen</em>. Launch a notebook like
+      <kbd>nbopen mynotebook.ipynb</kbd> and it looks for a running instance to
+      attach the notebook to. If it doesn't find one it creates one.<br /><br />
+
+      The thing that makes it <em>minimal</em> is that it really is just a bash
+      script that you reference by alias. The notebook server address is
+      hardcoded to be <kbd>/</kbd> (easily changed) and so is the port (8888).
     </div>
 
-
-
     <!-- Footer -->
-   	<footer class="footer cf" role="contentinfo">
-	    <div class="wrap wide">
-	      <p class="footer-copyright">© 2010–2020 Ulf Aslak | Copenhagen, Denmark</p>
-	    </div>
-  	</footer>
+    <footer class="footer cf" role="contentinfo">
+      <div class="wrap wide">
+        <p class="footer-copyright">
+          © 2010–2020 Ulf Aslak | Copenhagen, Denmark
+        </p>
+      </div>
+    </footer>
 
     <!-- Google Analytics. -->
     <script>
-      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-      ga('create', 'UA-124193587-1', 'auto'); ga('send', 'pageview')
+      window.ga = function () {
+        ga.q.push(arguments);
+      };
+      ga.q = [];
+      ga.l = +new Date();
+      ga("create", "UA-124193587-1", "auto");
+      ga("send", "pageview");
     </script>
-    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+    <script
+      src="https://www.google-analytics.com/analytics.js"
+      async
+      defer
+    ></script>
   </body>
 </html>

@@ -1,58 +1,64 @@
 <style>
   .row {
-  display: flex;
-}
+    display: flex;
+  }
 
-.column {
-  flex: 33.33%;
-  padding: 5px;
-}
+  .column {
+    flex: 33.33%;
+    padding: 5px;
+  }
 </style>
 
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-      <title>Ulf Aslak / works</title>
-    <meta name="description" content="Physicist / Data Scientist">
-    <link rel="stylesheet" href="../assets/css/main.css"/>
-    <link rel="stylesheet" href="../assets/css/extra.css"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Ulf Aslak / works</title>
+    <meta name="description" content="Physicist / Data Scientist" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/extra.css" />
   </head>
 
   <body>
-  	<!-- Header -->
+    <!-- Header -->
     <header class="header wrap wide" role="banner">
       <div class="grid">
         <div class="branding column">
-          <a href="https://ulfaslak.com/index.html" rel="home">Ulf Aslak</a>
+          <a href="https://ulfaslak.dk/index.html" rel="home">Ulf Aslak</a>
         </div>
 
         <nav class="navigation column" role="navigation">
           <ul class="menu">
             <li class="menu-item">
-              <a href="https://ulfaslak.com/about.html">About</a>
+              <a href="https://ulfaslak.dk/about.html">About</a>
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.com/blog.html">Blog</a>
+              <a href="https://ulfaslak.dk/blog.html">Blog</a>
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.com/files/cv_ulf_en.pdf">CV</a>
+              <a href="https://ulfaslak.dk/files/cv_ulf_en.pdf">CV</a>
             </li>
             <li class="menu-item">
               <a href="#">Codes</a>
               <ul class="dropdown">
-                  <a href="https://github.com/ulfaslak">Github</a>
-                  <a href="https://observablehq.com/@ulfaslak">Observable</a>
+                <a href="https://github.com/ulfaslak">Github</a>
+                <a href="https://observablehq.com/@ulfaslak">Observable</a>
               </ul>
             </li>
             <li class="menu-item">
-              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao" target="_blank">Publications</a>
+              <a
+                href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao"
+                target="_blank"
+                >Publications</a
+              >
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.com/freelance.html" target="_blank">Freelance</a>
+              <a href="https://ulfaslak.dk/freelance.html" target="_blank"
+                >Freelance</a
+              >
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.com/vent.html" target="_blank">Vent</a>
+              <a href="https://ulfaslak.dk/vent.html" target="_blank">Vent</a>
             </li>
           </ul>
         </nav>
@@ -64,44 +70,141 @@
       <h1><em>Scales of human mobility</em>—a brief travel account</h1>
       <p><em>2020</em></p>
     </header>
-    
+
     <div class="text wrap">
-      <p>A year into my PhD my supervisor Sune Lehmann presented me with a puzzling contradiction within the study of how humans move from place to place. Geographers mostly agreed with the common sense notion that the distances humans travel between places belong to different scales. We can move between rooms thus traveling at the scale of the building, between buildings at the scale of the city, between cities at region scale and so on. The contradiction, he pointed out, arose because recent work in physics analysing human travel distances from cell phone data found no evidence of scales. The physicsists showed that travel distances were distribution as a power-law, characteristic for its lack of scale.</p>
-
-      <p>Well-established geography and modern physics were in disagreement, and we grew obsessed with resolving this paradox. We wanted to show that with large enough amounts of sufficiently resolved GPS data we could indeed find scales in human mobility. We wanted to describe their average sizes, understand how freqently they were traveled at by different types of people and much more. Our leading assumption was that the scale-free result was simply an artifact of aggregation. Laura Alessandretti joined our research group as a postdoc and shared our obsession immediately. Thus began an intense and exciting adventure.</p>
-
-      <p>Here is a crude account. First, we wrote a comprehensive and very useful <a href="https://github.com/ulfaslak/infostop">software package</a> for finding stop-locations in sequencial GPS data. This enabled us to take raw GPS sequences and turn them into sequences of place names. We then discovered that plotting the distribution of distances traveled for an individual did clearly not yield a power-law distribution, but rather showed with great clarity the different scales that they traveled at. Now, we just needed a model for assign scale to journeys. Thus followed a series of wild but fruitless ideas. Initially, we believed the key to labeling trips was to understand their context, so we developed a grammer of nested trips in location sequences and a measure of location "starness". We could now identify whether a place in a sequence of visited places was a keystone place where trips start and end—a location where one, for example, drops ones stuff, takes off from, and returns to—or simply an intermediate location within a trip—like a shop visit on the way or a gas station. Writing this, I wonder what the hell we were thinking, but at the time I am sure we saw some connection to the greater problem of inferring scale of mobility events.
+      <p>
+        A year into my PhD my supervisor Sune Lehmann presented me with a
+        puzzling contradiction within the study of how humans move from place to
+        place. Geographers mostly agreed with the common sense notion that the
+        distances humans travel between places belong to different scales. We
+        can move between rooms thus traveling at the scale of the building,
+        between buildings at the scale of the city, between cities at region
+        scale and so on. The contradiction, he pointed out, arose because recent
+        work in physics analysing human travel distances from cell phone data
+        found no evidence of scales. The physicsists showed that travel
+        distances were distribution as a power-law, characteristic for its lack
+        of scale.
       </p>
 
-      <p>The breakthroughs came when we started thinking about human travel simply as movements between containers in a nested hiearchy. This idea had come up early in the initial fog of ideas, but seemed out of reach for quick testing. Eventually, however, we developed <a href="https://observablehq.com/@ulfaslak/a-model-for-generating-multiscale-mobility-traces">a dead simple simulating of travel on a nested grid</a>. This simulation brought us immense insight. The traces it generated <em>looked real</em>, and reproduced the scale-ful distributions of travel distances we observed in our initial plots. Having implemented it in a fast interactive framework, we could tweak parameters and understand their influence on dynamics. Based on this, we could write an equation for the probability of moving from one place to another given a hierarchy of containers. This, we used as the objective function in a maximum likelihood fitting procedure to find the nested grid that best fit the simulated travel.
+      <p>
+        Well-established geography and modern physics were in disagreement, and
+        we grew obsessed with resolving this paradox. We wanted to show that
+        with large enough amounts of sufficiently resolved GPS data we could
+        indeed find scales in human mobility. We wanted to describe their
+        average sizes, understand how freqently they were traveled at by
+        different types of people and much more. Our leading assumption was that
+        the scale-free result was simply an artifact of aggregation. Laura
+        Alessandretti joined our research group as a postdoc and shared our
+        obsession immediately. Thus began an intense and exciting adventure.
       </p>
 
-      <p>We were stuck in the grid-mindset for a little while and stuggled with translating it to real human travel data. First, we tried to fit a spherical nested grid onto the globe... again, I don't know what the hell we were thinking, and though it worked in the computer the results were rediculous and obviously constrained by the grid. Having slept on it for a sufficient number of night we realized that we did not need a grid, and could use our equation to estimate the probability of a movement given <em>any</em> hierarchy of containers. We then devised a method for iterating over all possible <a href="https://en.wikipedia.org/wiki/Complete-linkage_clustering">linkage clustering</a> solutions, estimating likelihood and picking the best one.
+      <p>
+        Here is a crude account. First, we wrote a comprehensive and very useful
+        <a href="https://github.com/ulfaslak/infostop">software package</a> for
+        finding stop-locations in sequencial GPS data. This enabled us to take
+        raw GPS sequences and turn them into sequences of place names. We then
+        discovered that plotting the distribution of distances traveled for an
+        individual did clearly not yield a power-law distribution, but rather
+        showed with great clarity the different scales that they traveled at.
+        Now, we just needed a model for assign scale to journeys. Thus followed
+        a series of wild but fruitless ideas. Initially, we believed the key to
+        labeling trips was to understand their context, so we developed a
+        grammer of nested trips in location sequences and a measure of location
+        "starness". We could now identify whether a place in a sequence of
+        visited places was a keystone place where trips start and end—a location
+        where one, for example, drops ones stuff, takes off from, and returns
+        to—or simply an intermediate location within a trip—like a shop visit on
+        the way or a gas station. Writing this, I wonder what the hell we were
+        thinking, but at the time I am sure we saw some connection to the
+        greater problem of inferring scale of mobility events.
       </p>
 
-      <p>In pragmatic terms, what we ended up making was a clustering method. Where most clustering methods take as input just a collection of points, our method takes as input a collection of points and a sequence of moves between them. Its output is a nested partition of places into containers, as well as a scale labeling of each individual movement. It optimizes the partition using maximum likelihood estimation. When visualized on a map, containers typically resemble known neighborhoods, cities, urban agglomeration, regions, countries, and continents.
+      <p>
+        The breakthroughs came when we started thinking about human travel
+        simply as movements between containers in a nested hiearchy. This idea
+        had come up early in the initial fog of ideas, but seemed out of reach
+        for quick testing. Eventually, however, we developed
+        <a
+          href="https://observablehq.com/@ulfaslak/a-model-for-generating-multiscale-mobility-traces"
+          >a dead simple simulating of travel on a nested grid</a
+        >. This simulation brought us immense insight. The traces it generated
+        <em>looked real</em>, and reproduced the scale-ful distributions of
+        travel distances we observed in our initial plots. Having implemented it
+        in a fast interactive framework, we could tweak parameters and
+        understand their influence on dynamics. Based on this, we could write an
+        equation for the probability of moving from one place to another given a
+        hierarchy of containers. This, we used as the objective function in a
+        maximum likelihood fitting procedure to find the nested grid that best
+        fit the simulated travel.
       </p>
 
-      <p>How does this resolve Sune's contradiction? Through a number of tests we show that the containers and scales our method consistently finds for tens of millions of individuals across the world are non-artifactual, but strictly a property of the data. For example, if we simulate scale-free traces with <a href="https://www.nature.com/articles/ncomms9166">the EPR model</a> the method finds no scales. We also show that the scale-free result of earlier research can easily emerge <a href="https://observablehq.com/@ulfaslak/a-visual-exploration-of-how-a-power-law-can-emerge-from-aggre"> when we aggregate over scales</a>.
+      <p>
+        We were stuck in the grid-mindset for a little while and stuggled with
+        translating it to real human travel data. First, we tried to fit a
+        spherical nested grid onto the globe... again, I don't know what the
+        hell we were thinking, and though it worked in the computer the results
+        were rediculous and obviously constrained by the grid. Having slept on
+        it for a sufficient number of night we realized that we did not need a
+        grid, and could use our equation to estimate the probability of a
+        movement given <em>any</em> hierarchy of containers. We then devised a
+        method for iterating over all possible
+        <a href="https://en.wikipedia.org/wiki/Complete-linkage_clustering"
+          >linkage clustering</a
+        >
+        solutions, estimating likelihood and picking the best one.
       </p>
 
-      
+      <p>
+        In pragmatic terms, what we ended up making was a clustering method.
+        Where most clustering methods take as input just a collection of points,
+        our method takes as input a collection of points and a sequence of moves
+        between them. Its output is a nested partition of places into
+        containers, as well as a scale labeling of each individual movement. It
+        optimizes the partition using maximum likelihood estimation. When
+        visualized on a map, containers typically resemble known neighborhoods,
+        cities, urban agglomeration, regions, countries, and continents.
+      </p>
+
+      <p>
+        How does this resolve Sune's contradiction? Through a number of tests we
+        show that the containers and scales our method consistently finds for
+        tens of millions of individuals across the world are non-artifactual,
+        but strictly a property of the data. For example, if we simulate
+        scale-free traces with
+        <a href="https://www.nature.com/articles/ncomms9166">the EPR model</a>
+        the method finds no scales. We also show that the scale-free result of
+        earlier research can easily emerge
+        <a
+          href="https://observablehq.com/@ulfaslak/a-visual-exploration-of-how-a-power-law-can-emerge-from-aggre"
+        >
+          when we aggregate over scales</a
+        >.
+      </p>
     </div>
 
-
-
     <!-- Footer -->
-   	<footer class="footer cf" role="contentinfo">
-	    <div class="wrap wide">
-	      <p class="footer-copyright">© 2010–2020 Ulf Aslak | Copenhagen, Denmark</p>
-	    </div>
-  	</footer>
+    <footer class="footer cf" role="contentinfo">
+      <div class="wrap wide">
+        <p class="footer-copyright">
+          © 2010–2020 Ulf Aslak | Copenhagen, Denmark
+        </p>
+      </div>
+    </footer>
 
     <!-- Google Analytics. -->
     <script>
-      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-      ga('create', 'UA-124193587-1', 'auto'); ga('send', 'pageview')
+      window.ga = function () {
+        ga.q.push(arguments);
+      };
+      ga.q = [];
+      ga.l = +new Date();
+      ga("create", "UA-124193587-1", "auto");
+      ga("send", "pageview");
     </script>
-    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+    <script
+      src="https://www.google-analytics.com/analytics.js"
+      async
+      defer
+    ></script>
   </body>
 </html>
