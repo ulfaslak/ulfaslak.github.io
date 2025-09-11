@@ -1,0 +1,161 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Ulf Aslak / blog / Certain</title>
+    <meta name="description" content="Physicist / Data Scientist" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/extra.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header wrap wide" role="banner">
+      <div class="grid">
+        <div class="branding column">
+          <a href="https://ulfaslak.dk/index.html" rel="home">Ulf Aslak</a>
+        </div>
+
+        <nav class="navigation column" role="navigation">
+          <ul class="menu">
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/about.html">About</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/blog.html">Blog</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/files/cv_ulf_en.pdf">CV</a>
+            </li>
+            <li class="menu-item">
+              <a href="#">Codes</a>
+              <ul class="dropdown">
+                <a href="https://github.com/ulfaslak">Github</a>
+                <a href="https://observablehq.com/@ulfaslak">Observable</a>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a
+                href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao"
+                target="_blank"
+                >Publications</a
+              >
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/contact.html" target="_blank"
+                >Contact</a
+              >
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/vent.html" target="_blank">Vent</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <header class="wrap">
+      <h1><i>Certain</i>: Chat with uncertainty</h1>
+      <p><em>2025</em></p>
+      <p><em>🤖 This post was written by GPT-5 and carefully edited by myself</em></p>
+    </header>
+
+    <div class="text wrap">
+      <p>
+        Language models feel confident by default: they print tokens, we read
+        sentences. But under the hood, every token is a probability mass
+        decision. <em>Certain</em> makes that probability visible in a
+        compact chat UI so you can literally see where the model is certain and
+        where it hesitates.
+      </p>
+
+      <p></p>
+        → <a href="https://ulfaslak.dk/certain/"><b>Try <i>Certain</i> here</b></a>
+      </p>
+
+      <figure>
+        <img
+          src="../assets/img/certain_chat_screenshot.png"
+          alt="Certain — token opacity and alternatives tooltip"
+          style="
+            width: 720px;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+          "
+        />
+      </figure>
+
+      <p>
+        The core idea is simple: we request token-level logprobs from the
+        OpenAI Chat Completions API and render each token with an opacity mapped
+        to uncertainty. You can choose between two views:
+        <b>Prob.</b> (opacity ∝ selected-token probability) and <b>Gini</b>
+        (opacity ∝ inverse Gini over the top‑5 alternatives). Hold <em>Alt</em>
+        to toggle the visualization on/off while reading. Hover any token to see
+        a small tooltip with its best alternatives and their probabilities. In
+        the left margin we also display the geometric mean over the response so
+        you get a quick, single-number sense of confidence.
+      </p>
+
+      <p>
+        Access is handled via a tiny modal. Click the “API Key” button in the
+        header to paste your key; it’s stored only in your browser’s
+        <code>localStorage</code>. No key? Click <em>Demo</em> to load an example
+        conversation so you can still feel the UI. I also added a model
+        selector with the main OpenAI models that support token probabilities
+        (e.g. <code>gpt-4o</code>, <code>gpt-4o-mini</code>,
+        <code>gpt-4.1</code>, <code>gpt-4.1-mini</code>). Everything persists to
+        local storage so your preferences stick between visits. Note that popular
+        reasoning models like GPT-5 do not support token probabilities.
+      </p>
+
+      <p>
+        Under the hood, token processing is straightforward: from each token’s
+        <code>logprob</code> we compute <code>p = exp(logprob)</code> and get the
+        top‑k alternatives (their probabilities power the tooltip). For the
+        Gini-style view, we normalize the top‑5 probabilities and use the
+        squared L2 norm as an inverse Gini proxy—high when one token dominates,
+        low when the distribution is flat. We also stabilize opacity across
+        certain boundaries (punctuation, quotes) to avoid distracting flicker.
+      </p>
+
+      <p>
+        Why build this? Two reasons. First, trust: seeing uncertainty helps you
+        calibrate when to double‑check. Second, exploration: it’s delightful to
+        hover tokens and peek at the paths the model almost took. It turns text
+        generation from a black box into a legible, probabilistic process.
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer cf" role="contentinfo">
+      <div class="wrap wide">
+        <p class="footer-copyright">
+          © 2010–2025 Ulf Aslak | Copenhagen, Denmark
+        </p>
+      </div>
+    </footer>
+
+    <!-- Google Analytics. -->
+    <script>
+      window.ga = function () {
+        ga.q.push(arguments);
+      };
+      ga.q = [];
+      ga.l = +new Date();
+      ga("create", "UA-124193587-1", "auto");
+      ga("send", "pageview");
+    </script>
+    <script
+      src="https://www.google-analytics.com/analytics.js"
+      async
+      defer
+    ></script>
+  </body>
+  
+</html>
+
+
