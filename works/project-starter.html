@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <title>Ulf Aslak / works / project-starter</title>
+    <meta name="description" content="Physicist / Data Scientist">
+    <link rel="stylesheet" href="../assets/css/main.css"/>
+    <link rel="stylesheet" href="../assets/css/extra.css"/>
+  </head>
+
+  <body>
+  	<!-- Header -->
+    <header class="header wrap wide" role="banner">
+      <div class="grid">
+        <div class="branding column">
+          <a href="https://ulfaslak.dk/index.html" rel="home">Ulf Aslak</a>
+        </div>
+
+        <nav class="navigation column" role="navigation">
+          <ul class="menu">
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/about.html">About</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/blog.html">Blog</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/files/cv_ulf_en.pdf">CV</a>
+            </li>
+            <li class="menu-item">
+              <a href="#">Codes</a>
+              <ul class="dropdown">
+                  <a href="https://github.com/ulfaslak">Github</a>
+                  <a href="https://observablehq.com/@ulfaslak">Observable</a>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao" target="_blank">Publications</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/contact.html" target="_blank">Contact</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/vent.html" target="_blank">Vent</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <header class="wrap">
+      <h1>A lightweight Python project starter</h1>
+      <p><em>2024</em></p>
+    </header>
+    
+    <div class="text wrap">
+      <p>If you spin up a lot of <strong>small Python projects</strong>, code tends to drift. A few quick fixes, a rushed dependency, and before you know it the repo is a tangle. I wanted some <strong>guardrails</strong> that make the right thing the easy thing without getting in the way.</p>
+
+      <p>→ <a href="https://github.com/pymc-labs/project-starter">So I assembled a minimal project starter.</a></p>
+
+      <figure>
+        <video width="100%" controls loop playsinline>
+          <source src="../assets/img/project-starter.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </figure>
+
+      <p><strong>It's a tiny, opinionated template</strong> built around modern tooling:
+      </p>
+
+      <p>
+        <strong>pixi</strong> for fast, reproducible environments; <strong>pre-commit</strong> for formatting and linting hygiene; <strong>beartype</strong> for runtime type checking; <strong>pytest</strong> for tests; and <strong>GitHub Actions</strong> to run it all on every PR. The idea is simple: keep iteration fast while preventing the most common messes.
+      </p>
+
+      <p>Inside the <code>package_name/</code> folder you'll find a placeholder structure that makes subtle suggestions as to how you should structure your code:</p>
+
+      <p>
+        Define custom types in <code>types.py</code> (it's 2024, let's write typesafe Python!).
+        Put your utility functions in <code>utils.py</code> (don't have random little utility functions all over the place).
+        Put your model code in <code>model.py</code>.
+        Make main functions accessible like <code>package_name.my_module</code> by importing them in <code>__init__.py</code>.
+      </p>
+
+      <p>To get started using this, click the green <kbd>Use this template</kbd> button in the top right corner of the <a href="https://github.com/pymc-labs/project-starter">Github repository</a>, then clone the new repo and run <code>bash scripts/setup.sh</code>. If you accept the (awesome) defaults, handy bash script will do all the boring work, an let you get straight into coding.</p>
+
+      <p>If you like pragmatic templates that get out of your way, this one might save you an hour on every new repo. Add your own opinions, and keep shipping.</p>
+    </div>
+
+
+
+    <!-- Footer -->
+   	<footer class="footer cf" role="contentinfo">
+    	<div class="wrap wide">
+      	<p class="footer-copyright">© 2010–2025 Ulf Aslak | Copenhagen, Denmark</p>
+    	</div>
+  	</footer>
+
+    <!-- Google Analytics. -->
+    <script>
+      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+      ga('create', 'UA-124193587-1', 'auto'); ga('send', 'pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+  </body>
+  </html>
+
+
