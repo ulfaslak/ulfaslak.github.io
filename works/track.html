@@ -1,0 +1,125 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <title>Ulf Aslak / blog / track</title>
+    <meta name="description" content="Physicist / Data Scientist">
+    <link rel="stylesheet" href="../assets/css/main.css"/>
+    <link rel="stylesheet" href="../assets/css/extra.css"/>
+  </head>
+
+  <body>
+  	<!-- Header -->
+    <header class="header wrap wide" role="banner">
+      <div class="grid">
+        <div class="branding column">
+          <a href="https://ulfaslak.dk/index.html" rel="home">Ulf Aslak</a>
+        </div>
+
+        <nav class="navigation column" role="navigation">
+          <ul class="menu">
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/about.html">About</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/blog.html">Blog</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/files/cv_ulf_en.pdf">CV</a>
+            </li>
+            <li class="menu-item">
+              <a href="#">Codes</a>
+              <ul class="dropdown">
+                  <a href="https://github.com/ulfaslak">Github</a>
+                  <a href="https://observablehq.com/@ulfaslak">Observable</a>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao" target="_blank">Publications</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/contact.html" target="_blank">Contact</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/vent.html" target="_blank">Vent</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <header class="wrap">
+      <h1>track — a terminal time tracker</h1>
+      <p><em>2025</em></p>
+    </header>
+    
+    <div class="text wrap">  
+      <p>I have always used some sort of time tracking tool because it gives me insights I can use for time optimization. And now that I do consulting, it's also sometimes a requirement, e.g. for PyMC Labs clients I track my time with Toggl.</p>
+
+      <p>And I really like the Toggl UX. Click to start, click to stop. It's simple and it works. But it's also a service that costs money, and something about the simplicity of it made me want to replicate it, but making it <i>even</i> simpler.</p>
+      
+      <p>So I built a <strong>dead simple terminal app</strong> to track the hours I spend working across <strong>clients</strong> and <strong>tasks</strong>. No GUI, no cloud, no database — just plain text files and a CLI that feels fast.</p>
+
+      <p>→ <a href="https://github.com/ulfaslak/track">Get the code on GitHub</a></p>
+
+      <p><strong>Install</strong>. Until it lands on PyPI, install directly from Git:</p>
+
+      <pre><code>pip install "git+https://github.com/ulfaslak/track.git@main"</code></pre>
+
+      <p>On first run the app asks where to store logs and remembers that in <code>~/.track_config</code>. Each session is a tiny log file like <em>YYYYMMDD-&lt;n&gt;---&lt;client&gt;---open.log</em> which becomes <em>...---closed.log</em> when you end it. Inside are four human-readable lines:</p>
+
+      <pre><code>Task: &lt;task&gt;
+Description: &lt;description&gt;
+Start time: &lt;YYYY-MM-DD HH:MM:SS&gt;
+End time: &lt;YYYY-MM-DD HH:MM:SS&gt;</code></pre>
+
+      <p><strong>Use</strong>. You can pass flags, but the fun part is the interactive flow with arrow-key pickers for client and task (and an optional description):</p>
+
+      <pre><code># start work (interactive)
+track start
+
+# start work (non-interactive)
+track start -c acme -t modeling -d "feature engineering"
+
+# resume the most recently closed task
+track resume
+
+# end an open session (choose if multiple are open)
+track end
+
+# see what's running right now
+track status
+
+# report hours for a client over a period
+track report -c acme -p "today"
+track report -c acme -p "this week"
+track report -c acme -p "last month"</code></pre>
+
+      <p><strong>Reports</strong>. The <code>report</code> command aggregates hours by task and shows a clean summary. Periods include <em>today</em> and <em>this/last</em> <em>week</em>, <em>month</em>, <em>quarter</em>, <em>year</em>. It uses the log <em>start time</em> to decide which period a session belongs to.</p>
+
+      <p><strong>Why text files?</strong> Because I want ownership and portability. Logs are readable, greppable, and versionable. If I ever move machines, well these are stored on my iCloud drive.</p>
+
+      <p>Under the hood it uses <a href="https://typer.tiangolo.com/" target="_blank">Typer</a> for the CLI, <a href="https://github.com/Textualize/rich" target="_blank">Rich</a> for pretty output, and <a href="https://github.com/tmbo/questionary" target="_blank">Questionary</a> for the arrow-key pickers.</p>
+
+    </div>
+
+
+
+    <!-- Footer -->
+   	<footer class="footer cf" role="contentinfo">
+	    <div class="wrap wide">
+ 	     <p class="footer-copyright">© 2010–2022 Ulf Aslak | Copenhagen, Denmark</p>
+ 	   </div>
+  	</footer>
+
+    <!-- Google Analytics. -->
+    <script>
+      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+      ga('create', 'UA-124193587-1', 'auto'); ga('send', 'pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+  </body>
+</html>
+
+
