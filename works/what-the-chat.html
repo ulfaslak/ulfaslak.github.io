@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <title>Ulf Aslak / works / what-the-chat</title>
+    <meta name="description" content="Physicist / Data Scientist">
+    <link rel="stylesheet" href="../assets/css/main.css"/>
+    <link rel="stylesheet" href="../assets/css/extra.css"/>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header wrap wide" role="banner">
+      <div class="grid">
+        <div class="branding column">
+          <a href="https://ulfaslak.dk/index.html" rel="home">Ulf Aslak</a>
+        </div>
+
+        <nav class="navigation column" role="navigation">
+          <ul class="menu">
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/about.html">About</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/blog.html">Blog</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/files/cv_ulf_en.pdf">CV</a>
+            </li>
+            <li class="menu-item">
+              <a href="#">Codes</a>
+              <ul class="dropdown">
+                  <a href="https://github.com/ulfaslak">Github</a>
+                  <a href="https://observablehq.com/@ulfaslak">Observable</a>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao" target="_blank">Publications</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/contact.html" target="_blank">Contact</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/vent.html" target="_blank">Vent</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <header class="wrap">
+      <h1>What The Chat</h1>
+      <p><em>2025</em></p>
+    </header>
+    
+    <div class="text wrap">  
+      <p>If you work with teams that coordinate on <strong>Discord</strong> or <strong>Slack</strong>, you probably know the feeling of opening a channel after a few days and wondering: <em>what actually happened here?</em> Threads sprawl, IDs appear everywhere, and the most important points get buried. <strong>So I built <em>What The Chat</em></strong> — a small, modular Python tool that <strong>fetches channel history</strong>, <strong>standardizes user references</strong>, and <strong>generates structured summaries</strong> using local or remote LLMs. You can even <strong>chat interactively</strong> with the history afterwards.</p>
+
+      <p>→ <a href="https://github.com/ulfaslak/what-the-chat">See the code on GitHub</a></p>
+
+      <p><strong>How it works</strong> is simple. First, you point the tool to a channel and a time window. It will collect messages — including <em>threads</em> — and create a clean, human-readable transcript. Then, depending on the <em>timespan</em>, it asks the model to write either a <em>Project Event Update</em> (0–2 days), a <em>Periodical Digest</em> (3–7 days), or a <em>Full Project Status Summary</em> (8+ days). The output is terse and structured, designed for quick catch-up. User mentions are normalized so you don’t get lost in raw IDs.</p>
+
+      <p>Under the hood, it’s a small package with a clear separation of concerns: <em>platform integrations</em> for Discord and Slack, <em>LLM services</em> for summarization and chat, <em>utilities</em> for formatting, and light <em>data models</em> for messages and history. It can run as a CLI or be imported into your own project to drive a bot, a web view, or internal tooling. If you prefer privacy and speed, use <strong>local models via Ollama</strong>; if you prefer capability, switch to <strong>remote models</strong> like <code>gpt-4o</code>.</p>
+
+      <figure>
+        <video width="100%" controls loop playsinline>
+          <source src="../assets/img/what-the-chat.mp4" type="video/mp4">
+        </video>
+        <p><i>... the command changed a bit, correct example is down there 👇</i></p>
+      </figure>
+
+
+      <p><strong>Why I like it</strong> is that it removes the friction of context switching. After a week away, I can run a single command and get a clean <em>status</em>: completed items, open actions, who said what, and any risks that bubbled up. If I’m unsure about something, I just ask follow-up questions in the interactive session — the model only sees the collected history, so the answers stay grounded.</p>
+
+      <p>You can run it from the terminal or import it. Example CLI usage:</p>
+
+      <p>
+        <code>python apps/launch_cli.py --since-days 30 --platform discord --channel 123456789012345678 --chat</code>
+      </p>
+
+      <p>And of course, you can <em>save</em> both the summary and the full transcript as Markdown for later reference. If you want to wire it into a custom workflow, the package API exposes <em>Discord/Slack</em> fetchers, a <em>SummarizationService</em>, and a <em>ChatService</em> so you can build on top of it.</p>
+
+      <p>Many thanks to open-source toolmakers — this project leans on <a href="https://ollama.com/">Ollama</a>, <a href="https://python.langchain.com/">LangChain</a>, and the official <a href="https://slack.dev/python-slack-sdk/">Slack SDK</a> / <a href="https://discordpy.readthedocs.io/">discord.py</a>. If you try <em>What The Chat</em> and find it helpful, feel free to star the repo or open an issue.</p>
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer class="footer cf" role="contentinfo">
+      <div class="wrap wide">
+        <p class="footer-copyright">© 2010–2025 Ulf Aslak | Copenhagen, Denmark</p>
+      </div>
+    </footer>
+
+    <!-- Google Analytics. -->
+    <script>
+      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+      ga('create', 'UA-124193587-1', 'auto'); ga('send', 'pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+  </body>
+</html>
