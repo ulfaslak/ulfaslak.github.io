@@ -82,12 +82,20 @@
         Make main functions accessible like <code>package_name.my_module</code> by importing them in <code>__init__.py</code>.
       </p>
 
-      <p>To get started using this, click the green <kbd>Use this template</kbd> button in the top right corner of the <a href="https://github.com/pymc-labs/project-starter">Github repository</a>, then clone the new repo and run <code>bash scripts/setup.sh</code>. If you accept the (awesome) defaults, handy bash script will do all the boring work, an let you get straight into coding.</p>
+      <p>To get started using this, click the green <kbd>Use this template</kbd> button in the top right corner of the <a href="https://github.com/pymc-labs/project-starter">Github repository</a>, then clone the new repo and run <code>bash scripts/setup.sh</code>. If you accept the (awesome) defaults, handy bash script will do all the boring work, and let you get straight into coding.</p>
 
-      <p>If you like pragmatic templates that get out of your way, this one might save you an hour on every new repo. Add your own opinions, and keep shipping.</p>
+      <p>There are a few things I really like about this template:
+        <ul>
+          <li>There is no framework at use. No Cookiecutter, just text files that get altered by bash script (which deletes itself after running).</li>
+          <li>It's minimal. If I want to remove or add something, that's easy.</li>
+          <li>Logic is a Python package by default. Before I started using this, I would start new projects in a notebook, and at some point I would port logic out of the notebook into a proper Python package. That refactoring step was always a hassle. With this, it's simpler to just have the model logic inside the package folder and then import it into your notebook, from the beginning.</li>
+          <li>Reusing this, most of my projects look boringly similar. Which is fantastic because it makes understanding code easier. Better yet, this is now the default structure we use at PyMC Labs, so projects that other folks spin up become easier for everyone to understand too!</li>
+          <li>Setup time is near zero. I even made <a href="https://gist.github.com/ulfaslak/2acffef7072980c6f27ba115b8712ee1">a bash function</a> that uses this to spin up <i>a more minimal</i> project folder which I use for little adhoc experiments.</li>
+        </ul>
+      </p>
+
+
     </div>
-
-
 
     <!-- Footer -->
    	<footer class="footer cf" role="contentinfo">
