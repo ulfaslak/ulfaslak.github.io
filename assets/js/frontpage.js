@@ -78,9 +78,11 @@ var systems = {
 
 }
 
+var randomAngle = Math.atan(Math.random()) * 180  / Math.PI
+
 var system = d3.keys(systems)[Math.floor(Math.random() * d3.keys(systems).length)]
 var order = systems[system]['order']
-var angle = systems[system]['angle']
+var angle = randomAngle //systems[system]['angle']
 var axiom = systems[system]['axiom']
 var rule = systems[system]['rule']
 
@@ -94,39 +96,39 @@ var centerY = window.innerHeight / 2;
 var offsetX_ = 0;
 var offsetY_ = 0;
 
-document.addEventListener("mousemove", function(e){
-  var offsetX = Math.abs(e.pageX - centerX);
-  var offsetY = (window.innerHeight - e.pageY) - centerY;
+// document.addEventListener("mousemove", function(e){
+//   var offsetX = Math.abs(e.pageX - centerX);
+//   var offsetY = (window.innerHeight - e.pageY) - centerY;
 
-  if (Math.sqrt((offsetX - offsetX_)**2 + (offsetY - offsetY_)**2) > 100) {
+//   if (Math.sqrt((offsetX - offsetX_)**2 + (offsetY - offsetY_)**2) > 100) {
     
-    if (offsetX > 0 & offsetY > 0) {
-      angle = Math.atan(offsetY / offsetX) * 180  / Math.PI
-    }
-    if (offsetX <= 0 & offsetY > 0) {
-      angle = 180 + Math.atan(offsetY / offsetX) * 180  / Math.PI
-    }
-    if (offsetX <= 0 & offsetY <= 0) {
-      angle = 180 + Math.atan(offsetY / offsetX) * 180  / Math.PI
-    }
-    if (offsetX > 0 & offsetY <= 0) {
-      angle = 360 + Math.atan(offsetY / offsetX) * 180  / Math.PI
-    }
+//     if (offsetX > 0 & offsetY > 0) {
+//       angle = Math.atan(offsetY / offsetX) * 180  / Math.PI
+//     }
+//     if (offsetX <= 0 & offsetY > 0) {
+//       angle = 180 + Math.atan(offsetY / offsetX) * 180  / Math.PI
+//     }
+//     if (offsetX <= 0 & offsetY <= 0) {
+//       angle = 180 + Math.atan(offsetY / offsetX) * 180  / Math.PI
+//     }
+//     if (offsetX > 0 & offsetY <= 0) {
+//       angle = 360 + Math.atan(offsetY / offsetX) * 180  / Math.PI
+//     }
 
-    draw(
-      L(
-        parse(
-          "order: " + order + "\naxiom: " + axiom +  "\nangle: " + angle + "\n" + rule
-        )
-      ),
-      d3.select("#animation")
-    )
+//     draw(
+//       L(
+//         parse(
+//           "order: " + order + "\naxiom: " + axiom +  "\nangle: " + angle + "\n" + rule
+//         )
+//       ),
+//       d3.select("#animation")
+//     )
 
-    offsetX_ = offsetX
-    offsetY_ = offsetY
+//     offsetX_ = offsetX
+//     offsetY_ = offsetY
 
-  }
-})
+//   }
+// })
 
 draw(
   L(
