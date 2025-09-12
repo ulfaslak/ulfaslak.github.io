@@ -2,18 +2,18 @@
 // on L-Systems. His code is here: https://beta.observablehq.com/@kelleyvanevert/l-systems-2
 
 var systems = {
-  'plant': {
-    'order': 5,
-    'angle': 25,
-    'axiom': "---X",
-    'rule': "X -> F[-X][X]F[-X]+FX\nF -> FF"
-  },
-  'penrose': {
-    'order': 4,
-    'angle': 36,
-    'axiom': "[N]++[N]++[N]++[N]++[N]",
-    'rule': "M -> OF++PF----NF[-OF----MF]++\nN -> +OF--PF[---MF--NF]+\nO -> -MF++NF[+++OF++PF]-\nP -> --OF++++MF[+PF++++NF]--NF\nF ->"
-  },
+  // 'plant': {
+  //   'order': 5,
+  //   'angle': 25,
+  //   'axiom': "---X",
+  //   'rule': "X -> F[-X][X]F[-X]+FX\nF -> FF"
+  // },
+  // 'penrose': {
+  //   'order': 4,
+  //   'angle': 36,
+  //   'axiom': "[N]++[N]++[N]++[N]++[N]",
+  //   'rule': "M -> OF++PF----NF[-OF----MF]++\nN -> +OF--PF[---MF--NF]+\nO -> -MF++NF[+++OF++PF]-\nP -> --OF++++MF[+PF++++NF]--NF\nF ->"
+  // },
   'koch': {
     'order': 3,
     'angle': 90,
@@ -44,12 +44,12 @@ var systems = {
     'axiom': "Y",
     'rule': "X -> F+gF\nY -> XY-XY"
   },
-  'sierpinski_sq': {
-    'order': 10,
-    'angle': 45,
-    'axiom': "X--F--X--F",
-    'rule': "X -> +Y-F-Y+\nY -> -X+F+X-"
-  },
+  // 'sierpinski_sq': {
+  //   'order': 10,
+  //   'angle': 45,
+  //   'axiom': "X--F--X--F",
+  //   'rule': "X -> +Y-F-Y+\nY -> -X+F+X-"
+  // },
   'koch_snowflake': {
     'order': 4,
     'angle': 60,
@@ -62,25 +62,26 @@ var systems = {
     'axiom': "X",
     'rule': "X -> -YF+XFX+FY-\nY -> +XF-YFY-FX+"
   },
-  'leaf2': {
-    'order': 13,
-    'angle': 10,
-    'axiom': "----+FF+FF+FF+FF[A][B]",
-    'rule': "A -> [+A{.].C.}\nB -> [-B{.].C.}\nC -> C@1.2F"
-  },
-  'tree1': {
-    'order': 11,
-    'angle': 10,
-    'axiom': '---------A',
-    'animate': 'no',
-    'rule': "T -> TF\nA -> TF[+++X]TFB\nB -> TF[---Y]TFA\nX -> A\nY -> BC\nC -> [{g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.}]\nL -> [N][M]\nN -> [+N{.].O.}\nM -> [-M{.].O.}\nO -> O@1.2F"
-  }
+  // 'leaf2': {
+  //   'order': 13,
+  //   'angle': 10,
+  //   'axiom': "----+FF+FF+FF+FF[A][B]",
+  //   'rule': "A -> [+A{.].C.}\nB -> [-B{.].C.}\nC -> C@1.2F"
+  // },
+  // 'tree1': {
+  //   'order': 11,
+  //   'angle': 10,
+  //   'axiom': '---------A',
+  //   'animate': 'no',
+  //   'rule': "T -> TF\nA -> TF[+++X]TFB\nB -> TF[---Y]TFA\nX -> A\nY -> BC\nC -> [{g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.++g.}]\nL -> [N][M]\nN -> [+N{.].O.}\nM -> [-M{.].O.}\nO -> O@1.2F"
+  // }
 
 }
 
 var randomAngle = Math.atan(Math.random()) * 180  / Math.PI
 
 var system = d3.keys(systems)[Math.floor(Math.random() * d3.keys(systems).length)]
+console.log(system)
 var order = systems[system]['order']
 var angle = randomAngle //systems[system]['angle']
 var axiom = systems[system]['axiom']
