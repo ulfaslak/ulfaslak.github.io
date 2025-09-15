@@ -15,6 +15,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Ulf Aslak / works</title>
     <meta name="description" content="Physicist / Data Scientist" />
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
     <link rel="stylesheet" href="../assets/css/main.css" />
     <link rel="stylesheet" href="../assets/css/extra.css" />
   </head>
@@ -133,9 +140,18 @@
         in a fast interactive framework, we could tweak parameters and
         understand their influence on dynamics. Based on this, we could write an
         equation for the probability of moving from one place to another given a
-        hierarchy of containers. This, we used as the objective function in a
-        maximum likelihood fitting procedure to find the nested grid that best
-        fit the simulated travel.
+        hierarchy of containers:
+      </p>
+
+      \[
+      P_{H,\mathbf{a},\mathbf{p}}(j \to k)
+      = \prod_{l=1}^{\,d(j,k)-1} a(k_l)\,,
+      \]
+
+      <p>
+        This equation is basically the whole paper. It encodes all of our assumptions
+        about how humans move between places (and if you want to fully understand it,
+        <strong>reading the text around equation (1) in <a href="https://arxiv.org/pdf/2109.07381">the paper</a></strong> is where to begin).
       </p>
 
       <p>
@@ -155,7 +171,7 @@
       </p>
 
       <p>
-        In pragmatic terms, what we ended up making was a clustering method.
+        <strong>In pragmatic terms, what we ended up making was a clustering method.</strong>
         Where most clustering methods take as input just a collection of points,
         our method takes as input a collection of points and a sequence of moves
         between them. Its output is a nested partition of places into
@@ -180,6 +196,32 @@
           when we aggregate over scales</a
         >.
       </p>
+
+      <p>
+        → <strong>Here's the paper</a> (<a href="https://www.nature.com/articles/s41586-020-2909-1">Nature</a> / <a href="https://arxiv.org/pdf/2109.07381">ArXiv</a>)</strong>
+      </p>
+
+      <p>
+        But to me, the most important result is just <i>that it works.</i> I could
+        plug my own GPS data in there and recover the containers I normally identify
+        as home, neighborhoods, cities and regions. I even tried my mom's (yes I tracked my mom)
+        and she could look at it and tell me what each container meant. Below is (some of) my own containers
+        visualized on a map. If you stare it at it long enought you can learn a lot about how I live.
+      </p>
+
+      <figure>
+        <img
+          src="../assets/img/scales_map.png"
+          alt="My containers visualized on a map"
+          style="
+            width: 720px;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+          "
+        />
+      </figure>
     </div>
 
     <!-- Footer -->
