@@ -1,0 +1,175 @@
+<style>
+    .row {
+      display: flex;
+    }
+  
+    .column {
+      flex: 33.33%;
+      padding: 5px;
+    }
+  </style>
+  
+  <html>
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+      <title>Ulf Aslak / works</title>
+      <meta name="description" content="Physicist / Data Scientist" />
+      <script>
+        window.MathJax = {
+          tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+          svg: { fontCache: 'global' }
+        };
+      </script>
+      <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+      <link rel="stylesheet" href="../assets/css/main.css" />
+      <link rel="stylesheet" href="../assets/css/extra.css" />
+    </head>
+  
+    <body>
+      <!-- Header -->
+      <header class="header wrap wide" role="banner">
+        <div class="grid">
+          <div class="branding column">
+            <a href="https://ulfaslak.dk/index.html" rel="home">Ulf Aslak</a>
+          </div>
+  
+          <nav class="navigation column" role="navigation">
+            <ul class="menu">
+              <li class="menu-item">
+                <a href="https://ulfaslak.dk/about.html">About</a>
+              </li>
+              <li class="menu-item">
+                <a href="https://ulfaslak.dk/blog.html">Blog</a>
+              </li>
+              <li class="menu-item">
+                <a href="https://ulfaslak.dk/files/cv_ulf_en.pdf">CV</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Codes</a>
+                <ul class="dropdown">
+                  <a href="https://github.com/ulfaslak">Github</a>
+                  <a href="https://observablehq.com/@ulfaslak">Observable</a>
+                </ul>
+              </li>
+              <li class="menu-item">
+                <a
+                  href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao"
+                  target="_blank"
+                  >Publications</a
+                >
+              </li>
+              <li class="menu-item">
+                <a href="https://ulfaslak.dk/freelance.html" target="_blank"
+                  >Freelance</a
+                >
+              </li>
+              <li class="menu-item">
+                <a href="https://ulfaslak.dk/vent.html" target="_blank">Vent</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+  
+      <!-- Content -->
+      <header class="wrap">
+        <h1><em>schema_agent</em>—structured generation without logprobs</h1>
+        <p><em>2025</em></p>
+      </header>
+  
+      <div class="text wrap">
+        <p>
+          I’ve been using structured generation a lot lately, and I kept running into
+          the same problem: the model would almost produce valid JSON matching my schema—almost.
+          One bad key, a missing wrapper object, or a tiny type mismatch and everything falls apart.
+          I ahuge fan of <a href="https://dottxt-ai.github.io/outlines/latest/">Outlines</a>, but it's
+          not reliable for frontier models through public APIs like OpenAI who don't expose logprobs.
+        </p>
+  
+        <p>
+          So I built <strong>schema_agent</strong>: a tiny, practical helper that wraps a model with a
+          validation tool and <em>retries</em> on failure until the output matches your Pydantic schema.
+          It’s provider-agnostic: pass a LangChain-compatible model or just a string like
+          <code>"openai:gpt-4o-mini"</code>, and you get back a validated <code>BaseModel</code> instance
+          plus the raw agent trace for debugging.
+        </p>
+
+        <figure>
+            <img src="../assets/img/schema_agent.png" alt="schema_agent">
+        </figure>
+  
+        <p><strong>How it feels to use</strong></p>
+        <pre><code class="language-python">from pydantic import BaseModel, Field
+  from schema_agent import generate_with_schema
+  
+  class Person(BaseModel):
+      name: str = Field(description="Full name")
+      age: int = Field(description="Age in years")
+  
+  resp = generate_with_schema(
+      user_prompt="His name was John Doe and he was 42 years old",
+      llm="openai:gpt-4o-mini",  # or a LangChain model instance
+      schema=Person,
+      max_retries=2,
+  )
+  
+  # Validated Pydantic instance
+  print(resp["reply"])   # -> Person(name='John Doe', age=42)
+  print(resp["success"]) # -> True
+  print(resp["retries"]) # -> 0 or 1 depending on how clean the first answer was
+  </code></pre>
+  
+        <p>
+          That’s it. Under the hood, the agent always calls a <em>validate</em> tool first.
+          If the tool raises a schema or JSON error, the agent gets a clear retry signal and tries again.
+          Unexpected tool errors are surfaced immediately so you can fix real issues instead of guessing.
+        </p>
+  
+        <p><strong>Why I like this approach</strong></p>
+        <ul>
+          <li>Schema-first: say what you want, get exactly that</li>
+          <li>Minimal API surface: a single function, predictable behavior</li>
+          <li>Robust across providers: no reliance on special “json modes”</li>
+          <li>Typed outputs: you keep your <code>BaseModel</code>, not a dictionary</li>
+        </ul>
+  
+        <p>
+          If you want to try it, it’s on PyPI:
+          <a href="https://pypi.org/project/schema-agent/" target="_blank">schema_agent</a>.
+          Code is here: <a href="https://github.com/pymc-labs/schema-agent" target="_blank">GitHub</a>.
+          There’s a short demo script in <code>scripts/demo.py</code>.
+        </p>
+  
+        <p>
+          It’s small, pragmatic, and made to be dropped into real workflows. If it breaks for your use case,
+          I’d love to hear why.
+        </p>
+      </div>
+  
+      <!-- Footer -->
+      <footer class="footer cf" role="contentinfo">
+        <div class="wrap wide">
+          <p class="footer-copyright">
+            © 2010–2025 Ulf Aslak | Copenhagen, Denmark
+          </p>
+        </div>
+      </footer>
+  
+      <!-- Google Analytics. -->
+      <script>
+        window.ga = function () {
+          ga.q.push(arguments);
+        };
+        ga.q = [];
+        ga.l = +new Date();
+        ga("create", "UA-124193587-1", "auto");
+        ga("send", "pageview");
+      </script>
+      <script
+        src="https://www.google-analytics.com/analytics.js"
+        async
+        defer
+      ></script>
+    </body>
+  </html>
