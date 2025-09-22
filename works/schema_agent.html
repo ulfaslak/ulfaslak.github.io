@@ -80,11 +80,10 @@
   
       <div class="text wrap">
         <p>
-          I’ve been using structured generation a lot lately, and I kept running into
-          the same problem: the model would almost produce valid JSON matching my schema—almost.
-          One bad key, a missing wrapper object, or a tiny type mismatch and everything falls apart.
-          I ahuge fan of <a href="https://dottxt-ai.github.io/outlines/latest/">Outlines</a>, but it's
-          not reliable for frontier models through public APIs like OpenAI who don't expose logprobs.
+          I’ve been using structured generation a lot lately, and while it's all good that Gemini and
+          OpenAI now support it, I find that it's not as robust as I want it to be, and that comparison between
+          providers require too complex setups. I'm a huge fan of <a href="https://dottxt-ai.github.io/outlines/latest/">Outlines</a>,
+          but it's not reliable for frontier models through public APIs like OpenAI who don't expose logprobs.
         </p>
   
         <p>
@@ -100,24 +99,25 @@
         </figure>
   
         <p><strong>How it feels to use</strong></p>
-        <pre><code class="language-python">from pydantic import BaseModel, Field
-  from schema_agent import generate_with_schema
-  
-  class Person(BaseModel):
-      name: str = Field(description="Full name")
-      age: int = Field(description="Age in years")
-  
-  resp = generate_with_schema(
-      user_prompt="His name was John Doe and he was 42 years old",
-      llm="openai:gpt-4o-mini",  # or a LangChain model instance
-      schema=Person,
-      max_retries=2,
-  )
-  
-  # Validated Pydantic instance
-  print(resp["reply"])   # -> Person(name='John Doe', age=42)
-  print(resp["success"]) # -> True
-  print(resp["retries"]) # -> 0 or 1 depending on how clean the first answer was
+        <pre><code class="language-python">
+from pydantic import BaseModel, Field
+from schema_agent import generate_with_schema
+
+class Person(BaseModel):
+    name: str = Field(description="Full name")
+    age: int = Field(description="Age in years")
+
+resp = generate_with_schema(
+    user_prompt="His name was John Doe and he was 42 years old",
+    llm="openai:gpt-4o-mini",  # or a LangChain model instance
+    schema=Person,
+    max_retries=2,
+)
+
+# Validated Pydantic instance
+print(resp["reply"])   # -> Person(name='John Doe', age=42)
+print(resp["success"]) # -> True
+print(resp["retries"]) # -> 0 or 1 depending on how clean the first answer was
   </code></pre>
   
         <p>
