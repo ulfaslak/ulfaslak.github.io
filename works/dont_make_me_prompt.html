@@ -1,0 +1,160 @@
+<style>
+    .row {
+      display: flex;
+    }
+  
+    .column {
+      flex: 33.33%;
+      padding: 5px;
+    }
+  </style>
+  
+  <html>
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+      <title>Ulf Aslak / works</title>
+      <meta name="description" content="Physicist / Data Scientist" />
+      <script>
+        window.MathJax = {
+          tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+          svg: { fontCache: 'global' }
+        };
+      </script>
+      <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+      <link rel="stylesheet" href="../assets/css/main.css" />
+      <link rel="stylesheet" href="../assets/css/extra.css" />
+    </head>
+  
+    <body>
+      <!-- Header -->
+      <header class="header wrap wide" role="banner">
+        <div class="grid">
+          <div class="branding column">
+            <a href="https://ulfaslak.dk/index.html" rel="home">Ulf Aslak</a>
+          </div>
+  
+          <nav class="navigation column" role="navigation">
+            <ul class="menu">
+              <li class="menu-item">
+                <a href="https://ulfaslak.dk/about.html">About</a>
+              </li>
+              <li class="menu-item">
+                <a href="https://ulfaslak.dk/blog.html">Blog</a>
+              </li>
+              <li class="menu-item">
+                <a href="https://ulfaslak.dk/files/cv_ulf_en.pdf">CV</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Codes</a>
+                <ul class="dropdown">
+                  <a href="https://github.com/ulfaslak">Github</a>
+                  <a href="https://observablehq.com/@ulfaslak">Observable</a>
+                </ul>
+              </li>
+              <li class="menu-item">
+                <a
+                  href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao"
+                  target="_blank"
+                  >Publications</a
+                >
+              </li>
+              <li class="menu-item">
+                <a href="https://ulfaslak.dk/freelance.html" target="_blank"
+                  >Freelance</a
+                >
+              </li>
+              <li class="menu-item">
+                <a href="https://ulfaslak.dk/vent.html" target="_blank">Vent</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+  
+    <!-- Content -->
+    <header class="wrap">
+      <h1>Don't Make Me Prompt</h1>
+      <p><em>2025</em></p>
+    </header>
+
+    <div class="text wrap">
+      <p>
+        Imagine if Tony Stark had to carefully prompt Jarvis and explicitly manage his context.
+      </p>
+
+      <p>
+        When I started using GitHub Copilot in 2022, it seemed obvious that the future of coding would be
+        Ironman/Jarvis-style "deep autocomplete" keeping the developer in flow, unblocking them at every
+        friction point, making them FASTER, meanwhile keeping them in control.
+      </p>
+
+      <p>
+        That's not at all where we're at now. We currently have conversational agents.
+        <strong>Prompt</strong> (carefully) → <strong>wait</strong> → <strong>review</strong> (boring, let's skip) → <strong>repeat</strong>.
+        They're truly powerful. Smart people build elaborate systems of context management around this
+        interface and produce impressive software.
+      </p>
+
+      <p>
+        But <strong>the problem is</strong> that prompting in natural language is a low-bandwidth interface
+        for expressing developer intent. A child can hum a tune to express a musical idea, but a composer
+        can write in precise notation. So why exactly do we force expert software composers to hum like
+        little children?
+      </p>
+
+      <p>
+        For code composers, prompting is poor ergonomics. It gives me something I call
+        <strong>prompting fatigue</strong>. I never wanted to prompt. I wanted to code, get super-smart,
+        deep AI autocomplete, and occasionally prompt the agent with questions to get tailored answers.
+      </p>
+
+      <p>
+        I keep thinking about Tony Stark. He doesn't ask Jarvis to fly. He moves and the suit amplifies.
+        The intelligence is in service of his intent, not a separate stateless actor with its own agency.
+      </p>
+
+      <p>
+        What if the IDE watched my edits and inferred what I'm trying to do?
+        <strong>What if my behavior was the prompt?</strong> A system that translates developer behavior
+        into the prompts that would have produced the right completions. Without the developer having to
+        write those prompts.
+      </p>
+
+      <p>
+        Concretely: Ghost diffs that appear when I rename a function, showing me the ripple effect across
+        files. Tab to accept, Esc to dismiss. No chat. The agent learns what I want from what I accept.
+        Over time, it just knows.
+      </p>
+
+      <p>
+        This is what I wanted Copilot to become. Maybe it's time to build it.
+      </p>
+    </div>
+  
+      <!-- Footer -->
+      <footer class="footer cf" role="contentinfo">
+        <div class="wrap wide">
+          <p class="footer-copyright">
+            © 2010–2025 Ulf Aslak | Copenhagen, Denmark
+          </p>
+        </div>
+      </footer>
+  
+      <!-- Google Analytics. -->
+      <script>
+        window.ga = function () {
+          ga.q.push(arguments);
+        };
+        ga.q = [];
+        ga.l = +new Date();
+        ga("create", "UA-124193587-1", "auto");
+        ga("send", "pageview");
+      </script>
+      <script
+        src="https://www.google-analytics.com/analytics.js"
+        async
+        defer
+      ></script>
+    </body>
+  </html>
