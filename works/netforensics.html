@@ -179,25 +179,39 @@
         precisely what catches Elliptic.
       </p>
 
-      <p><strong>The dataset.</strong></p>
+      <p><strong>What this network actually is.</strong></p>
 
       <p>
-        Elliptic is 203,769 Bitcoin transactions across 49 sequential snapshots
-        (≈ 2 weeks each), with 234,355 payment edges and 165 per-transaction
-        features. About 2.2% of nodes are labeled illicit, 20.6% licit, and 77%
-        unlabeled. Crucially, <strong>every edge lives inside a single timestep</strong> —
-        the graph is a sequence of weakly connected snapshots, not a single evolving
-        graph. That structural detail is what makes the leakage trap so tempting:
-        the snapshots <em>look</em> independent enough that a random node-level
-        split feels fine, but the dataset has very strong temporal regime changes
-        (a darknet market closes around timestep 43 and the illicit base rate halves).
+        Each node is a Bitcoin transaction. Each edge is a flow of Bitcoin
+        from one transaction's output into the next transaction's input.
+        Transactions are labeled by the real-world entity behind them: licit
+        (exchanges, wallet providers, miners, licit services) or illicit
+        (scams, malware, ransomware, ponzis, terrorist organizations). 77%
+        are unlabeled. The task is to predict the label of the unlabeled
+        ones from the structural and feature-level fingerprints of the
+        labeled subset.
       </p>
 
       <p>
-        Here's a single snapshot — time step 32, with 4,525 transactions and
-        342 of them labeled illicit (red). Drag to pan, scroll to zoom, grab a
-        node and pull. To watch the network reshape across all 49 timesteps,
-        with prediction-vs-truth coloring, open the full viz below.
+        At the dataset level: 203,769 transactions, 234,355 payment edges,
+        165 features per transaction, spread across 49 sequential snapshots
+        (≈ 2 weeks each). About 2.2% of nodes are illicit, 20.6% licit, 77%
+        unlabeled. Crucially, <strong>every edge lives inside a single timestep</strong> —
+        the graph is a sequence of weakly connected snapshots, not a single
+        evolving graph. That structural detail is what makes the leakage trap
+        so tempting: the snapshots <em>look</em> independent enough that a
+        random node-level split feels fine, but the dataset has very strong
+        temporal regime changes (a darknet market closes around timestep 43
+        and the illicit base rate halves).
+      </p>
+
+      <p>
+        Below is a single snapshot — time step 32, with 4,525 transactions
+        and 342 of them labeled illicit. Red = illicit
+        (scams/ransomware/etc.), green = licit (exchanges/miners/etc.), grey
+        = unlabeled. Drag to pan, scroll to zoom, grab a node and pull. To
+        watch the network reshape across all 49 timesteps with
+        prediction-vs-truth coloring, open the full viz below.
       </p>
 
       <div class="viz-wrap">
