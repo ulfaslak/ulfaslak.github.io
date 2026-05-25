@@ -141,17 +141,22 @@
         deploy a classifier on it, or whether the numbers you'd publish are an
         artifact of how you split the data. To stress-test it, I pointed it at
         the Elliptic Bitcoin dataset — the most-cited benchmark for cryptocurrency
-        fraud detection. The pack reproduced, in 26 minutes, a methodological
-        problem that several papers in the GNN literature have shipped right past.
+        fraud detection. The pack reproduced, in about 20 minutes and under a
+        dollar in agent calls, a methodological problem that several papers in
+        the GNN literature have shipped right past.
       </p>
 
       <p>
         The result, in plain terms: under valid evaluation, a boring gradient-boosted
-        tree on tabular features beats every graph neural network we tried by 24 F1
+        tree on tabular features beats every graph neural network we tried by 20 F1
         points. The famous "near-perfect" numbers on this dataset are 18% inflated
         by a temporal leakage trap that random train/test splits walk straight into.
-        None of this is news if you've read the right papers; the demo is that the
-        pack catches it without anyone telling it to look.
+        And once you remove the train-time leakage from the GNNs as well, the
+        edge-shuffle ablation flips direction: under honest training, GraphSAGE
+        actually performs <em>better</em> on a degree-preserving random graph than
+        on the real Bitcoin transaction graph. None of this is news if you've read
+        the right papers; the demo is that the pack catches it without anyone telling
+        it to look.
       </p>
 
       <p><strong>Why bother making this a pack?</strong></p>
@@ -172,11 +177,11 @@
       </ol>
 
       <p>
-        Pointed at a dataset, the pack spawns parallel agents to do each of these,
-        consolidates the results, and writes a business report and a technical
-        report. The framing is methodological rigor that holds across every graph
-        ML problem, not a checker for any specific dataset — but the rigor is
-        precisely what catches Elliptic.
+        Pointed at a dataset, the pack drives an LLM orchestrator through each
+        of these as a sequence of tool calls, then writes a business report and
+        a technical report. The framing is methodological rigor that holds
+        across every graph ML problem, not a checker for any specific dataset
+        — but the rigor is precisely what catches Elliptic.
       </p>
 
       <p><strong>What this network actually is.</strong></p>
@@ -233,24 +238,27 @@
       <p><strong>The leakage gap.</strong></p>
 
       <p>
-        Three evaluation protocols, same dataset, same model (XGBoost on all
-        features), same seeds. Only the train/test partition changes:
+        Two evaluation protocols, same dataset, same model (XGBoost on all 165
+        features), five seeds with cutoff jitter on the temporal partition.
+        Only the train/test split changes:
       </p>
 
       <table class="results">
         <thead>
-          <tr><th>Protocol</th><th class="num">F1 (illicit)</th><th>What it measures</th></tr>
+          <tr><th>Protocol</th><th class="num">F1 (illicit), median [min–max]</th><th>What it measures</th></tr>
         </thead>
         <tbody>
-          <tr><td>Transductive (random split)</td><td class="num"><strong>0.958</strong></td><td>What most papers report</td></tr>
-          <tr><td>Inductive (held-out node IDs)</td><td class="num">0.921</td><td>Tests generalization to new nodes, same regime</td></tr>
-          <tr><td>Temporal (train past, test future)</td><td class="num"><strong>0.783</strong></td><td>What deployment actually looks like</td></tr>
+          <tr><td>Transductive (random split)</td><td class="num"><strong>0.959</strong> [0.958–0.960]</td><td>What most papers report</td></tr>
+          <tr><td>Temporal (train past, test future)</td><td class="num"><strong>0.780</strong> [0.771–0.783]</td><td>What deployment actually looks like</td></tr>
         </tbody>
       </table>
 
       <p>
-        A gap of 0.175 F1 points, or 18% relative. That is the cost of a single
-        bad assumption about which split to use.
+        A gap of 0.18 F1 points, or 18% relative. That is the cost of a single
+        bad assumption about which split to use. The pack also supports an
+        inductive split (held-out connected components), but that protocol
+        ignores the temporal axis and isn't an honest deployment estimate when
+        the data has timestamps, so it's skipped by default on Elliptic.
       </p>
 
       <p><strong>Then the embarrassing part for the GNN literature.</strong></p>
@@ -263,50 +271,86 @@
 
       <table class="results">
         <thead>
-          <tr><th>Model</th><th class="num">F1 (illicit)</th><th class="num">Runtime</th><th>Stack</th></tr>
+          <tr><th>Model</th><th class="num">F1 (illicit), median [min–max]</th><th>Stack</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>XGBoost (tabular)</strong></td><td class="num"><strong>0.783</strong></td><td class="num">~2 s</td><td>CPU</td></tr>
-          <tr><td>GraphSAGE</td><td class="num">0.544</td><td class="num">~133 s</td><td>GPU preferred, PyG</td></tr>
-          <tr><td>GCN</td><td class="num">0.302</td><td class="num">~130 s</td><td>GPU preferred, PyG</td></tr>
+          <tr><td><strong>XGBoost (tabular)</strong></td><td class="num"><strong>0.780</strong> [0.771–0.783]</td><td>CPU, &lt;1 s per seed</td></tr>
+          <tr><td>GraphSAGE</td><td class="num">0.584 [0.544–0.596]</td><td>CPU PyG, ~100 s per seed</td></tr>
+          <tr><td>GCN</td><td class="num">0.320 [0.302–0.337]</td><td>CPU PyG, ~100 s per seed</td></tr>
         </tbody>
       </table>
 
       <p>
-        The tabular baseline is 24 F1 points ahead of the best GNN and 60× faster.
-        The dataset comes with 71 pre-computed 1-hop neighborhood aggregates already
-        baked into the feature vector, and those aggregates eat most of the structural
-        signal the GNNs would otherwise have to learn. The edge-shuffle ablation
-        confirms the rest: GraphSAGE loses 9 F1 points when edges are randomly
-        rewired with degrees preserved, so the model <em>is</em> using graph
-        structure — it's just losing badly to XGBoost regardless.
+        The tabular baseline is 20 F1 points ahead of the best GNN. The dataset
+        comes with 71 pre-computed 1-hop neighborhood aggregates already baked
+        into the feature vector, and those aggregates eat most of the structural
+        signal the GNNs would otherwise have to learn.
+      </p>
+
+      <p>
+        The edge-shuffle ablation puts a finer point on it. Train each GNN on the
+        real graph and again on a degree-preserving randomized version, then look
+        at the F1 gap:
+      </p>
+
+      <table class="results">
+        <thead>
+          <tr><th>Model</th><th class="num">F1 gap (real − shuffled), median [min–max]</th><th>What it means</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>GCN</td><td class="num">+0.13 [+0.11, +0.14]</td><td>Real graph helps GCN a little</td></tr>
+          <tr><td>GraphSAGE</td><td class="num"><strong>−0.07 [−0.08, −0.04]</strong></td><td>Real graph <em>hurts</em> GraphSAGE</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        That negative number for GraphSAGE is the moment the methodology earns its
+        keep. Under leakage-free training, GraphSAGE trains <em>better</em> on a
+        random graph that only matches the degree distribution than on the actual
+        Bitcoin transaction graph — by 7 F1 points, consistently across all five
+        seeds. The structure in the real graph is, for this model, anti-informative.
+        GCN does extract a small positive signal from the real topology (+0.13),
+        but its absolute F1 of 0.32 is so far below the tabular baseline that the
+        improvement is academic.
+      </p>
+
+      <p>
+        An earlier, sloppier version of this same pack ran the edge-shuffle
+        without forcing strict-edges in the train-time message-passing — i.e.,
+        the GNN got to see test-region edges during training in both the real
+        and the shuffled runs. In that leaky regime, GraphSAGE looked like it
+        was using the graph: shuffling the edges cost it several F1 points.
+        The "graph helps" reading was an artifact of leakage breaking down
+        when the edges were rewired, not of genuine graph signal. Once the
+        ablation is run honestly, the direction reverses. The leakage trap
+        had two layers, not one.
       </p>
 
       <p><strong>Where the signal actually lives.</strong></p>
 
       <p>
-        Feature ablation, all XGBoost, honest temporal protocol:
+        Feature ablation, all XGBoost, honest temporal protocol, five seeds:
       </p>
 
       <table class="results">
         <thead>
-          <tr><th>Features</th><th class="num">F1 (illicit)</th></tr>
+          <tr><th>Features</th><th class="num">F1 (illicit), median [min–max]</th></tr>
         </thead>
         <tbody>
-          <tr><td>All 165 features</td><td class="num">0.783</td></tr>
-          <tr><td>Raw 94 per-transaction features only (no graph access)</td><td class="num">0.712</td></tr>
-          <tr><td>Topology only (7 graph statistics)</td><td class="num">0.153</td></tr>
+          <tr><td>All 165 features</td><td class="num">0.780 [0.771–0.783]</td></tr>
+          <tr><td>Raw 94 per-transaction features only (no graph access)</td><td class="num">0.704 [0.704–0.712]</td></tr>
+          <tr><td>Topology only (7 graph statistics: degree, PageRank, clustering, ...)</td><td class="num">0.163 [0.153–0.165]</td></tr>
         </tbody>
       </table>
 
       <p>
-        Roughly 91% of the deployable signal is in per-transaction metadata.
-        The graph contributes another 7 F1 points, but only via pre-computed
-        aggregates — not via learned message-passing. Stripping features to
-        topology alone collapses the model. For the operational question — do
-        we need a graph database, a GPU, and a PyTorch Geometric pipeline — the
-        answer is no. Compute the aggregates as a nightly batch job and ship
-        the boring model.
+        Roughly 90% of the deployable signal is in per-transaction metadata.
+        The pre-computed 1-hop neighborhood aggregates contribute another ~8 F1
+        points on top — not via learned message-passing, just via tabular features
+        that happen to summarize the local graph. Stripping features to topology
+        alone collapses the model. For the operational question — do we need a
+        graph database, a GPU, and a PyTorch Geometric pipeline — the answer is
+        no. Compute the aggregates as a nightly batch job and ship the boring model.
       </p>
 
       <p><strong>What is and isn't the point.</strong></p>
@@ -324,8 +368,9 @@
         I keep thinking about how many graph ML pipelines ship without any one
         of these diagnostics, never mind all five. Random split, single seed,
         AUROC headline, no edge-shuffle, no tabular baseline. The model
-        <em>could</em> be doing nothing and you'd never know. A 26-minute,
-        $1.10 agent run is a cheap way to know.
+        <em>could</em> be doing nothing — or worse than nothing, as the
+        GraphSAGE edge-shuffle reversal here shows — and you'd never know.
+        A 20-minute, sub-dollar agent run is a cheap way to know.
       </p>
 
       <p>
