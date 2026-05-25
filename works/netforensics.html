@@ -1,0 +1,340 @@
+<style>
+  .row {
+    display: flex;
+  }
+
+  .column {
+    flex: 33.33%;
+    padding: 5px;
+  }
+
+  .viz-wrap {
+    width: 100%;
+    max-width: 1100px;
+    margin: 24px auto;
+    border: 1px solid #1f2731;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #0b0e13;
+  }
+
+  .viz-wrap iframe {
+    display: block;
+    width: 100%;
+    height: 640px;
+    border: 0;
+  }
+
+  table.results {
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  table.results th, table.results td {
+    border-bottom: 1px solid #ddd;
+    padding: 6px 14px;
+    text-align: left;
+  }
+
+  table.results th {
+    font-weight: 600;
+    background: #f6f7f9;
+  }
+
+  table.results td.num {
+    text-align: right;
+  }
+</style>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Ulf Aslak / works</title>
+    <meta name="description" content="Physicist / Data Scientist" />
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/extra.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header wrap wide" role="banner">
+      <div class="grid">
+        <div class="branding column">
+          <a href="https://ulfaslak.dk/index.html" rel="home">Ulf Aslak</a>
+        </div>
+
+        <nav class="navigation column" role="navigation">
+          <ul class="menu">
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/about.html">About</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/blog.html">Blog</a>
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/files/cv_ulf_en.pdf">CV</a>
+            </li>
+            <li class="menu-item">
+              <a href="#">Codes</a>
+              <ul class="dropdown">
+                <a href="https://github.com/ulfaslak">Github</a>
+                <a href="https://observablehq.com/@ulfaslak">Observable</a>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a
+                href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao"
+                target="_blank"
+                >Publications</a
+              >
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/freelance.html" target="_blank"
+                >Freelance</a
+              >
+            </li>
+            <li class="menu-item">
+              <a href="https://ulfaslak.dk/vent.html" target="_blank">Vent</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <header class="wrap">
+      <h1><em>netforensics</em>—a decision pack for supervised graph learning</h1>
+      <p><em>2026</em></p>
+    </header>
+
+    <div class="text wrap">
+      <p>
+        I built <strong>netforensics</strong> for a one-day hackathon — a
+        <a href="https://github.com/pymc-labs/decision-lab">decision-lab</a> pack
+        that takes any labeled graph and tells you whether you can actually
+        deploy a classifier on it, or whether the numbers you'd publish are an
+        artifact of how you split the data. To stress-test it, I pointed it at
+        the Elliptic Bitcoin dataset — the most-cited benchmark for cryptocurrency
+        fraud detection. The pack reproduced, in 26 minutes, a methodological
+        problem that several papers in the GNN literature have shipped right past.
+      </p>
+
+      <p>
+        The result, in plain terms: under valid evaluation, a boring gradient-boosted
+        tree on tabular features beats every graph neural network we tried by 24 F1
+        points. The famous "near-perfect" numbers on this dataset are 18% inflated
+        by a temporal leakage trap that random train/test splits walk straight into.
+        None of this is news if you've read the right papers; the demo is that the
+        pack catches it without anyone telling it to look.
+      </p>
+
+      <p><strong>Why bother making this a pack?</strong></p>
+
+      <p>
+        Most supervised graph problems share the same handful of failure modes,
+        and most of them are about evaluation rather than modeling. The pack
+        encodes five things that should be on by default for any graph-with-labels
+        problem, and that almost never all are:
+      </p>
+
+      <ol>
+        <li>Always benchmark against a no-graph baseline (XGBoost on the raw features).</li>
+        <li>Always evaluate under the distribution shift the model will face at deployment. If the data has a time axis, split on time. Never randomly.</li>
+        <li>Always run an edge-shuffle ablation. Rewire edges while preserving degree. If performance doesn't drop, the graph isn't doing work.</li>
+        <li>Always report metrics that survive class imbalance. F1 on the positive class, precision-at-K. Headline AUROC is misleading under 5% positives.</li>
+        <li>Always run multiple seeds and report variance.</li>
+      </ol>
+
+      <p>
+        Pointed at a dataset, the pack spawns parallel agents to do each of these,
+        consolidates the results, and writes a business report and a technical
+        report. The framing is methodological rigor that holds across every graph
+        ML problem, not a checker for any specific dataset — but the rigor is
+        precisely what catches Elliptic.
+      </p>
+
+      <p><strong>The dataset.</strong></p>
+
+      <p>
+        Elliptic is 203,769 Bitcoin transactions across 49 sequential snapshots
+        (≈ 2 weeks each), with 234,355 payment edges and 165 per-transaction
+        features. About 2.2% of nodes are labeled illicit, 20.6% licit, and 77%
+        unlabeled. Crucially, <strong>every edge lives inside a single timestep</strong> —
+        the graph is a sequence of weakly connected snapshots, not a single evolving
+        graph. That structural detail is what makes the leakage trap so tempting:
+        the snapshots <em>look</em> independent enough that a random node-level
+        split feels fine, but the dataset has very strong temporal regime changes
+        (a darknet market closes around timestep 43 and the illicit base rate halves).
+      </p>
+
+      <p>
+        Drag the brush below to scrub through time. Each frame is the live transaction
+        network in that window. Watch what happens to the red dots (illicit) past
+        step 43.
+      </p>
+
+      <div class="viz-wrap">
+        <iframe src="elliptic_viz.html" title="Elliptic temporal network"></iframe>
+      </div>
+
+      <p>
+        The shape of the data, once you've watched it for a minute, makes the
+        rest of the story almost inevitable. A model trained on snapshots 1–34
+        and evaluated on snapshots 35–49 is being asked to predict in a different
+        regime than the one it learned. A model trained on a <em>random</em>
+        sample of nodes from across the whole timeline is being shown the future
+        during training.
+      </p>
+
+      <p><strong>The leakage gap.</strong></p>
+
+      <p>
+        Three evaluation protocols, same dataset, same model (XGBoost on all
+        features), same seeds. Only the train/test partition changes:
+      </p>
+
+      <table class="results">
+        <thead>
+          <tr><th>Protocol</th><th class="num">F1 (illicit)</th><th>What it measures</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Transductive (random split)</td><td class="num"><strong>0.958</strong></td><td>What most papers report</td></tr>
+          <tr><td>Inductive (held-out node IDs)</td><td class="num">0.921</td><td>Tests generalization to new nodes, same regime</td></tr>
+          <tr><td>Temporal (train past, test future)</td><td class="num"><strong>0.783</strong></td><td>What deployment actually looks like</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        A gap of 0.175 F1 points, or 18% relative. That is the cost of a single
+        bad assumption about which split to use.
+      </p>
+
+      <p><strong>Then the embarrassing part for the GNN literature.</strong></p>
+
+      <p>
+        Under the honest temporal protocol, with strict edge constraints (training-time
+        message-passing restricted to train-set edges, so the GNN can't peek at the
+        future graph either), the model rankings flip:
+      </p>
+
+      <table class="results">
+        <thead>
+          <tr><th>Model</th><th class="num">F1 (illicit)</th><th class="num">Runtime</th><th>Stack</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>XGBoost (tabular)</strong></td><td class="num"><strong>0.783</strong></td><td class="num">~2 s</td><td>CPU</td></tr>
+          <tr><td>GraphSAGE</td><td class="num">0.544</td><td class="num">~133 s</td><td>GPU preferred, PyG</td></tr>
+          <tr><td>GCN</td><td class="num">0.302</td><td class="num">~130 s</td><td>GPU preferred, PyG</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        The tabular baseline is 24 F1 points ahead of the best GNN and 60× faster.
+        The dataset comes with 71 pre-computed 1-hop neighborhood aggregates already
+        baked into the feature vector, and those aggregates eat most of the structural
+        signal the GNNs would otherwise have to learn. The edge-shuffle ablation
+        confirms the rest: GraphSAGE loses 9 F1 points when edges are randomly
+        rewired with degrees preserved, so the model <em>is</em> using graph
+        structure — it's just losing badly to XGBoost regardless.
+      </p>
+
+      <p><strong>Where the signal actually lives.</strong></p>
+
+      <p>
+        Feature ablation, all XGBoost, honest temporal protocol:
+      </p>
+
+      <table class="results">
+        <thead>
+          <tr><th>Features</th><th class="num">F1 (illicit)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>All 165 features</td><td class="num">0.783</td></tr>
+          <tr><td>Raw 94 per-transaction features only (no graph access)</td><td class="num">0.712</td></tr>
+          <tr><td>Topology only (7 graph statistics)</td><td class="num">0.153</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        Roughly 91% of the deployable signal is in per-transaction metadata.
+        The graph contributes another 7 F1 points, but only via pre-computed
+        aggregates — not via learned message-passing. Stripping features to
+        topology alone collapses the model. For the operational question — do
+        we need a graph database, a GPU, and a PyTorch Geometric pipeline — the
+        answer is no. Compute the aggregates as a nightly batch job and ship
+        the boring model.
+      </p>
+
+      <p><strong>What is and isn't the point.</strong></p>
+
+      <p>
+        The point is <em>not</em> that GNNs are bad, or that Elliptic is a trap.
+        The point is that with five always-on diagnostics, you get a defensible
+        answer or a clear statement of why a defensible answer isn't possible
+        yet. The pack didn't know anything about Elliptic; it ran the same
+        protocol it would run on a Reddit interaction graph or an arXiv
+        co-authorship network. The Elliptic finding falls out as a side effect.
+      </p>
+
+      <p>
+        I keep thinking about how many graph ML pipelines ship without any one
+        of these diagnostics, never mind all five. Random split, single seed,
+        AUROC headline, no edge-shuffle, no tabular baseline. The model
+        <em>could</em> be doing nothing and you'd never know. A 26-minute,
+        $1.10 agent run is a cheap way to know.
+      </p>
+
+      <p>
+        Pack lives at <a href="https://github.com/pymc-labs/decision-lab/tree/main/decision-packs/netforensics">pymc-labs/decision-lab</a>.
+        Point it at a folder with <code>features.csv</code>, <code>edges.csv</code>,
+        and <code>labels.csv</code>:
+      </p>
+
+      <pre><code class="language-bash">
+dlab --dpack decision-packs/netforensics \
+  --data path/to/your/graph \
+  --env-file .env \
+  --work-dir ./my-run \
+  --prompt "Evaluate whether this dataset supports a [your task here] detector."
+      </code></pre>
+
+      <p>
+        It will run, and tell you something true.
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer cf" role="contentinfo">
+      <div class="wrap wide">
+        <p class="footer-copyright">
+          © 2010–2026 Ulf Aslak | Copenhagen, Denmark
+        </p>
+      </div>
+    </footer>
+
+    <!-- Google Analytics. -->
+    <script>
+      window.ga = function () {
+        ga.q.push(arguments);
+      };
+      ga.q = [];
+      ga.l = +new Date();
+      ga("create", "UA-124193587-1", "auto");
+      ga("send", "pageview");
+    </script>
+    <script
+      src="https://www.google-analytics.com/analytics.js"
+      async
+      defer
+    ></script>
+  </body>
+</html>

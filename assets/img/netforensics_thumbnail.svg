@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <rect width="300" height="300" fill="#0b0e13"/>
+  <g stroke="rgba(120,140,170,0.22)" stroke-width="0.6" fill="none">
+    <line x1="60" y1="80" x2="120" y2="120"/>
+    <line x1="120" y1="120" x2="180" y2="90"/>
+    <line x1="180" y1="90" x2="240" y2="130"/>
+    <line x1="120" y1="120" x2="150" y2="180"/>
+    <line x1="150" y1="180" x2="210" y2="210"/>
+    <line x1="210" y1="210" x2="250" y2="180"/>
+    <line x1="150" y1="180" x2="90" y2="220"/>
+    <line x1="90" y1="220" x2="50" y2="180"/>
+    <line x1="60" y1="80" x2="90" y2="220"/>
+    <line x1="180" y1="90" x2="150" y2="180"/>
+    <line x1="240" y1="130" x2="210" y2="210"/>
+    <line x1="50" y1="180" x2="120" y2="120"/>
+    <line x1="60" y1="80" x2="180" y2="90"/>
+    <line x1="40" y1="50" x2="60" y2="80"/>
+    <line x1="40" y1="50" x2="120" y2="120"/>
+    <line x1="260" y1="60" x2="240" y2="130"/>
+    <line x1="260" y1="60" x2="180" y2="90"/>
+    <line x1="270" y1="240" x2="250" y2="180"/>
+    <line x1="270" y1="240" x2="210" y2="210"/>
+    <line x1="30" y1="250" x2="50" y2="180"/>
+    <line x1="30" y1="250" x2="90" y2="220"/>
+    <line x1="150" y1="40" x2="60" y2="80"/>
+    <line x1="150" y1="40" x2="180" y2="90"/>
+    <line x1="150" y1="40" x2="120" y2="120"/>
+    <line x1="200" y1="260" x2="210" y2="210"/>
+    <line x1="200" y1="260" x2="150" y2="180"/>
+  </g>
+  <g fill="rgba(125,138,160,0.55)">
+    <circle cx="60" cy="80" r="2.0"/>
+    <circle cx="120" cy="120" r="2.0"/>
+    <circle cx="240" cy="130" r="2.0"/>
+    <circle cx="50" cy="180" r="2.0"/>
+    <circle cx="90" cy="220" r="2.0"/>
+    <circle cx="250" cy="180" r="2.0"/>
+    <circle cx="40" cy="50" r="1.6"/>
+    <circle cx="260" cy="60" r="1.6"/>
+    <circle cx="270" cy="240" r="1.6"/>
+    <circle cx="30" cy="250" r="1.6"/>
+  </g>
+  <g fill="#4ade80">
+    <circle cx="180" cy="90" r="2.6"/>
+    <circle cx="210" cy="210" r="2.6"/>
+    <circle cx="150" cy="40" r="2.6"/>
+  </g>
+  <g fill="#ff4d4d">
+    <circle cx="150" cy="180" r="3.4">
+      <animate attributeName="r" values="3.4;4.2;3.4" dur="2.4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="200" cy="260" r="3.4">
+      <animate attributeName="r" values="3.4;4.2;3.4" dur="2.8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  <text x="20" y="285" fill="#6b7785" font-family="Inter, Helvetica Neue, sans-serif" font-size="10" letter-spacing="0.08em">NETFORENSICS</text>
+</svg>
