@@ -11,7 +11,7 @@
   .viz-wrap {
     width: 100%;
     max-width: 1100px;
-    margin: 24px auto;
+    margin: 24px auto 8px auto;
     border: 1px solid #1f2731;
     border-radius: 4px;
     overflow: hidden;
@@ -21,8 +21,25 @@
   .viz-wrap iframe {
     display: block;
     width: 100%;
-    height: 640px;
+    height: 460px;
     border: 0;
+  }
+
+  .viz-poplink {
+    max-width: 1100px;
+    margin: 0 auto 28px auto;
+    text-align: right;
+    font-size: 13px;
+  }
+
+  .viz-poplink a {
+    color: #4d9fff;
+    text-decoration: none;
+    border-bottom: 1px dotted #4d9fff;
+  }
+
+  .viz-poplink a:hover {
+    border-bottom-style: solid;
   }
 
   table.results {
@@ -177,13 +194,17 @@
       </p>
 
       <p>
-        Drag the brush below to scrub through time. Each frame is the live transaction
-        network in that window. Watch what happens to the red dots (illicit) past
-        step 43.
+        Here's a single snapshot — time step 32, with 4,525 transactions and
+        342 of them labeled illicit (red). Drag to pan, scroll to zoom, grab a
+        node and pull. To watch the network reshape across all 49 timesteps,
+        with prediction-vs-truth coloring, open the full viz below.
       </p>
 
       <div class="viz-wrap">
-        <iframe src="elliptic_viz.html" title="Elliptic temporal network"></iframe>
+        <iframe src="elliptic_slice.html" title="Elliptic transaction graph — step 32"></iframe>
+      </div>
+      <div class="viz-poplink">
+        <a href="elliptic_viz.html" target="_blank" rel="noopener">Open the full interactive viz (all 49 timesteps, brush + prediction toggle) →</a>
       </div>
 
       <p>
