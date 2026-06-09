@@ -9,39 +9,38 @@
   </head>
 
   <body>
-  	<!-- Header -->
+	<!-- Header -->
     <header class="header wrap wide" role="banner">
       <div class="grid">
         <div class="branding column">
-          <a href="https://ulfaslak.dk/index.html" rel="home">Ulf Aslak</a>
+          <a href="../index.html" rel="home">Ulf Aslak</a>
         </div>
 
         <nav class="navigation column" role="navigation">
           <ul class="menu">
             <li class="menu-item">
-              <a href="https://ulfaslak.dk/about.html">About</a>
+              <a href="../about.html">About</a>
+            </li>
+            <li class="menu-item is-active">
+              <a href="../blog.html">Blog</a>
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.dk/blog.html">Blog</a>
+              <a href="../files/cv_ulf_en.pdf">CV</a>
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.dk/files/cv_ulf_en.pdf">CV</a>
+              <a href="../workshops.html">Workshops</a>
             </li>
             <li class="menu-item">
-              <a href="#">Codes</a>
-              <ul class="dropdown">
-                  <a href="https://github.com/ulfaslak">Github</a>
-                  <a href="https://observablehq.com/@ulfaslak">Observable</a>
-              </ul>
+              <a href="https://github.com/ulfaslak">Code</a>
             </li>
             <li class="menu-item">
-              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao" target="_blank">Publications</a>
+              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&amp;hl=da&amp;oi=ao" target="_blank" rel="noopener">Publications</a>
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.dk/contact.html" target="_blank">Contact</a>
+              <a href="../contact.html">Consulting</a>
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.dk/vent.html" target="_blank">Vent</a>
+              <a href="../vent.html">Vent</a>
             </li>
           </ul>
         </nav>
@@ -53,9 +52,9 @@
       <h1>Interactive network visualization</h1>
       <p><em>2018</em></p>
     </header>
-    
-    <div class="text wrap">  
-      <p>I was simply annoyed that <strong>network visualization in Python was such a horrible thing to do</strong>. And it felt even more frustrating, given the vast number of researchers out there doing research in networks using Python. After endless Googling phrases like "d3 network python" and "networkx visualize d3", I figured I would <strong>write a small webapp</strong> where I could upload a node-link graph in JSON format produced by networkx, and visualize the network using canvas and d3. <a href="https://ulfaslak.dk/works/network_styling_with_d3/index.html"><br><br>So I did just that.</a></p>
+
+    <div class="text wrap">
+      <p>I was simply annoyed that <strong>network visualization in Python was such a horrible thing to do</strong>. And it felt even more frustrating, given the vast number of researchers out there doing research in networks using Python. After endless Googling phrases like "d3 network python" and "networkx visualize d3", I figured I would <strong>write a small webapp</strong> where I could upload a node-link graph in JSON format produced by networkx, and visualize the network using canvas and d3. <a href="network_styling_with_d3/index.html"><br><br>So I did just that.</a></p>
 
       <p>Initially, I didn't actually make the thing work directly from the Python console, because it felt too cumbersome. But luckly there's awesome people out there that will pick up where you leave off and take things to the next level. <a href="http://benmaier.org/">Benjamin Maier</a> whom I met when I visited <a href="http://rocs.hu-berlin.de/">Dirk Brockmann's lab</a> wrote <strong>a Python API to my web app</strong> called 'Netwulf'. The name was his idea. AND IT ROCKS. Now I can simply take a <em>networkx.Graph</em> and launch it locally as an awesome interactive visualization like:
         <pre>
@@ -78,11 +77,11 @@
 
 
     <!-- Footer -->
-   	<footer class="footer cf" role="contentinfo">
+	<footer class="footer cf" role="contentinfo">
 	    <div class="wrap wide">
-	      <p class="footer-copyright">© 2010–2025 Ulf Aslak | Copenhagen, Denmark</p>
+	      <p class="footer-copyright">© 2010–2026 Ulf Aslak | Copenhagen, Denmark</p>
 	    </div>
-  	</footer>
+	</footer>
 
     <!-- Google Analytics. -->
     <script>

@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Ulf Aslak / Workshop quote</title>
+  <meta name="description" content="Configure a data science, statistics, Python, or AI workshop with Ulf Aslak.">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/extra.css">
+
+  <style>
+    :root {
+      --quote-ink: #262626;
+      --quote-muted: #515a64;
+      --quote-line: #e0e3e6;
+      --quote-soft: #f8fafb;
+      --quote-blue: #2980b9;
+      --quote-green: #35a36b;
+      --quote-focus: #0000ff;
+    }
+
+    .quote-page {
+      padding-bottom: 6rem;
+    }
+
+    .quote-sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .quote-intro {
+      margin: 1.2rem 0 1.6rem;
+      padding: 1rem 0;
+      border-top: 1px solid #a8a5be;
+      border-bottom: 1px solid #a8a5be;
+    }
+
+    .quote-intro p {
+      max-width: 42rem;
+      margin-bottom: 0;
+      color: var(--quote-ink);
+      font-size: 1.05rem;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    .quote-start {
+      margin-bottom: .9rem;
+    }
+
+    .quote-start h2 {
+      margin-bottom: .35rem;
+      text-align: left;
+      font-size: 1.05rem;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+
+    .quote-start p {
+      max-width: 39rem;
+      margin-bottom: 0;
+      color: var(--quote-muted);
+      font-size: .86rem;
+      line-height: 1.45;
+    }
+
+    .quote-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .quote-panel,
+    .quote-summary {
+      border: 1px solid var(--quote-line);
+      background: #fff;
+      border-radius: 4px;
+    }
+
+    .quote-panel {
+      padding: .9rem;
+      margin-bottom: .75rem;
+    }
+
+    .quote-panel h2,
+    .quote-summary h2 {
+      margin: 0 0 1rem;
+      text-align: left;
+      font-size: .98rem;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+
+    .quote-panel p,
+    .quote-small {
+      color: var(--quote-muted);
+      font-size: .82rem;
+      line-height: 1.45;
+      margin-bottom: .75rem;
+    }
+
+    .quote-topic-list {
+      display: grid;
+      gap: .4rem;
+    }
+
+    .quote-topic {
+      position: relative;
+      display: block;
+      padding: .62rem .7rem;
+      border: 1px solid var(--quote-line);
+      border-radius: 4px;
+      background: #fff;
+      color: var(--quote-ink);
+      font-family: "WorkSans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: .86rem;
+      line-height: 1.25;
+      cursor: pointer;
+      transition: background .16s ease, border-color .16s ease;
+    }
+
+    .quote-topic:hover {
+      border-color: var(--quote-blue);
+    }
+
+    .quote-topic input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .quote-topic-head {
+      display: flex;
+      justify-content: space-between;
+      gap: .75rem;
+      align-items: baseline;
+    }
+
+    .quote-topic-head > span {
+      min-width: 0;
+    }
+
+    .quote-topic-head b,
+    .quote-topic-head small,
+    .quote-topic-head em,
+    .quote-topic-detail {
+      display: block;
+    }
+
+    .quote-topic-head b {
+      margin-bottom: .15rem;
+    }
+
+    .quote-topic-head small,
+    .quote-topic-head em {
+      color: var(--quote-muted);
+      font-size: .72rem;
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    .quote-topic-head em {
+      white-space: nowrap;
+    }
+
+    .quote-topic-detail {
+      max-height: 0;
+      overflow: hidden;
+      color: var(--quote-muted);
+      font-size: .78rem;
+      line-height: 1.42;
+      opacity: 0;
+      transition: max-height .18s ease, opacity .18s ease, margin-top .18s ease;
+    }
+
+    .quote-topic:has(input:focus-visible),
+    .quote-tile:has(input:focus-visible) {
+      outline: 2px solid var(--quote-focus);
+      outline-offset: 2px;
+    }
+
+    .quote-topic:has(input:checked) {
+      border-color: var(--quote-blue);
+      background: var(--quote-soft);
+    }
+
+    .quote-topic:has(input:checked) .quote-topic-detail {
+      max-height: 10rem;
+      margin-top: .45rem;
+      opacity: 1;
+    }
+
+    .quote-format-grid,
+    .quote-delivery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+      gap: .5rem;
+    }
+
+    .quote-tile {
+      position: relative;
+      border-radius: 4px;
+      padding: .6rem;
+      border: 1px solid var(--quote-line);
+      cursor: pointer;
+      transition: background .16s ease, border-color .16s ease;
+    }
+
+    .quote-tile input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .quote-tile b,
+    .quote-tile span {
+      display: block;
+    }
+
+    .quote-tile b {
+      margin-bottom: .18rem;
+      font-size: .86rem;
+    }
+
+    .quote-tile span {
+      color: var(--quote-muted);
+      font-size: .73rem;
+      line-height: 1.35;
+    }
+
+    .quote-tile:has(input:checked) {
+      border-color: var(--quote-blue);
+      background: var(--quote-soft);
+    }
+
+    .quote-range {
+      margin-bottom: .82rem;
+    }
+
+    .quote-range:last-child {
+      margin-bottom: 0;
+    }
+
+    .quote-range label {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: .35rem;
+      color: var(--quote-ink);
+      font-weight: 500;
+      font-size: .85rem;
+    }
+
+    .quote-range-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: .35rem;
+      color: var(--quote-ink);
+      font-weight: 500;
+      font-size: .85rem;
+    }
+
+    .quote-range-title {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      min-width: 0;
+    }
+
+    .quote-range-title label {
+      display: inline;
+      margin: 0;
+      font: inherit;
+    }
+
+    .quote-range output {
+      color: var(--quote-blue);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .quote-range input[type="range"] {
+      width: 100%;
+      accent-color: var(--quote-blue);
+    }
+
+    .quote-help-wrap {
+      position: relative;
+      display: inline-block;
+      flex: 0 0 auto;
+    }
+
+    .quote-help {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: .95rem;
+      height: .95rem;
+      padding: 0;
+      border: 1px solid #a8a5be;
+      border-radius: 50%;
+      color: var(--quote-muted);
+      background: #fff;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+
+    .quote-help svg {
+      width: .68rem;
+      height: .68rem;
+      display: block;
+      stroke: currentColor;
+    }
+
+    .quote-help:focus-visible {
+      outline: 2px solid var(--quote-focus);
+      outline-offset: 2px;
+    }
+
+    .quote-help:hover,
+    .quote-help:focus {
+      border-color: var(--quote-blue);
+      color: var(--quote-blue);
+      background: var(--quote-soft);
+    }
+
+    .quote-help-box {
+      position: absolute;
+      left: 0;
+      top: 1.35rem;
+      z-index: 5;
+      width: min(18rem, calc(100vw - 2rem));
+      padding: .65rem .7rem;
+      border: 1px solid var(--quote-line);
+      border-radius: 4px;
+      background: #fff;
+      color: var(--quote-muted);
+      box-shadow: 0 .35rem 1rem rgba(0, 0, 0, .08);
+      font-size: .74rem;
+      font-weight: 400;
+      line-height: 1.4;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(-.2rem);
+      visibility: hidden;
+      transition: opacity .12s ease, transform .12s ease, visibility .12s ease;
+    }
+
+    .quote-help-wrap:hover .quote-help-box,
+    .quote-help:focus + .quote-help-box {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+
+    .quote-addon-list {
+      display: grid;
+      gap: .4rem;
+    }
+
+    .quote-addon {
+      display: flex;
+      align-items: flex-start;
+      gap: .55rem;
+      padding: .58rem;
+      border: 1px solid var(--quote-line);
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .quote-addon input {
+      width: 1rem;
+      height: 1rem;
+      margin-top: .15rem;
+      accent-color: var(--quote-blue);
+      flex: 0 0 auto;
+    }
+
+    .quote-addon b,
+    .quote-addon span {
+      display: block;
+    }
+
+    .quote-addon span {
+      color: var(--quote-muted);
+      font-size: .74rem;
+      line-height: 1.35;
+    }
+
+    .quote-fields {
+      display: grid;
+      gap: .65rem;
+    }
+
+    .quote-fields label {
+      margin: 0;
+      color: var(--quote-ink);
+      font-weight: 500;
+      font-size: .85rem;
+    }
+
+    .quote-fields input,
+    .quote-fields textarea {
+      margin-top: .35rem;
+      min-height: 2.2rem;
+      font-family: "WorkSans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      line-height: 1.4;
+      font-size: .86rem;
+    }
+
+    .quote-summary {
+      padding: .9rem;
+      top: 1rem;
+    }
+
+    .quote-price {
+      margin: .25rem 0 .25rem;
+      font-size: clamp(2rem, 10vw, 3.25rem);
+      line-height: .95;
+      font-weight: 700;
+      color: var(--quote-ink);
+      letter-spacing: 0;
+    }
+
+    .quote-tax {
+      margin: 0 0 .55rem;
+      color: var(--quote-muted);
+      font-size: .74rem;
+      line-height: 1.3;
+    }
+
+    .quote-explainer {
+      color: var(--quote-muted);
+      line-height: 1.45;
+      margin-bottom: .9rem;
+      font-size: .84rem;
+    }
+
+    .quote-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--quote-line);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: .9rem;
+    }
+
+    .quote-metric {
+      padding: .55rem .4rem;
+      text-align: center;
+      border-right: 1px solid var(--quote-line);
+    }
+
+    .quote-metric:last-child {
+      border-right: 0;
+    }
+
+    .quote-metric b,
+    .quote-metric span {
+      display: block;
+    }
+
+    .quote-metric b {
+      color: var(--quote-ink);
+      font-size: .95rem;
+    }
+
+    .quote-metric span {
+      color: var(--quote-muted);
+      font-size: .66rem;
+    }
+
+    .quote-lines {
+      margin: 0 0 .9rem;
+      padding: 0;
+    }
+
+    .quote-lines li {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .35rem 0;
+      border-bottom: 1px solid #edf0f3;
+      color: var(--quote-muted);
+      font-size: .78rem;
+    }
+
+    .quote-lines span {
+      min-width: 0;
+    }
+
+    .quote-lines li::before {
+      content: none;
+    }
+
+    .quote-lines b {
+      color: var(--quote-ink);
+      white-space: nowrap;
+    }
+
+    .quote-actions {
+      display: grid;
+      gap: .45rem;
+    }
+
+    .quote-button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 2.35rem;
+      padding: .62rem .8rem;
+      border: 1px solid var(--quote-blue);
+      border-radius: 4px;
+      background: var(--quote-blue);
+      color: #fff;
+      font-family: "WorkSans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: .84rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .quote-button:hover,
+    .quote-button:focus {
+      color: #fff;
+      border-bottom: 1px solid var(--quote-blue);
+      background: #226f9f;
+    }
+
+    .quote-button:disabled,
+    .quote-button.is-disabled,
+    .quote-button[aria-disabled="true"] {
+      cursor: not-allowed;
+      opacity: .45;
+      pointer-events: none;
+    }
+
+    .quote-button:disabled:hover,
+    .quote-button.is-disabled:hover,
+    .quote-button[aria-disabled="true"]:hover {
+      background: var(--quote-blue);
+      color: #fff;
+    }
+
+    .quote-button.secondary {
+      background: #fff;
+      color: var(--quote-blue);
+    }
+
+    .quote-button.secondary:hover,
+    .quote-button.secondary:focus {
+      background: var(--quote-soft);
+      color: var(--quote-blue);
+    }
+
+    .quote-button.secondary:disabled,
+    .quote-button.secondary.is-disabled {
+      background: #fff;
+      color: var(--quote-blue);
+    }
+
+    .quote-required-note {
+      color: var(--quote-muted);
+      font-size: .72rem;
+      line-height: 1.35;
+      margin: .25rem 0 0;
+    }
+
+    .quote-required-note.is-hidden {
+      display: none;
+    }
+
+    .quote-note {
+      color: var(--quote-muted);
+      font-size: .72rem;
+      line-height: 1.45;
+      margin: .85rem 0 0;
+    }
+
+    @media all and (min-width: 58em) {
+      .quote-page.wrap {
+        max-width: 58rem;
+      }
+
+      .quote-shell {
+        grid-template-columns: minmax(0, 1.5fr) minmax(15.5rem, .75fr);
+      }
+
+      .quote-summary {
+        position: sticky;
+      }
+    }
+
+    @media all and (max-width: 36em) {
+      .quote-panel,
+      .quote-summary {
+        padding: 1rem;
+      }
+
+      .quote-topic-head {
+        display: block;
+      }
+
+      .quote-topic-head em {
+        margin-top: .18rem;
+      }
+
+      .quote-help-box {
+        width: min(13rem, calc(100vw - 2rem));
+      }
+
+      .quote-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .quote-metric {
+        border-right: 0;
+        border-bottom: 1px solid var(--quote-line);
+      }
+
+      .quote-metric:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header wrap wide">
+    <div class="grid">
+      <div class="branding column">
+        <a href="index.html" rel="home">Ulf Aslak</a>
+      </div>
+
+      <nav class="navigation column">
+        <ul class="menu">
+          <li class="menu-item">
+            <a href="about.html">About</a>
+          </li>
+          <li class="menu-item">
+            <a href="blog.html">Blog</a>
+          </li>
+          <li class="menu-item">
+            <a href="files/cv_ulf_en.pdf">CV</a>
+          </li>
+          <li class="menu-item is-active">
+            <a href="workshops.html">Workshops</a>
+          </li>
+          <li class="menu-item">
+            <a href="https://github.com/ulfaslak">Code</a>
+          </li>
+          <li class="menu-item">
+            <a
+              href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&amp;hl=da&amp;oi=ao"
+              target="_blank" rel="noopener">Publications</a>
+          </li>
+          <li class="menu-item">
+            <a href="contact.html">Consulting</a>
+          </li>
+          <li class="menu-item">
+            <a href="vent.html">Vent</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="quote-page wrap">
+    <h1 class="quote-sr-only">Workshop quote configurator</h1>
+    <section class="quote-intro">
+      <p>
+        Pick a rough shape for a company workshop or course. I have taught data science,
+        statistics, Python, and AI topics for 10+ years; this gives us a serious starting
+        point without turning scoping into a sales call.
+      </p>
+    </section>
+
+    <section class="quote-start">
+      <h2>Design your workshop</h2>
+      <p>Choose the format, track, scope, delivery, and any add-ons. The estimate updates immediately.</p>
+    </section>
+
+    <div class="quote-shell">
+      <form id="quoteForm" aria-label="Workshop quote configurator">
+        <button class="quote-sr-only" type="submit" tabindex="-1">Update quote</button>
+        <section class="quote-panel">
+          <h2>Format</h2>
+          <div class="quote-format-grid">
+            <label class="quote-tile">
+              <input type="radio" name="format" value="half" checked>
+              <b>Half day</b>
+              <span>Conceptual intro, demos, discussion, light exercises.</span>
+            </label>
+            <label class="quote-tile">
+              <input type="radio" name="format" value="full">
+              <b>Full day</b>
+              <span>Hands-on workshop with exercises and room for team examples.</span>
+            </label>
+            <label class="quote-tile">
+              <input type="radio" name="format" value="two">
+              <b>Two days</b>
+              <span>Deeper course structure, projects, feedback, and iteration.</span>
+            </label>
+            <label class="quote-tile">
+              <input type="radio" name="format" value="series">
+              <b>Course series</b>
+              <span>Several sessions with homework, check-ins, and reusable material.</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="quote-panel">
+          <h2>Workshop track</h2>
+          <p>Pick the main thing your team wants to learn. I can weave in related examples, but the quote is anchored on one track.</p>
+          <div class="quote-topic-list" id="topicOptions">
+            <label class="quote-topic">
+              <input type="radio" name="topic" value="agentic" checked>
+              <span class="quote-topic-head">
+                <span><b>Context engineering and coding agents</b><small>For software teams, data scientists, and technical leads.</small></span>
+                <em>Applied AI</em>
+              </span>
+              <span class="quote-topic-detail">
+                Practical workflows for using coding agents without losing taste, review discipline, or code ownership.
+                Usually covers prompt/context design, repo navigation, task decomposition, verification, and team norms.
+              </span>
+            </label>
+            <label class="quote-topic">
+              <input type="radio" name="topic" value="genai">
+              <span class="quote-topic-head">
+                <span><b>Generative AI for work</b><small>For teams or leaders who need a useful mental model.</small></span>
+                <em>AI literacy</em>
+              </span>
+              <span class="quote-topic-detail">
+                A grounded introduction to what modern AI systems are good at, where they fail, and how to use them in everyday work.
+                Can be technical or non-technical depending on the audience.
+              </span>
+            </label>
+            <label class="quote-topic">
+              <input type="radio" name="topic" value="mmm">
+              <span class="quote-topic-head">
+                <span><b>Bayesian marketing mix modeling</b><small>For marketing, analytics, and measurement teams.</small></span>
+                <em>MMM</em>
+              </span>
+              <span class="quote-topic-detail">
+                A focused track on media contribution, saturation, adstock, uncertainty, calibration, and decision-making.
+                Best for teams that already work with marketing or business outcome data.
+              </span>
+            </label>
+            <label class="quote-topic">
+              <input type="radio" name="topic" value="python">
+              <span class="quote-topic-head">
+                <span><b>Python for analysis or software work</b><small>From first notebooks to maintainable project structure.</small></span>
+                <em>Python</em>
+              </span>
+              <span class="quote-topic-detail">
+                For people moving from Excel, MATLAB, Stata, SAS, or ad hoc notebooks into Python.
+                Can focus on data analysis, package hygiene, testing, APIs, or modern developer workflows.
+              </span>
+            </label>
+            <label class="quote-topic">
+              <input type="radio" name="topic" value="pymc">
+              <span class="quote-topic-head">
+                <span><b>Building Bayesian statistical models with PyMC</b><small>Probabilistic modeling from assumptions to diagnostics.</small></span>
+                <em>PyMC</em>
+              </span>
+              <span class="quote-topic-detail">
+                For analysts and scientists who want to build models, not just run procedures.
+                Usually includes generative thinking, priors, likelihoods, MCMC intuition, diagnostics, and PyMC workflows.
+              </span>
+            </label>
+            <label class="quote-topic">
+              <input type="radio" name="topic" value="datascience">
+              <span class="quote-topic-head">
+                <span><b>Applied data science and machine learning</b><small>Modeling, validation, and useful predictions.</small></span>
+                <em>Data science</em>
+              </span>
+              <span class="quote-topic-detail">
+                A hands-on track around the full modeling loop: framing, data prep, baselines, supervised learning,
+                evaluation, leakage, interpretability, and communicating results.
+              </span>
+            </label>
+            <label class="quote-topic">
+              <input type="radio" name="topic" value="deeplearning">
+              <span class="quote-topic-head">
+                <span><b>Deep learning from intuition to implementation</b><small>Neural networks as models you can reason about.</small></span>
+                <em>Deep learning</em>
+              </span>
+              <span class="quote-topic-detail">
+                Builds from simple models to neural networks with enough math to understand what is happening.
+                Can cover embeddings, optimization, architectures, and practical training/debugging.
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <section class="quote-panel">
+          <h2>Scope</h2>
+          <div class="quote-range">
+            <div class="quote-range-head">
+              <span class="quote-range-title">
+                <label for="participants">Participants</label>
+                <span class="quote-help-wrap">
+                  <button class="quote-help" type="button" aria-label="How participants affect price" aria-describedby="participantsHelp">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <path d="M12 10v6"></path>
+                      <path d="M12 7h.01"></path>
+                    </svg>
+                  </button>
+                  <span class="quote-help-box" id="participantsHelp">
+                    The base price includes up to 12 people per cohort. Above that, the quote adds a small per-person
+                    amount for facilitation load, exercise support, and follow-up questions.
+                  </span>
+                </span>
+              </span>
+              <output id="participantsOut">12 people</output>
+            </div>
+            <input id="participants" name="participants" type="range" min="4" max="60" step="1" value="12">
+          </div>
+          <div class="quote-range">
+            <div class="quote-range-head">
+              <span class="quote-range-title">
+                <label for="cohorts">Cohorts</label>
+                <span class="quote-help-wrap">
+                  <button class="quote-help" type="button" aria-label="How cohorts affect price" aria-describedby="cohortsHelp">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <path d="M12 10v6"></path>
+                      <path d="M12 7h.01"></path>
+                    </svg>
+                  </button>
+                  <span class="quote-help-box" id="cohortsHelp">
+                    A cohort is one run-through of the workshop. If you have 36 participants, one cohort means one large
+                    workshop; two cohorts means I run the workshop for 18 participants twice. Each extra cohort adds
+                    50% of the live-workshop price because the material is already prepared, but teaching time increases.
+                  </span>
+                </span>
+              </span>
+              <output id="cohortsOut">1 group</output>
+            </div>
+            <input id="cohorts" name="cohorts" type="range" min="1" max="6" step="1" value="1">
+          </div>
+          <div class="quote-range">
+            <div class="quote-range-head">
+              <span class="quote-range-title">
+                <label for="tailoring">Tailoring</label>
+                <span class="quote-help-wrap">
+                  <button class="quote-help" type="button" aria-label="How tailoring affects price" aria-describedby="tailoringHelp">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <path d="M12 10v6"></path>
+                      <path d="M12 7h.01"></path>
+                    </svg>
+                  </button>
+                  <span class="quote-help-box" id="tailoringHelp">
+                    Tailoring is prep time for making examples, exercises, slides, or demos fit your team. Low tailoring
+                    reuses proven material; high tailoring means more bespoke cases, code, data, or workflow design.
+                  </span>
+                </span>
+              </span>
+              <output id="tailoringOut">6 hours</output>
+            </div>
+            <input id="tailoring" name="tailoring" type="range" min="0" max="30" step="1" value="6">
+          </div>
+        </section>
+
+        <section class="quote-panel">
+          <h2>Delivery</h2>
+          <div class="quote-delivery-grid">
+            <label class="quote-tile">
+              <input type="radio" name="delivery" value="online" checked>
+              <b>Online</b>
+              <span>Teams, Zoom, or similar.</span>
+            </label>
+            <label class="quote-tile">
+              <input type="radio" name="delivery" value="onsite">
+              <b>On site</b>
+              <span>At your office, travel handled separately.</span>
+            </label>
+            <label class="quote-tile">
+              <input type="radio" name="delivery" value="hybrid">
+              <b>Hybrid</b>
+              <span>In-room plus remote participation.</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="quote-panel">
+          <h2>Optional add-ons</h2>
+          <div class="quote-addon-list">
+            <label class="quote-addon">
+              <input type="checkbox" name="addon_recap" value="recap" data-addon>
+              <span><b>Written recap</b><span>Short summary with links, next steps, and reading list.</span></span>
+            </label>
+            <label class="quote-addon">
+              <input type="checkbox" name="addon_officehours" value="officehours" data-addon>
+              <span><b>Follow-up office hour</b><span>One online session after the workshop for questions.</span></span>
+            </label>
+            <label class="quote-addon">
+              <input type="checkbox" name="addon_data" value="data" data-addon>
+              <span><b>Your data or codebase</b><span>Exercises adapted to your actual data, repo, or workflows.</span></span>
+            </label>
+          </div>
+        </section>
+
+        <section class="quote-panel">
+          <h2>Brief</h2>
+          <div class="quote-fields">
+            <label>
+              Organization
+              <input id="org" name="org" type="text" placeholder="Company, team, or institution" required>
+            </label>
+            <label>
+              What should participants be able to do afterwards?
+              <textarea id="brief" name="brief" rows="5" placeholder="A few sentences are enough. Example: help data analysts use coding agents responsibly in their Python workflow." required></textarea>
+            </label>
+          </div>
+        </section>
+      </form>
+
+      <aside class="quote-summary" aria-live="polite">
+        <h2>Estimated quote</h2>
+        <div class="quote-price" id="quotePrice">0 kr.</div>
+        <p class="quote-tax">DKK, excl. VAT</p>
+        <p class="quote-explainer" id="quoteExplainer"></p>
+
+        <div class="quote-metrics">
+          <div class="quote-metric">
+            <b id="metricLiveHours">0</b>
+            <span>live hours</span>
+          </div>
+          <div class="quote-metric">
+            <b id="metricParticipants">0</b>
+            <span>participants</span>
+          </div>
+          <div class="quote-metric">
+            <b id="metricTechnical">Mid</b>
+            <span>technical</span>
+          </div>
+        </div>
+
+        <ul class="quote-lines text" id="quoteLines"></ul>
+
+        <div class="quote-actions">
+          <a class="quote-button is-disabled" id="emailDraft" aria-disabled="true" tabindex="-1">Create email draft</a>
+          <button class="quote-button secondary" id="copySummary" type="button" disabled>Copy summary</button>
+        </div>
+        <p class="quote-required-note" id="requiredNote">Add organization and workshop goal to create an email draft.</p>
+        <p class="quote-note">
+          Reusable working materials are included when the format calls for them. Travel, venue,
+          special licenses, and unusually large prep needs are handled separately.
+        </p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer cf">
+    <div class="wrap wide">
+      <p class="footer-copyright">© 2010–2026 Ulf Aslak | Copenhagen, Denmark</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var form = document.getElementById("quoteForm");
+      var priceEl = document.getElementById("quotePrice");
+      var explainerEl = document.getElementById("quoteExplainer");
+      var linesEl = document.getElementById("quoteLines");
+      var emailEl = document.getElementById("emailDraft");
+      var copyEl = document.getElementById("copySummary");
+      var requiredNoteEl = document.getElementById("requiredNote");
+      var orgEl = document.getElementById("org");
+      var briefEl = document.getElementById("brief");
+
+      var formats = {
+        half: { label: "Half day", summary: "Half-day workshop", base: 16000, deliveryHours: 4 },
+        full: { label: "Full day", summary: "Full-day workshop", base: 24000, deliveryHours: 7 },
+        two: { label: "Two days", summary: "Two-day workshop", base: 44000, deliveryHours: 14 },
+        series: { label: "Course series", summary: "Course series", base: 68000, deliveryHours: 21 }
+      };
+
+      var topics = {
+        agentic: {
+          label: "Context engineering and coding agents",
+          amount: 2000,
+          technical: "Mid",
+          email: "Practical workflows for using coding agents in real software or data work."
+        },
+        genai: {
+          label: "Generative AI for work",
+          amount: 0,
+          technical: "Low",
+          email: "A grounded mental model for useful, responsible AI use at work."
+        },
+        mmm: {
+          label: "Bayesian marketing mix modeling",
+          amount: 6500,
+          technical: "High",
+          email: "Media contribution, saturation, adstock, uncertainty, calibration, and marketing decisions."
+        },
+        python: {
+          label: "Python for analysis or software work",
+          amount: 1500,
+          technical: "Mid",
+          email: "Python skills for analysis, automation, notebooks, packages, or developer workflows."
+        },
+        pymc: {
+          label: "Building Bayesian statistical models with PyMC",
+          amount: 4500,
+          technical: "High",
+          email: "Generative modeling, priors, likelihoods, posterior inference, diagnostics, and PyMC workflows."
+        },
+        datascience: {
+          label: "Applied data science and machine learning",
+          amount: 2500,
+          technical: "Mid",
+          email: "Hands-on modeling, validation, evaluation, interpretation, and communication."
+        },
+        deeplearning: {
+          label: "Deep learning from intuition to implementation",
+          amount: 4500,
+          technical: "High",
+          email: "Neural network intuition, implementation, training, and debugging."
+        }
+      };
+
+      var delivery = {
+        online: { label: "Online", summary: "delivered online", amount: 0 },
+        onsite: { label: "On site", summary: "delivered on site", amount: 4500 },
+        hybrid: { label: "Hybrid", summary: "delivered as a hybrid session", amount: 3500 }
+      };
+
+      var addons = {
+        recap: { label: "Written recap", amount: 2500 },
+        officehours: { label: "Follow-up office hour", amount: 3500 },
+        data: { label: "Your data or codebase", amount: 9000 }
+      };
+
+      var includedParticipants = 12;
+      var participantRate = 250;
+      var tailoringRate = 800;
+      var extraCohortRate = .5;
+
+      function checkedValue(name) {
+        return form.querySelector("[name='" + name + "']:checked").value;
+      }
+
+      function checkedValues(name) {
+        return Array.prototype.slice.call(form.querySelectorAll("[name='" + name + "']:checked")).map(function (input) {
+          return input.value;
+        });
+      }
+
+      function kr(value) {
+        return Math.round(value).toLocaleString("da-DK") + " kr.";
+      }
+
+      function legacyCopyText(text) {
+        return new Promise(function (resolve, reject) {
+          var textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.setAttribute("readonly", "");
+          textarea.style.position = "fixed";
+          textarea.style.top = "0";
+          textarea.style.left = "0";
+          textarea.style.width = "1px";
+          textarea.style.height = "1px";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.focus();
+          textarea.select();
+          textarea.setSelectionRange(0, textarea.value.length);
+
+          try {
+            if (document.execCommand("copy")) {
+              resolve();
+            } else {
+              reject(new Error("Copy command failed"));
+            }
+          } catch (error) {
+            reject(error);
+          } finally {
+            document.body.removeChild(textarea);
+          }
+        });
+      }
+
+      function copyText(text) {
+        return legacyCopyText(text).catch(function () {
+          if (navigator.clipboard && window.isSecureContext) {
+            return navigator.clipboard.writeText(text);
+          }
+
+          return Promise.reject(new Error("Clipboard unavailable"));
+        });
+      }
+
+      function line(label, amount) {
+        var li = document.createElement("li");
+        var name = document.createElement("span");
+        var price = document.createElement("b");
+        name.textContent = label;
+        price.textContent = amount === 0 ? "incl." : kr(amount);
+        li.appendChild(name);
+        li.appendChild(price);
+        return li;
+      }
+
+      function setActionsEnabled(isEnabled, mailHref, summary) {
+        if (isEnabled) {
+          emailEl.href = mailHref;
+          emailEl.classList.remove("is-disabled");
+          emailEl.setAttribute("aria-disabled", "false");
+          emailEl.removeAttribute("tabindex");
+          copyEl.disabled = false;
+          if (copyEl.textContent.trim() !== "Copied") {
+            copyEl.textContent = "Copy summary";
+          }
+          copyEl.dataset.summary = summary;
+          requiredNoteEl.classList.add("is-hidden");
+          return;
+        }
+
+        emailEl.removeAttribute("href");
+        emailEl.classList.add("is-disabled");
+        emailEl.setAttribute("aria-disabled", "true");
+        emailEl.setAttribute("tabindex", "-1");
+        copyEl.disabled = true;
+        copyEl.textContent = "Copy summary";
+        delete copyEl.dataset.summary;
+        requiredNoteEl.classList.remove("is-hidden");
+      }
+
+      function calculate() {
+        var format = formats[checkedValue("format")];
+        var topic = topics[checkedValue("topic")];
+
+        var participantCount = Number(document.getElementById("participants").value);
+        var cohortCount = Number(document.getElementById("cohorts").value);
+        var tailoringHours = Number(document.getElementById("tailoring").value);
+        var deliveryMode = delivery[checkedValue("delivery")];
+        var selectedAddons = Array.prototype.slice.call(form.querySelectorAll("[data-addon]:checked")).map(function (input) {
+          return input.value;
+        });
+        var org = orgEl.value.trim();
+        var brief = briefEl.value.trim();
+
+        document.getElementById("participantsOut").textContent = participantCount + " " + (participantCount === 1 ? "person" : "people");
+        document.getElementById("cohortsOut").textContent = cohortCount + " " + (cohortCount === 1 ? "group" : "groups");
+        document.getElementById("tailoringOut").textContent = tailoringHours + " " + (tailoringHours === 1 ? "hour" : "hours");
+
+        var peoplePerCohort = Math.ceil(participantCount / cohortCount);
+        var includedParticipantSeats = includedParticipants * cohortCount;
+        var extraParticipants = Math.max(0, participantCount - includedParticipantSeats);
+        var participantAdjustment = extraParticipants * participantRate;
+        var tailoringAmount = tailoringHours * tailoringRate;
+        var addonAmount = selectedAddons.reduce(function (sum, key) { return sum + addons[key].amount; }, 0);
+        var liveWorkshopAmount = format.base + topic.amount + participantAdjustment + deliveryMode.amount;
+        var extraCohorts = Math.max(0, cohortCount - 1);
+        var cohortAdjustment = extraCohorts * Math.round(liveWorkshopAmount * extraCohortRate);
+        var total = format.base + topic.amount + participantAdjustment + cohortAdjustment + tailoringAmount + deliveryMode.amount + addonAmount;
+        var liveHours = format.deliveryHours * cohortCount;
+
+        priceEl.textContent = kr(total);
+        explainerEl.textContent = format.summary + " for " + participantCount + " participants" + (cohortCount > 1 ? " across " + cohortCount + " cohorts, about " + peoplePerCohort + " per cohort" : "") + ", " + deliveryMode.summary + ". Focus: " + topic.label + ".";
+        document.getElementById("metricLiveHours").textContent = liveHours;
+        document.getElementById("metricParticipants").textContent = participantCount;
+        document.getElementById("metricTechnical").textContent = topic.technical;
+
+        linesEl.innerHTML = "";
+        linesEl.appendChild(line("Base package: " + format.label, format.base));
+        linesEl.appendChild(line("Track: " + topic.label, topic.amount));
+        linesEl.appendChild(line(extraParticipants ? "Participants above included seats: " + extraParticipants + " x " + kr(participantRate) : "Participants: up to " + includedParticipantSeats + " included", participantAdjustment));
+        linesEl.appendChild(line(extraCohorts ? "Extra cohort delivery: " + extraCohorts + " x 50%" : "Cohorts: 1 delivery", cohortAdjustment));
+        linesEl.appendChild(line("Tailoring: " + tailoringHours + " hours x " + kr(tailoringRate), tailoringAmount));
+        linesEl.appendChild(line("Delivery: " + deliveryMode.label, deliveryMode.amount));
+        linesEl.appendChild(line("Reusable working materials", 0));
+        selectedAddons.forEach(function (key) {
+          linesEl.appendChild(line(addons[key].label, addons[key].amount));
+        });
+
+        var addonLabels = selectedAddons.map(function (key) { return addons[key].label; });
+        var body = [
+          "Hi Ulf,",
+          "",
+          "I configured a workshop estimate on your website and would like to discuss it.",
+          "",
+          "Organization: " + (org || "[add organization]"),
+          "Format: " + format.label,
+          "Workshop track: " + topic.label,
+          "Track description: " + topic.email,
+          "Technical level: " + topic.technical,
+          "Participants: " + participantCount + (cohortCount > 1 ? " total, about " + peoplePerCohort + " per cohort" : ""),
+          "Cohorts: " + cohortCount,
+          "Live teaching hours: " + liveHours,
+          "Tailoring: " + tailoringHours + " hours",
+          "Delivery: " + deliveryMode.label,
+          "Included: reusable working materials where useful",
+          "Add-ons: " + (addonLabels.length ? addonLabels.join(", ") : "None"),
+          "Estimated quote: " + kr(total) + " excl. VAT",
+          "",
+          "Goal / context:",
+          brief || "[add a few sentences]",
+          "",
+          "Best,"
+        ].join("\n");
+
+        var isReady = org.length > 0 && brief.length > 0;
+        var mailHref = "mailto:ulfaslak@gmail.com?subject=" + encodeURIComponent("Workshop quote: " + org) + "&body=" + encodeURIComponent(body);
+        setActionsEnabled(isReady, mailHref, body);
+      }
+
+      form.addEventListener("input", calculate);
+      form.addEventListener("change", calculate);
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+      });
+      emailEl.addEventListener("click", function (event) {
+        if (emailEl.getAttribute("aria-disabled") === "true") {
+          event.preventDefault();
+        }
+      });
+      copyEl.addEventListener("click", function () {
+        if (copyEl.disabled) return;
+
+        var text = copyEl.dataset.summary || "";
+        copyText(text).then(function () {
+          copyEl.textContent = "Copied";
+          window.setTimeout(function () { copyEl.textContent = "Copy summary"; }, 1400);
+        }, function () {
+          copyEl.textContent = "Copy failed";
+          window.setTimeout(function () { copyEl.textContent = "Copy summary"; }, 1800);
+        });
+      });
+
+      calculate();
+    }());
+  </script>
+</body>
+
+</html>

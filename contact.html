@@ -1,13 +1,14 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Ulf Aslak / Freelance</title>
+  <title>Ulf Aslak / Consulting</title>
   <meta name="description" content="Physicist / Data Scientist">
 
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <link rel="stylesheet" href="assets/css/extra.css" />
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/extra.css">
 
   <script src="assets/js/copyToClipboard.js"></script>
   <script src="assets/js/vendor/sweetalert.min.js"></script>
@@ -15,39 +16,38 @@
 
 <body>
   <!-- Header -->
-  <header class="header wrap wide" role="banner">
+  <header class="header wrap wide">
     <div class="grid">
       <div class="branding column">
         <a href="index.html" rel="home">Ulf Aslak</a>
       </div>
 
-      <nav class="navigation column" role="navigation">
+      <nav class="navigation column">
         <ul class="menu">
           <li class="menu-item">
-            <a href="https://ulfaslak.dk/about.html">About</a>
+            <a href="about.html">About</a>
           </li>
           <li class="menu-item">
-            <a href="https://ulfaslak.dk/blog.html">Blog</a>
+            <a href="blog.html">Blog</a>
           </li>
           <li class="menu-item">
-            <a href="https://ulfaslak.dk/files/cv_ulf_en.pdf">CV</a>
+            <a href="files/cv_ulf_en.pdf">CV</a>
           </li>
           <li class="menu-item">
-            <a href="#">Codes</a>
-            <ul class="dropdown">
-              <a href="https://github.com/ulfaslak">Github</a>
-              <a href="https://observablehq.com/@ulfaslak">Observable</a>
-            </ul>
+            <a href="workshops.html">Workshops</a>
           </li>
           <li class="menu-item">
-            <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao"
-              target="_blank">Publications</a>
+            <a href="https://github.com/ulfaslak">Code</a>
           </li>
           <li class="menu-item">
-            <a href="https://ulfaslak.dk/contact.html" target="_blank">Contact</a>
+            <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&amp;hl=da&amp;oi=ao"
+              target="_blank" rel="noopener">Publications</a>
+          </li>
+          <li class="menu-item is-active">
+            <a href="contact.html">Consulting</a>
           </li>
           <li class="menu-item">
-            <a href="https://ulfaslak.dk/vent.html" target="_blank">Vent</a>
+            <a href="vent.html">Vent</a>
           </li>
         </ul>
       </nav>
@@ -55,79 +55,55 @@
   </header>
 
   <!-- Content -->
-  <main class="main" role="main">
-
+  <main class="main">
     <div class="wrap">
+      <section class="consulting-intro text">
+        <p>
+          I help teams build better statistical, machine-learning, and AI systems,
+          and I teach the parts that make those systems usable in practice.
+        </p>
+      </section>
 
       <div class="text">
-        <p>
-          I am available for consulting work related to model development, advising, and speaking engagements.
-          I do not currently accept offers for full-time employment, unless under special circumstances.
-        </p>
-
-        <h2>I am an expert on</h2>
-
-        <p>
+        <h2>I offer</h2>
         <ul>
-          <li><em><b>Marketing science:</b></em> I have built multiple high-impact marketing mix models (MMMs). I built
-            the—currently in production—MMM at Precis Digital, which powers weekly marketing performance insights for 20+
-            major brands. I also co-developed a multi-hierarchy MMM for one of the world's largest FMCG companies.
-          <li><em><b>Data visualization:</b></em> I build beautiful interactive data visualizations from scratch. I
-            deploy things in pure JS, HTML and CSS, sometimes using a lightweight web framework—like Svelte—depending on
-            scale. Portfolio examples on my <a href="https://ulfaslak.dk/blog.html">blog</a> (titles with <b>Viz</b>).
-            I enjoy putting data science on the web.</li>
-          <li><em><b>Solving applied math problems with code:</b></em> I have years of experience as an academic data
-            scientist in a wide range of domains, which means that by now I've solved enough practical problems to know
-            how to start solving almost any problem. If you struggle with a difficult but well defined problem I will
-            probably be able to look at it, determine the effort required and maybe work it out. I am particularly good
-            at solving <u>clustering</u> problems, optimizing supervised <u>machine learning</u> algorithms, making
-            Bayesian and frequentist <u>statistical inference</u>, and running <u>simulations</u>. I have domain
-            expertise with various types of data: <u>network</u> (social, neural, informational, biological),
-            <u>text</u>,
-            <u>mobility</u>, <u>marketing</u>, <u>financial</u>, and more.
+          <li><em><b>Consulting:</b></em> Bayesian marketing mix modeling, generative AI, machine learning, statistical
+            inference, and data visualization. Mainly through <a href="https://www.pymc-labs.com/">PyMC Labs</a>. I work
+            best on difficult, well-defined problems, from production MMMs (e.g. Precis Digital's <a
+              href="https://alvie.io/">Alvie</a>, serving 20+ major brands) to one-off applied math/ML work and
+            open-source scientific software.
           </li>
-          <li><em><b>Scientific software development:</b></em> I have built several small and large pieces of scientific
-            software that I, for the most part, open source so people can use it in their research and business. See
-            for example <a href="https://github.com/ulfaslak/infostop">Infostop</a> and <a
-              href="https://github.com/benmaier/netwulf/">Netwulf</a>. I like to build packages with Python interfaces,
-            but I am comfortable with C++ and JavaScript too. So let's imagine that you need a package for fitting a
-            specific type of model to some data, making a certain type of interactive plot, or running a standard
-            scraping/preprocessing/transformation procedure. I know about such things.</li>
-          <li><em><b>Speaking engagements:</b></em> I have presented at 20+ events (that I can count) and taught seven
-            university courses for (in aggregate) thousands of students over four years. And I am a pretty good
-            communicator (see <a href="https://www.youtube.com/watch?v=GPiVHDXdHfs">this</a>, <a
-              href="https://video.ku.dk/kortlaegning-af-sociale-strukturer">this</a>, <a
-              href="https://videnskab.dk/kultur-samfund/dtu-studerende-vinder-science-pris-kreativ-formidling">this</a>,
-            and <em>Awards and stipends</em> in my <a href="https://ulfaslak.dk/files/cv_ulf_en.pdf">CV</a>). I can give
-            high-level talks about, for example, the <u>value of data</u>, the benefit of <u>data visualization</u>,
-            data science and its <u>applications</u>, and <u>ethics</u> (e.g. responsible AI and unbiased machine
-            learning). I also give more technical lectures explaining concepts in <u>machine learning</u>, <u>AI</u>,
-            <u>network science</u>, <u>complex systems</u>, general <u>data science</u>, <u>marketing analytics</u>
-            etc., tailored to a level of abstraction that will maximise audience engagement.
+          <li><em><b>Talks and workshops:</b></em> I run practical sessions for companies on applied topics. Common ones:
+            <u>context engineering &amp; agent-assisted development</u> for engineering teams,
+            <u>Bayesian marketing mix modeling</u>, <u>generative AI for business</u> aimed at non-technical leadership
+            who want a working mental model, and <u>Python &amp; modern data science</u> for teams transitioning away
+            from MATLAB, SAS, Stata, or Excel.
           </li>
         </ul>
+
+        <p class="consulting-workshop-prompt">
+          For teaching requests, the fastest way to start is to sketch a rough scope with the
+          <a href="workshops.html">workshop quote builder</a>.
         </p>
 
-        <h2>Contact</h2>
-        <div style="display:flex;flex-direction:row;justify-content:center;">
-          <p>
-            <a href="#" class="button special" onclick="copyToClipboard('ulfaslak@gmail.com', 'Email')">Email</a>,
-            <a href="https://www.linkedin.com/in/ulf-aslak-lai-89260927/" target="_blank"><img
-                src="assets/img/linkedin_logo_tiny.png" style="width:16;height:16"></a> or
-            <a href="https://twitter.com/ulfaslak" target="_blank"><img src="assets/img/twitter_logo_tiny.png"
-                style="width:16;height:16"></a>
-          </p>
-        </div>
-
-
+        <h2>Get in touch</h2>
+        <p>
+          I am available for consulting work related to model development, advising, talks, and workshops.
+          I do not currently accept offers for full-time employment, unless under special circumstances.
+          <a href="#" class="button special" onclick="copyToClipboard('ulfaslak@gmail.com', 'Email')">Email</a>
+          <a href="https://www.linkedin.com/in/ulf-aslak-lai-89260927/" target="_blank" rel="noopener"><img
+              class="social-icon" src="assets/img/linkedin_logo_tiny.png" alt="LinkedIn"></a>
+          <a href="https://twitter.com/ulfaslak" target="_blank" rel="noopener"><img class="social-icon"
+              src="assets/img/twitter_logo_tiny.png" alt="Twitter"></a>
+        </p>
       </div>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="footer cf" role="contentinfo">
+  <footer class="footer cf">
     <div class="wrap wide">
-      <p class="footer-copyright">© 2010–2025 Ulf Aslak | Copenhagen, Denmark</p>
+      <p class="footer-copyright">© 2010–2026 Ulf Aslak | Copenhagen, Denmark</p>
     </div>
   </footer>
 

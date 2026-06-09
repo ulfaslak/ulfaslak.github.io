@@ -9,39 +9,38 @@
   </head>
 
   <body>
-  	<!-- Header -->
+	<!-- Header -->
     <header class="header wrap wide" role="banner">
       <div class="grid">
         <div class="branding column">
-          <a href="https://ulfaslak.dk/index.html" rel="home">Ulf Aslak</a>
+          <a href="../index.html" rel="home">Ulf Aslak</a>
         </div>
 
         <nav class="navigation column" role="navigation">
           <ul class="menu">
             <li class="menu-item">
-              <a href="https://ulfaslak.dk/about.html">About</a>
+              <a href="../about.html">About</a>
+            </li>
+            <li class="menu-item is-active">
+              <a href="../blog.html">Blog</a>
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.dk/blog.html">Blog</a>
+              <a href="../files/cv_ulf_en.pdf">CV</a>
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.dk/files/cv_ulf_en.pdf">CV</a>
+              <a href="../workshops.html">Workshops</a>
             </li>
             <li class="menu-item">
-              <a href="#">Codes</a>
-              <ul class="dropdown">
-                  <a href="https://github.com/ulfaslak">Github</a>
-                  <a href="https://observablehq.com/@ulfaslak">Observable</a>
-              </ul>
+              <a href="https://github.com/ulfaslak">Code</a>
             </li>
             <li class="menu-item">
-              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&hl=da&oi=ao" target="_blank">Publications</a>
+              <a href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&amp;hl=da&amp;oi=ao" target="_blank" rel="noopener">Publications</a>
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.dk/contact.html" target="_blank">Contact</a>
+              <a href="../contact.html">Consulting</a>
             </li>
             <li class="menu-item">
-              <a href="https://ulfaslak.dk/vent.html" target="_blank">Vent</a>
+              <a href="../vent.html">Vent</a>
             </li>
           </ul>
         </nav>
@@ -53,8 +52,8 @@
       <h1>Network yo face!</h1>
       <p><em>2018</em></p>
     </header>
-    
-    <div class="text wrap">  
+
+    <div class="text wrap">
       <p>Inspired by <strong><a href="https://vedransekara.github.io/2018/08/06/network_text.html" target="_blank">a blog post</a></strong> by Vedran Sekara, I figured it would be fun to write some code that takes an image of a face and converts it into a network.</p>
 
       <p>The algorithm is super straight forward. You take the face, and convert it to black and white, then sample points on that image with a bias towards the dark regions. Finally, you connect each point to a number of its nearest neighbors. What you are left with is a facework.</p>
@@ -64,7 +63,7 @@
       </figure>
 
       <p>Thrilled as I was to see this actually work, I immediately became concerned that dark skinned people would be harder to netface. The solution was to simply <em>exponentiate and renormalize</em> the probability distribution that you sample with. The probability distribution is essentially the greyscale image of the face and if your raise that to higher powers (in other words, if the initial probability distribution is <em><MATH>p</MATH></em> you and you change it to <em><MATH>p</em><SUP>2</SUP></MATH></em> or higher) you increase the contrast of the sampling.</p>
-      
+
       <p>Below you see Akon (the most dark skinned celebrity I can think of) at different levels of contrast. It's not perfect, but you can kinda tell it's him.</p>
 
       <figure>
@@ -83,11 +82,11 @@
 
 
     <!-- Footer -->
-   	<footer class="footer cf" role="contentinfo">
+	<footer class="footer cf" role="contentinfo">
 	    <div class="wrap wide">
-	      <p class="footer-copyright">© 2010–2025 Ulf Aslak | Copenhagen, Denmark</p>
+	      <p class="footer-copyright">© 2010–2026 Ulf Aslak | Copenhagen, Denmark</p>
 	    </div>
-  	</footer>
+	</footer>
 
     <!-- Google Analytics. -->
     <script>
