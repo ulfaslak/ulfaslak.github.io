@@ -840,8 +840,8 @@ body {
 .consulting-intro {
   margin: .75rem 0 2rem;
   padding: 1rem 0;
-  border-top: 1px solid #a8a5be;
-  border-bottom: 1px solid #a8a5be;
+  /* border-top: 1px solid #a8a5be; */
+  /* border-bottom: 1px solid #a8a5be; */
 }
 
 .consulting-intro p {
@@ -853,9 +853,9 @@ body {
 }
 
 .consulting-workshop-prompt {
-  margin-top: 1.75rem;
+  margin-top: 2.75rem;
   padding-top: 1rem;
-  border-top: 1px solid #dddddd;
+  /* border-top: 1px solid #dddddd; */
 }
 
 .contact-options {

@@ -437,6 +437,10 @@
       letter-spacing: 0;
     }
 
+    .quote-price.is-minimum {
+      font-size: clamp(1.5rem, 8vw, 2.5rem);
+    }
+
     .quote-tax {
       margin: 0 0 .55rem;
       color: var(--quote-muted);
@@ -685,10 +689,9 @@
     <h1 class="quote-sr-only">Workshop quote configurator</h1>
     <section class="quote-intro">
       <p>
-        I run workshops and courses for companies on various applied topics. Different companies
-        have different needs, so I made a simple configurator to get a rough estimate of the cost
-        of a talk, workshop, or course. The quote is fairly accurate but non binding, and final
-        price is determined by the actual scope.
+        I run workshops and courses for companies on various applied topics. My rate depends on many
+        factors. This configurator gives you a <b>cost estimate and breakdown</b>. The quote is accurate but
+        non-binding, and the final price is determined by the actual scope.
       </p>
     </section>
 
@@ -699,18 +702,23 @@
           <h2>Format</h2>
           <div class="quote-format-grid">
             <label class="quote-tile">
-              <input type="radio" name="format" value="half" checked>
-              <b>Half day</b>
+              <input type="radio" name="format" value="talk" checked>
+              <b>Talk</b>
+              <span>A focused talk on one topic. No exercises, no hands-on.</span>
+            </label>
+            <label class="quote-tile">
+              <input type="radio" name="format" value="half">
+              <b>Half day workshop</b>
               <span>Conceptual intro, demos, discussion, light exercises.</span>
             </label>
             <label class="quote-tile">
               <input type="radio" name="format" value="full">
-              <b>Full day</b>
+              <b>Full day workshop</b>
               <span>Hands-on workshop with exercises and room for team examples.</span>
             </label>
             <label class="quote-tile">
               <input type="radio" name="format" value="two">
-              <b>Two days</b>
+              <b>Two day workshop</b>
               <span>Deeper course structure, projects, feedback, and iteration.</span>
             </label>
             <label class="quote-tile">
@@ -722,7 +730,7 @@
         </section>
 
         <section class="quote-panel">
-          <h2>Workshop track</h2>
+          <h2>Track</h2>
           <p>Pick the main thing your team wants to learn. I can weave in related examples, but the quote is anchored on one track.</p>
           <div class="quote-topic-list" id="topicOptions">
             <label class="quote-topic">
@@ -985,10 +993,11 @@
       var briefEl = document.getElementById("brief");
 
       var formats = {
+        talk: { label: "Talk", summary: "Talk", base: 8000, deliveryHours: 1 },
         half: { label: "Half day", summary: "Half-day workshop", base: 16000, deliveryHours: 4 },
         full: { label: "Full day", summary: "Full-day workshop", base: 24000, deliveryHours: 7 },
         two: { label: "Two days", summary: "Two-day workshop", base: 44000, deliveryHours: 14 },
-        series: { label: "Course series", summary: "Course series", base: 68000, deliveryHours: 21 }
+        series: { label: "Course series", summary: "Course series", base: 72000, deliveryHours: 21 }
       };
 
       var topics = {
@@ -1173,7 +1182,12 @@
         var total = format.base + topic.amount + participantAdjustment + cohortAdjustment + tailoringAmount + deliveryMode.amount + addonAmount;
         var liveHours = format.deliveryHours * cohortCount;
 
-        priceEl.textContent = kr(total);
+        if (format === formats.series) {
+          priceEl.classList.add("is-minimum");
+        } else {
+          priceEl.classList.remove("is-minimum");
+        }
+        priceEl.textContent = (format === formats.series ? "> " : "") + kr(total);
         explainerEl.textContent = format.summary + " for " + participantCount + " participants" + (cohortCount > 1 ? " across " + cohortCount + " cohorts, about " + peoplePerCohort + " per cohort" : "") + ", " + deliveryMode.summary + ". Focus: " + topic.label + ".";
         document.getElementById("metricLiveHours").textContent = liveHours;
         document.getElementById("metricParticipants").textContent = participantCount;
@@ -1200,11 +1214,8 @@
           "Organization: " + (org || "[add organization]"),
           "Format: " + format.label,
           "Workshop track: " + topic.label,
-          "Track description: " + topic.email,
-          "Technical level: " + topic.technical,
           "Participants: " + participantCount + (cohortCount > 1 ? " total, about " + peoplePerCohort + " per cohort" : ""),
           "Cohorts: " + cohortCount,
-          "Live teaching hours: " + liveHours,
           "Tailoring: " + tailoringHours + " hours",
           "Delivery: " + deliveryMode.label,
           "Included: reusable working materials where useful",
