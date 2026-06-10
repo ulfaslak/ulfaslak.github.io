@@ -38,10 +38,10 @@
     }
 
     .quote-intro {
-      margin: 1.2rem 0 1.6rem;
+      margin: 0.2rem 0 4.6rem;
       padding: 1rem 0;
-      border-top: 1px solid #a8a5be;
-      border-bottom: 1px solid #a8a5be;
+      /* border-top: 1px solid #a8a5be; */
+      /* border-bottom: 1px solid #a8a5be; */
     }
 
     .quote-intro p {
@@ -80,7 +80,6 @@
       align-items: start;
     }
 
-    .quote-panel,
     .quote-summary {
       border: 1px solid var(--quote-line);
       background: #fff;
@@ -88,8 +87,9 @@
     }
 
     .quote-panel {
-      padding: .9rem;
-      margin-bottom: .75rem;
+      padding: .9rem 0 1rem;
+      margin-bottom: .85rem;
+      background: #fff;
     }
 
     .quote-panel h2,
@@ -607,9 +607,12 @@
     }
 
     @media all and (max-width: 36em) {
-      .quote-panel,
       .quote-summary {
         padding: 1rem;
+      }
+
+      .quote-panel {
+        padding: 1rem 0;
       }
 
       .quote-topic-head {
@@ -665,24 +668,13 @@
             <a href="blog.html">Blog</a>
           </li>
           <li class="menu-item">
-            <a href="files/cv_ulf_en.pdf">CV</a>
+            <a href="contact.html">Consulting</a>
           </li>
           <li class="menu-item is-active">
             <a href="workshops.html">Workshops</a>
           </li>
           <li class="menu-item">
-            <a href="https://github.com/ulfaslak">Code</a>
-          </li>
-          <li class="menu-item">
-            <a
-              href="https://scholar.google.com/citations?user=bN8pKTIAAAAJ&amp;hl=da&amp;oi=ao"
-              target="_blank" rel="noopener">Publications</a>
-          </li>
-          <li class="menu-item">
-            <a href="contact.html">Consulting</a>
-          </li>
-          <li class="menu-item">
-            <a href="vent.html">Vent</a>
+            <a href="files/cv_ulf_en.pdf">CV</a>
           </li>
         </ul>
       </nav>
@@ -693,15 +685,11 @@
     <h1 class="quote-sr-only">Workshop quote configurator</h1>
     <section class="quote-intro">
       <p>
-        Pick a rough shape for a company workshop or course. I have taught data science,
-        statistics, Python, and AI topics for 10+ years; this gives us a serious starting
-        point without turning scoping into a sales call.
+        I run workshops and courses for companies on various applied topics. Different companies
+        have different needs, so I made a simple configurator to get a rough estimate of the cost
+        of a talk, workshop, or course. The quote is fairly accurate but non binding, and final
+        price is determined by the actual scope.
       </p>
-    </section>
-
-    <section class="quote-start">
-      <h2>Design your workshop</h2>
-      <p>Choose the format, track, scope, delivery, and any add-ons. The estimate updates immediately.</p>
     </section>
 
     <div class="quote-shell">
